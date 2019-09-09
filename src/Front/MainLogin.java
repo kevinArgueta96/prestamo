@@ -1,7 +1,5 @@
 package Front;
 
-
-
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -88,7 +86,7 @@ public class MainLogin extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Log In");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(410, 30, 130, 40);
+        jLabel6.setBounds(410, 50, 130, 40);
 
         jTextField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -116,7 +114,7 @@ public class MainLogin extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(0, 51, 153));
         jButton2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        jButton2.setText("x");
+        jButton2.setText("X");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +122,7 @@ public class MainLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(570, 10, 50, 40);
+        jButton2.setBounds(580, 0, 50, 40);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white_back_login.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -140,8 +138,7 @@ public class MainLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        
-
+       
         
        
     }//GEN-LAST:event_jButton1ActionPerformed
