@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
  * @author Kevin
  */
 public class conexcion {
-  private static Connection cnc = null;
+  public static Connection cnc = null;
   private static final String driver ="com.mysql.cj.jdbc.Driver";
   private static final String user ="prueba";
   private static final String pass ="1234";
@@ -18,7 +18,6 @@ public class conexcion {
         try {
              Class.forName(driver);
              cnc = DriverManager.getConnection(url,user,pass);
-             
              if(cnc!=null){
                  JOptionPane.showMessageDialog(null, "Conexcion exitosa");
              }
@@ -28,7 +27,6 @@ public class conexcion {
         }
     }
  public Connection getConnection(){
-     System.out.println(cnc);
      return cnc;
  }
   

@@ -1,6 +1,7 @@
 
 package Front;
 import Front.conexcion;
+import java.sql.*;
 /**
  *
  * @author Franklyn Escobar
@@ -102,8 +103,23 @@ public class form_new_prestamo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String sql;
         con = new conexcion();
-        con.getConnection();
+        
+        try {
+            PreparedStatement pst = con.getConnection().prepareStatement("INSERT INTO tbl_cliente VALUES (?,?,?,?,?,?,?)");
+            pst.setInt(1, 4);
+            pst.setString(2, "frank");
+            pst.setString(3, "perez");
+            pst.setString(4, "calle");
+            pst.setInt(5, 582);
+            pst.setString(6, "m");
+            pst.setInt(7, 258);
+            pst.executeUpdate();
+        } catch (Exception e) {
+        }
+        
+        con.desconectar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
