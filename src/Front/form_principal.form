@@ -24,49 +24,67 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="62" pref="62" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btn_pagocliente1" max="32767" attributes="0"/>
+                  <Component id="btn_ingclient" max="32767" attributes="0"/>
+                  <Component id="btn_ingprestamo" alignment="0" pref="140" max="32767" attributes="0"/>
+              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btn_newprestamo" min="-2" pref="111" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="btn_newprestamo" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btn_ingprestamo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton4" max="32767" attributes="0"/>
-                          <Component id="btn_ingclient" pref="111" max="32767" attributes="0"/>
-                          <Component id="btn_pagocliente" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btn_pagocliente1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_ingcobrador1" max="32767" attributes="0"/>
+                          <Component id="jButton4" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="239" max="32767" attributes="0"/>
-                      <Component id="btn_ingcobrador" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btn_pagocliente" pref="140" max="32767" attributes="0"/>
+                  <Component id="btn_ingcobrador" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_ingclient" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  <Component id="btn_ingcobrador" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btn_newprestamo" min="-2" pref="44" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btn_ingprestamo" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btn_pagocliente" min="-2" pref="46" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="46" max="-2" attributes="0"/>
-              <EmptySpace pref="102" max="32767" attributes="0"/>
-              <Component id="btn_pagocliente1" min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btn_pagocliente" min="-2" pref="97" max="-2" attributes="0"/>
+                  <Component id="btn_ingclient" max="32767" attributes="0"/>
+                  <Component id="btn_newprestamo" alignment="1" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btn_ingprestamo" alignment="3" min="-2" pref="97" max="-2" attributes="0"/>
+                  <Component id="btn_ingcobrador" alignment="3" min="-2" pref="96" max="-2" attributes="0"/>
+                  <Component id="btn_ingcobrador1" alignment="3" min="-2" pref="96" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btn_pagocliente1" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Component id="jButton4" alignment="3" min="-2" pref="100" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -76,15 +94,21 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingreso Cliente"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ingclientActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_ingprestamo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nuevo Prestamo"/>
+        <Property name="text" type="java.lang.String" value="Pagos Pendientes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ingprestamoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_ingcobrador">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ingreso Cobrador"/>
+        <Property name="text" type="java.lang.String" value="Comisiones"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
@@ -94,7 +118,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_pagocliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pago Cliente"/>
+        <Property name="text" type="java.lang.String" value="Pago de Clientes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_pagocliente1">
@@ -105,6 +129,21 @@
     <Component class="javax.swing.JButton" name="btn_newprestamo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nuevo Prestamo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pagos Pendientes:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="20"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_ingcobrador1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ingreso Cobrador"/>
       </Properties>
     </Component>
   </SubComponents>

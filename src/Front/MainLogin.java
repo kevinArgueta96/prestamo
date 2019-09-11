@@ -138,7 +138,7 @@ public class MainLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        form_new_prestamo fmp = new form_new_prestamo();
+        form_principal fmp = new form_principal();
         fmp.setVisible(true);
         this.setVisible(false);
 
