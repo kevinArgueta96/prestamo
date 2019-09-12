@@ -1,6 +1,7 @@
 
 package Front;
 import javax.swing.JOptionPane;
+import java.sql.*;
 /**
  *
  * @author Kevin
@@ -222,16 +223,41 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         int dpi=0;
         int telefono=0;
         String direc="";
+        conexcion con =new conexcion();
         
-        nombre=txt_nombre.toString();
-        apellido=txt_apellido.toString();
-        dpi=Integer.parseInt(txt_dpi.toString());
-        telefono=Integer.parseInt(txt_telefono.toString());
-        direc =txt_direccion.toString();
         
-        if(nombre==""){
-            JOptionPane.showMessageDialog(null, "Mensaje vacio");
+        if(txt_nombre.getText().isEmpty()){
+           JOptionPane.showMessageDialog(null, "ingrese nombre");
+        }else{
+            if(txt_dpi.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese dpi");
+            }else{
+                if(txt_telefono.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Ingrese Telefono");
+                }else{
+                    nombre=txt_nombre.getText();
+                    apellido=txt_apellido.getText();
+                    dpi=Integer.parseInt(txt_dpi.getText());
+                    telefono=Integer.parseInt(txt_telefono.getText());
+                    direc =txt_direccion.getText();
+                }
+            }
         }
+        String query = "INSERT INTO tbl_cliente ()values (?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+            Statement str=con.getConnection().prepareStatement(query);
+            
+            
+         }catch (SQLException e) {
+            System.out.println("Error!, la llamada no pudo ser agregada a la base de datos.");
+        }
+       con.getConnection();
+       
+        
+        JOptionPane.showMessageDialog(null, "Ingreso completado");
+
+
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     /**
