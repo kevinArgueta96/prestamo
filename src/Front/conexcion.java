@@ -19,11 +19,11 @@ public class conexcion {
              Class.forName(driver);
              cnc = DriverManager.getConnection(url,user,pass);
              if(cnc!=null){
-                 JOptionPane.showMessageDialog(null, "Conexcion exitosa");
+                 //JOptionPane.showMessageDialog(null, "Conexcion exitosa");
              }
         } catch (ClassNotFoundException | SQLException ex) {
             
-            JOptionPane.showMessageDialog(null, "Conexcion fallida"+ ex);
+            //JOptionPane.showMessageDialog(null, "Conexcion fallida"+ ex);
         }
     }
  public Connection getConnection(){
