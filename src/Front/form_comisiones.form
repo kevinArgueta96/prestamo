@@ -90,7 +90,7 @@
                                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <EmptySpace pref="56" max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jLabel11" min="-2" pref="112" max="-2" attributes="0"/>
@@ -99,8 +99,12 @@
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jTextField4" min="-2" pref="79" max="-2" attributes="0"/>
                                               <Component id="jTextField1" max="32767" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="txt_pagocomision" min="-2" pref="87" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Component id="jTextField4" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -180,8 +184,11 @@
                           <Component id="jLabel11" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txt_pagocomision" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -319,6 +326,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_guardarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
@@ -339,6 +349,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ID prestamo"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_pagocomision">
     </Component>
   </SubComponents>
 </Form>

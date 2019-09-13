@@ -5,6 +5,9 @@
  */
 package Front;
 
+import javax.swing.JOptionPane;
+
+
 /**
  *
  * @author Franklyn Escobar
@@ -56,6 +59,7 @@ public class form_comisiones extends javax.swing.JFrame {
         btn_salir = new javax.swing.JButton();
         btn_regresar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        txt_pagocomision = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,6 +114,11 @@ public class form_comisiones extends javax.swing.JFrame {
         jLabel12.setText("Comisión %");
 
         btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Fecha Pago comisión");
 
@@ -179,14 +188,17 @@ public class form_comisiones extends javax.swing.JFrame {
                                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGap(8, 8, 8))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jLabel13)
                                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField1)))))))))
+                                                .addComponent(jTextField1)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(txt_pagocomision, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(0, 33, Short.MAX_VALUE))
+                                                .addComponent(jTextField4)))))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addGap(106, 106, 106))
@@ -247,8 +259,10 @@ public class form_comisiones extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
-                        .addGap(180, 180, 180))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(txt_pagocomision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(176, 176, 176))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,6 +273,56 @@ public class form_comisiones extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    validaciones validarDatos = new validaciones();
+    
+    
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+    
+        
+        
+        String sNombresCobrador;
+        String sApellidosCobrador;
+        String sNombresPrestamo;
+        String sApellidosPrestamo;
+        
+        if (txt_nombres.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese los Nombres del Cobrador:");
+        }
+        else{
+            if(txt_apellidos.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese los Apellidos del Cobrador:");
+            }
+            else{
+                if(txt_prestnombre.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null, "Ingrese Nombres del Prestamo:");
+                }
+                else{
+                    if(txt_prestapellido.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null, "Ingrese Apellidos del Prestamo");
+                    }
+                    else{
+                        if(txt_monto.getText().isEmpty()){
+                            JOptionPane.showMessageDialog(null, "Ingrese Monto");
+                        }
+                        else{
+                            if(txt_comision.getText().isEmpty()){
+                                JOptionPane.showMessageDialog(null, "Ingrese el % de la Comision");
+                            }
+                        }
+                            }
+                }
+            }
+        
+                
+        
+        
+        
+   
+        }
+        
+        
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -323,6 +387,7 @@ public class form_comisiones extends javax.swing.JFrame {
     private javax.swing.JTextField txt_comision;
     private javax.swing.JTextField txt_monto;
     private javax.swing.JTextField txt_nombres;
+    private javax.swing.JTextField txt_pagocomision;
     private javax.swing.JTextField txt_prestapellido;
     private javax.swing.JTextField txt_prestnombre;
     // End of variables declaration//GEN-END:variables
