@@ -213,8 +213,7 @@ public class form_newcobrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-        
-        cerrar();
+      
               
     }//GEN-LAST:event_btn_salirActionPerformed
 
