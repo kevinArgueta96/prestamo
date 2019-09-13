@@ -5,17 +5,23 @@
  */
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Franklyn Escobar
  */
 public class form_newcobrador extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form form_newcobrador
      */
     public form_newcobrador() {
         initComponents();
+        cerrar();
     }
 
     /**
@@ -48,6 +54,7 @@ public class form_newcobrador extends javax.swing.JFrame {
         btn_salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("JFrame"); // NOI18N
 
         jLabel1.setText("INGRESO NUEVO COBRADOR");
 
@@ -70,8 +77,18 @@ public class form_newcobrador extends javax.swing.JFrame {
         cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
 
         btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,6 +176,75 @@ public class form_newcobrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        //Validaciones Formulario Vacio
+        
+        String sNombresCobrador;
+        String sApellidosCobrador;
+        int iDpi;
+        String sDireccion;
+        
+        if (txt_nombres.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese Nombre del combrador");
+        }
+        else{
+            if(txt_apellidos.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese los Apellidos del Cobrador:");  
+            }
+            else{
+            if(txt_dpi.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese DPI del Cobrador");
+            }
+            else{
+            if(txt_direc.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese Dirección del Combrador");
+            }
+            else{
+            if(txt_tel.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Ingrese número de Teléffono del Cobrador");
+            }
+            }
+            }
+            }
+        
+        }
+            
+            
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        
+        cerrar();
+              
+    }//GEN-LAST:event_btn_salirActionPerformed
+
+        // Metodo para confirmar cerrar el JFrame
+        public void cerrar(){
+         try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e){
+                     confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+      
+    }                                         
+        public void confirmarSalida(){
+            int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia",JOptionPane.YES_NO_OPTION);
+            if(valor==JOptionPane.YES_OPTION){
+                System.exit(0);   
+            
+            }
+        }
+    
+        
+    
     /**
      * @param args the command line arguments
      */
