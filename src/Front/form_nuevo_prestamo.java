@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Front;
 
 import java.sql.PreparedStatement;
@@ -64,7 +60,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
-
+     // con.desconectar();
     }
 
     /**
@@ -351,6 +347,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int seleccion = cmb_plazo.getSelectedIndex();
+        int estadod=0;
         int id_cliente;
         int garantia = 0;
         double monto;
@@ -362,7 +359,30 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         conexcion con = new conexcion();
         String query = "INSERT INTO tbl_prestamo (id_prestamo,monto,interes,fecha_creacion,fecha_finalizacion,monto_interes,ganancia,estado_garantia"
                 + ",id_cliente,id_plazo,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         String query2="SELECT id_cliente,estado FROM tbl_prestamo";
+         String[] dato = new String[2];
+         Statement str1;
 
+        try {
+
+            str1 = con.getConnection().createStatement();
+            ResultSet result = str1.executeQuery(query2);
+            while (result.next()) {
+                
+                dato[0]=result.getString(1);
+                dato[1]=result.getString(2);
+                if(txt_id.getText().equals(dato[0])&&dato[1].equals("1")){
+                    estadod=1;
+                }else{
+                }
+            }
+        }catch(SQLException e){
+            
+        }
+        
+        if(estadod==1){
+            JOptionPane.showMessageDialog(null, "El cliente tiene un prestamo activo");
+        }else{
         if (chk_gara.isSelected() == true) {
             garantia = 1;
         }
@@ -416,8 +436,10 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                 } catch (SQLException e) {
                                     JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                                 }
+                                con.desconectar();
                             }
                         }
+                    }
                     }
                 }
             }
