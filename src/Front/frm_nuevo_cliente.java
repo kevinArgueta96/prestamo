@@ -1,9 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Front;
+
+import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
@@ -39,7 +37,9 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_direccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_sexo = new javax.swing.JComboBox<>();
+        btn_guardar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +72,11 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                 txt_dpiActionPerformed(evt);
             }
         });
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("Telefono");
@@ -79,6 +84,11 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         txt_telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_telefonoActionPerformed(evt);
+            }
+        });
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
             }
         });
 
@@ -94,21 +104,28 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel7.setText("Direccion");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Femenino" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Femenino" }));
+        cmb_sexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmb_sexoActionPerformed(evt);
             }
         });
+
+        btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
+
+        btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btn_cancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(238, 238, 238)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -134,8 +151,19 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(56, 56, 56))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(238, 238, 238)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(btn_guardar)
+                        .addGap(132, 132, 132)
+                        .addComponent(btn_cancelar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,8 +193,12 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(140, Short.MAX_VALUE))
+                    .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_guardar)
+                    .addComponent(btn_cancelar))
+                .addGap(65, 65, 65))
         );
 
         pack();
@@ -192,9 +224,94 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_direccionActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cmb_sexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_sexoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cmb_sexoActionPerformed
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        String nombre = "";
+        String apellido = "";
+        int dpi = 0;
+        int telefono = 0;
+        int seleccion =cmb_sexo.getSelectedIndex();
+        String direc = "";
+        conexcion con = new conexcion();
+
+        if (txt_nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "ingrese nombre");
+        } else {
+            if (txt_dpi.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese dpi");
+            } else {
+                if (txt_telefono.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese Telefono");
+                } else {
+                    if(seleccion==0){
+                        JOptionPane.showMessageDialog(null, "Seleccione un sexo");
+                    }else{
+                    String sexo="";
+                    switch (seleccion) {
+                        case (1):
+                            sexo="M";
+                            break;
+                        case (2):
+                            sexo="F";
+                            break;
+                    }
+                            
+                    nombre = txt_nombre.getText();
+                    apellido = txt_apellido.getText();
+                    dpi = Integer.parseInt(txt_dpi.getText());
+                    telefono = Integer.parseInt(txt_telefono.getText());
+                    direc = txt_direccion.getText();
+                    String query = "INSERT INTO tbl_cliente (id_cliente,nombre_cliente,apellido_cliente,direccion,telefono,sexo,dpi) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+                    try {
+                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                        str.setNull(1, java.sql.Types.BIGINT);
+                        str.setString(2, nombre);
+                        str.setString(3, apellido);
+                        str.setString(4, direc);
+                        str.setInt(5, telefono);
+                        str.setString(6, sexo);
+                        str.setInt(7, dpi);
+
+                        int res = str.executeUpdate();
+                        if (res > 0) {
+                            JOptionPane.showMessageDialog(null, "Ingreso completado");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error");
+                        }
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                    }
+                    con.desconectar();
+                    }
+                }
+            }
+        }
+
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txt_dpiKeyTyped
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txt_telefonoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -232,7 +349,9 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_guardar;
+    private javax.swing.JComboBox<String> cmb_sexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
