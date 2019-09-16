@@ -418,7 +418,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         conexcion con = new conexcion();
         String query = "INSERT INTO tbl_prestamo (id_prestamo,monto,interes,fecha_creacion,fecha_finalizacion,monto_interes,ganancia,estado_garantia,"
                 + "cuotas,total_cuota"
-                + ",id_cliente,id_plazo,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
+                + ",id_cliente,id_plazo,estado,saldo_faltante,cuota_faltante) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
         String query2 = "SELECT id_cliente,estado FROM tbl_prestamo";
         String[] dato = new String[2];
         Statement str1;
@@ -489,6 +489,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                         str.setInt(11, id_cliente);
                                         str.setInt(12, seleccion);
                                         str.setInt(13, 1);
+                                        str.setDouble(14, monto_a_pa);
+                                        str.setInt(15, cuota);
 
                                         res = str.executeUpdate();
                                         if (res > 0) {

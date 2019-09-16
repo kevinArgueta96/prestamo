@@ -27,13 +27,15 @@ public class form_pago_cliente extends javax.swing.JFrame {
         tbl.addColumn("Nombre");
         tbl.addColumn("DPI");
         tbl.addColumn("Prestamo");
+        tbl.addColumn("Saldo a pagar");
+        tbl.addColumn("Couta Faltante");
         tbl_prestamo.setModel(tbl);
 
-        String query = "select nombre_cliente, dpi, monto_interes from tbl_prestamo\n" +
+        String query = "select nombre_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante from tbl_prestamo\n" +
                         "inner join tbl_cliente \n" +
                         "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n" +
                         "where estado=1";
-        String[] dato = new String[3];
+        String[] dato = new String[5];
         Statement str;
 
         try {
@@ -45,6 +47,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 dato[0] = result.getString(1);
                 dato[1] = result.getString(2);
                 dato[2] = result.getString(3);
+                dato[2] = result.getString(4);
+                dato[2] = result.getString(5);
 
                 tbl.addRow(dato);
             }
