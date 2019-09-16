@@ -23,8 +23,7 @@ public class form_garantia extends javax.swing.JFrame {
    String dato;
    conexcion con =new conexcion();
     public form_garantia() {
-      
-        
+     
         initComponents();
         String query = "select max(id_prestamo) from tbl_prestamo";
         Statement str;
@@ -161,8 +160,6 @@ public class form_garantia extends javax.swing.JFrame {
                         int res = str.executeUpdate();
                         if (res > 0) {
                             JOptionPane.showMessageDialog(null, "Ingreso completado");
-                            form_garantia g = new form_garantia();
-                            g.show(false);
                         } else {
                             JOptionPane.showMessageDialog(null, "Error");
                         }

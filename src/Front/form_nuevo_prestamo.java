@@ -441,8 +441,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                                     }
                                     if (garantia == 1) {
-                                        form_garantia g = new form_garantia();
-                                        g.show();
+                                        
                                     }
                                     con.desconectar();
                                 }
