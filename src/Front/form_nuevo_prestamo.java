@@ -1,12 +1,12 @@
-
 package Front;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
-import java.util.ArrayList;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -38,7 +38,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         tbl.addColumn("Telefono");
         tbla_clie.setModel(tbl);
 
-        String query = "SELECT id_cliente,nombre_cliente,apellido_cliente,dpi,telefono FROM tbl_cliente  ";
+        String query = "SELECT id_cliente,nombre_cliente,apellido_cliente,dpi,telefono FROM tbl_cliente";
         String[] dato = new String[5];
         Statement str;
 
@@ -56,11 +56,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
                 tbl.addRow(dato);
             }
-
+            str.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
-     // con.desconectar();
+        con.desconectar();
     }
 
     /**
@@ -96,8 +96,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbla_clie = new javax.swing.JTable();
-        txt_fec_f = new javax.swing.JTextField();
-        txt_fec_c = new javax.swing.JTextField();
+        date_cre = new com.toedter.calendar.JDateChooser();
+        date_fin = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,6 +134,12 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setText("Cancelar");
 
+        txt_monto_s.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_monto_sKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setText("Monto Solicitado");
 
@@ -143,6 +149,9 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_interes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_interesKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_interesKeyTyped(evt);
             }
         });
 
@@ -204,30 +213,17 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_interes)
-                            .addComponent(txt_monto_s, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txt_fec_c, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmb_plazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15))
+                        .addGap(225, 225, 225)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_ganan, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(txt_fec_f)))
+                        .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(chk_gara, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(342, 342, 342)
+                        .addComponent(jButton1)
+                        .addGap(44, 44, 44)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,17 +245,30 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                     .addGap(139, 139, 139)
                                     .addComponent(jLabel7)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_interes)
+                            .addComponent(txt_monto_s, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmb_plazo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(date_cre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
                         .addGap(18, 18, 18)
-                        .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(chk_gara, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(342, 342, 342)
-                        .addComponent(jButton1)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_ganan, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -294,23 +303,25 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_interes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_fec_c, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_fec_f, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chk_gara, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_interes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(date_fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chk_gara, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
+                    .addComponent(date_cre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -338,104 +349,114 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SimpleDateFormat dformat = new SimpleDateFormat("yyyy-MM-dd");
         int seleccion = cmb_plazo.getSelectedIndex();
-        int estadod=0;
+        String fec_c;
+        String fec_f;
+        int estadod = 0, res = 0, ga = 0;
         int id_cliente;
         int garantia = 0;
         double monto;
         double interes;
-        String fec_c;
-        String fec_f;
         double monto_a_pa;
         double ganancia;
         conexcion con = new conexcion();
         String query = "INSERT INTO tbl_prestamo (id_prestamo,monto,interes,fecha_creacion,fecha_finalizacion,monto_interes,ganancia,estado_garantia"
                 + ",id_cliente,id_plazo,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-         String query2="SELECT id_cliente,estado FROM tbl_prestamo";
-         String[] dato = new String[2];
-         Statement str1;
+        String query2 = "SELECT id_cliente,estado FROM tbl_prestamo";
+        String[] dato = new String[2];
+        Statement str1;
 
         try {
 
             str1 = con.getConnection().createStatement();
             ResultSet result = str1.executeQuery(query2);
             while (result.next()) {
-                
-                dato[0]=result.getString(1);
-                dato[1]=result.getString(2);
-                if(txt_id.getText().equals(dato[0])&&dato[1].equals("1")){
-                    estadod=1;
-                }else{
+
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                if (txt_id.getText().equals(dato[0]) && dato[1].equals("1")) {
+                    estadod = 1;
+                } else {
                 }
             }
-        }catch(SQLException e){
-            
+        } catch (SQLException e) {
+
         }
-        
-        if(estadod==1){
+
+        if (estadod == 1) {
             JOptionPane.showMessageDialog(null, "El cliente tiene un prestamo activo");
-        }else{
-        if (chk_gara.isSelected() == true) {
-            garantia = 1;
-        }
-        if (txt_id.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         } else {
-            if (txt_monto_s.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado");
+            if (chk_gara.isSelected() == true) {
+                garantia = 1;
+            }
+            if (txt_id.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Seleccione un cliente");
             } else {
-                if (txt_interes.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Ingrese el Interes");
+                if (txt_monto_s.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado");
                 } else {
-                    if (txt_fec_c.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Ingrese  fecha inicio");
+                    if (txt_interes.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese el Interes");
                     } else {
-                        if (txt_fec_f.getText().isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Ingrese  fecha finalizacion");
+                        if (date_cre.getDate() == null) {
+                            JOptionPane.showMessageDialog(null, "Ingrese  fecha inicio");
                         } else {
-                            if (seleccion == 0) {
-                                JOptionPane.showMessageDialog(null, "Seleccione un Plazo");
+                            if (date_fin.getDate() == null) {
+                                JOptionPane.showMessageDialog(null, "Ingrese  fecha finalizacion");
                             } else {
+                                if (seleccion == 0) {
+                                    JOptionPane.showMessageDialog(null, "Seleccione un Plazo");
+                                } else {
 
-                                monto = Double.parseDouble(txt_monto_s.getText());
-                                interes = Double.parseDouble(txt_interes.getText());
-                                id_cliente = Integer.parseInt(txt_id.getText());
-                                ganancia = Double.parseDouble(txt_ganan.getText());
-                                monto_a_pa = Double.parseDouble(txt_monto_a.getText());
-                                fec_c = txt_fec_c.getText();
-                                fec_f = txt_fec_f.getText();
+                                    monto = Double.parseDouble(txt_monto_s.getText());
+                                    interes = Double.parseDouble(txt_interes.getText());
+                                    id_cliente = Integer.parseInt(txt_id.getText());
+                                    ganancia = Double.parseDouble(txt_ganan.getText());
+                                    monto_a_pa = Double.parseDouble(txt_monto_a.getText());
+                                    fec_c = dformat.format(date_cre.getDate());
+                                    fec_f = dformat.format(date_fin.getDate());
 
-                                try {
-                                    PreparedStatement str = con.getConnection().prepareStatement(query);
-                                    str.setNull(1, java.sql.Types.BIGINT);
-                                    str.setDouble(2, monto);
-                                    str.setDouble(3, interes);
-                                    str.setString(4, fec_c);
-                                    str.setString(5, fec_f);
-                                    str.setDouble(6, monto_a_pa);
-                                    str.setDouble(7, ganancia);
-                                    str.setInt(8, garantia);
-                                    str.setInt(9, id_cliente);
-                                    str.setInt(10, seleccion);
-                                    str.setInt(11, 1);
+                                    try {
+                                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                                        str.setNull(1, java.sql.Types.BIGINT);
+                                        str.setDouble(2, monto);
+                                        str.setDouble(3, interes);
+                                        str.setString(4, fec_c);
+                                        str.setString(5, fec_f);
+                                        str.setDouble(6, monto_a_pa);
+                                        str.setDouble(7, ganancia);
+                                        str.setInt(8, garantia);
+                                        str.setInt(9, id_cliente);
+                                        str.setInt(10, seleccion);
+                                        str.setInt(11, 1);
 
-                                    int res = str.executeUpdate();
-                                    if (res > 0) {
-                                        JOptionPane.showMessageDialog(null, "Ingreso completado");
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Error");
+                                        res = str.executeUpdate();
+                                        if (res > 0) {
+                                            JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                            ga = 1;
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Error");
+                                        }
+                                        str.close();
+                                    } catch (SQLException e) {
+                                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                                     }
-                                } catch (SQLException e) {
-                                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                                    con.desconectar();
                                 }
-                                con.desconectar();
                             }
                         }
                     }
-                    }
                 }
             }
         }
+        if (ga == 1) {
+            if (garantia == 1) {
+                this.setVisible(false);
+                new form_garantia().setVisible(true);
+            }
+        }
+        //con.desconectar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
@@ -470,6 +491,26 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txt_interesKeyReleased
+
+    private void txt_monto_sKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_monto_sKeyTyped
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txt_monto_sKeyTyped
+
+    private void txt_interesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_interesKeyTyped
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txt_interesKeyTyped
 
     /**
      * @param args the command line arguments
@@ -512,6 +553,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chk_gara;
     private javax.swing.JComboBox cmb_plazo;
+    private com.toedter.calendar.JDateChooser date_cre;
+    private com.toedter.calendar.JDateChooser date_fin;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -528,8 +571,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbla_clie;
     private javax.swing.JTextField txt_dpi;
-    private javax.swing.JTextField txt_fec_c;
-    private javax.swing.JTextField txt_fec_f;
     private javax.swing.JTextField txt_ganan;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_interes;

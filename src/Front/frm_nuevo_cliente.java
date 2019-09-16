@@ -282,6 +282,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                         } else {
                             JOptionPane.showMessageDialog(null, "Error");
                         }
+                        str.close();
                     } catch (SQLException e) {
                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                     }
