@@ -5,6 +5,12 @@
  */
 package Front;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Kevin
@@ -16,6 +22,36 @@ public class form_pago_cliente extends javax.swing.JFrame {
      */
     public form_pago_cliente() {
         initComponents();
+        conexcion con = new conexcion();
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("Nombre");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Prestamo");
+        tbl_prestamo.setModel(tbl);
+
+        String query = "select nombre_cliente, dpi, monto_interes from tbl_prestamo\n" +
+                        "inner join tbl_cliente \n" +
+                        "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n" +
+                        "where estado=1";
+        String[] dato = new String[3];
+        Statement str;
+
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+
+                tbl.addRow(dato);
+            }
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+        }
     }
 
     /**
@@ -29,7 +65,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_prestamo = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -49,7 +85,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("PAGO DE CLIENTES");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -60,7 +96,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_prestamo);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("Nombres");
@@ -267,7 +303,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_Faltante;
     private javax.swing.JTextField txt_dpi;
     private javax.swing.JTextField txt_monto_prestamo;

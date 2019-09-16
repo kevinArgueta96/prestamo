@@ -23,30 +23,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" pref="91" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txt_monto_a" min="-2" pref="123" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="chk_gara" min="-2" pref="116" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel6" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" pref="113" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="113" max="-2" attributes="0"/>
+                  <Component id="jLabel8" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="598" max="-2" attributes="0"/>
                           <Component id="txt_nombre" alignment="0" min="-2" pref="241" max="-2" attributes="0"/>
@@ -64,41 +57,57 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jLabel9" min="-2" pref="56" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txt_interes" max="32767" attributes="0"/>
-                          <Component id="txt_monto_s" pref="127" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel10" min="-2" pref="85" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cmb_plazo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                  <Component id="txt_couta" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="txt_cuota_pagar" min="-2" pref="118" max="-2" attributes="0"/>
+                                  <EmptySpace pref="82" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="chk_gara" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" min="-2" pref="91" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="date_cre" min="-2" pref="115" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="date_fin" min="-2" pref="115" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="txt_monto_s" min="-2" pref="127" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel9" min="-2" pref="56" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txt_interes" min="-2" pref="127" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cmb_plazo" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel13" min="-2" pref="91" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txt_monto_a" min="-2" pref="123" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="jLabel12" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel14" min="-2" pref="91" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="date_cre" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel12" min="-2" pref="56" max="-2" attributes="0"/>
-                          <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txt_ganan" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="date_fin" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="txt_ganan" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace pref="215" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="135" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -128,45 +137,44 @@
                   <Component id="txt_nombre" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="250" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="249" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txt_ganan" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_monto_s" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="cmb_plazo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel10" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jLabel12" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txt_monto_s" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jLabel8" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="jLabel9" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="txt_interes" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jLabel13" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="txt_monto_a" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="txt_ganan" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="jLabel12" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="txt_interes" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="jLabel14" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="jLabel15" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jLabel9" min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="date_fin" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="chk_gara" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabel13" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="txt_monto_a" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel14" min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace pref="6" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="date_cre" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                      <Component id="jLabel15" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="date_fin" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="date_cre" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="chk_gara" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txt_couta" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmb_plazo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel10" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="txt_cuota_pagar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -361,6 +369,26 @@
     <Component class="com.toedter.calendar.JDateChooser" name="date_cre">
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="date_fin">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cuotas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_couta">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Times New Roman" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Cuota a pagar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_cuota_pagar">
     </Component>
   </SubComponents>
 </Form>
