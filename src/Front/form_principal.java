@@ -20,9 +20,10 @@ public class form_principal extends javax.swing.JFrame {
      * Creates new form form_principal
      */
     public String datos;
+
     public form_principal() {
-        conexcion con =new conexcion();
-        
+        conexcion con = new conexcion();
+
         initComponents();
         String query = "SELECT sum(estado) FROM tbl_prestamo";
         Statement str;
@@ -30,16 +31,16 @@ public class form_principal extends javax.swing.JFrame {
 
             str = con.getConnection().createStatement();
             ResultSet result = str.executeQuery(query);
-            
-            while(result.next()){
-              datos=result.getString(1);
-            lbl_pagos.setText(datos);
-            }
 
+            while (result.next()) {
+                datos = result.getString(1);
+                lbl_pagos.setText(datos);
+            }
+            str.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
-        
+
     }
 
     /**
@@ -172,7 +173,7 @@ public class form_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ingprestamoActionPerformed
 
     private void btn_ingclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingclientActionPerformed
-        form_nuevo_prestamo frm =new form_nuevo_prestamo();
+        form_nuevo_prestamo frm = new form_nuevo_prestamo();
         frm.setVisible(true);
     }//GEN-LAST:event_btn_ingclientActionPerformed
 

@@ -20,7 +20,7 @@ public class form_garantia extends javax.swing.JFrame {
     /**
      * Creates new form form_garantia
      */
-   String dato;
+   int dato;
    conexcion con =new conexcion();
     public form_garantia() {
      
@@ -33,12 +33,13 @@ public class form_garantia extends javax.swing.JFrame {
             ResultSet result = str.executeQuery(query);
             
             while(result.next()){
-              dato=result.getString(1);
+              dato=result.getInt(1);
             }
-
+            str.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
+        //con.desconectar();
     }
 
     /**
@@ -57,7 +58,7 @@ public class form_garantia extends javax.swing.JFrame {
         txt_garantia = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txt_valor = new javax.swing.JTextField();
-        btn_Guardar = new javax.swing.JButton();
+        btn_guarda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,10 +71,10 @@ public class form_garantia extends javax.swing.JFrame {
 
         jLabel4.setText("Valor");
 
-        btn_Guardar.setText("Guardar");
-        btn_Guardar.addActionListener(new java.awt.event.ActionListener() {
+        btn_guarda.setText("Guardar");
+        btn_guarda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_GuardarActionPerformed(evt);
+                btn_guardaActionPerformed(evt);
             }
         });
 
@@ -100,7 +101,7 @@ public class form_garantia extends javax.swing.JFrame {
                 .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btn_Guardar)
+                .addComponent(btn_guarda)
                 .addGap(338, 338, 338))
         );
         layout.setVerticalGroup(
@@ -121,17 +122,18 @@ public class form_garantia extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addComponent(jLabel4))
                     .addComponent(txt_valor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(btn_Guardar)
-                .addGap(61, 61, 61))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(btn_guarda)
+                .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
+    private void btn_guardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardaActionPerformed
         String garantia,documento;
         double valor;
+        
         
         if(txt_garantia.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Ingrese la garantia ");
@@ -145,7 +147,7 @@ public class form_garantia extends javax.swing.JFrame {
                     garantia=txt_garantia.getText();
                     documento=txt_documento.getText();
                     valor=Double.parseDouble(txt_valor.getText());
-                    
+          
                     String query = "INSERT INTO tbl_garantia (id_garantia,tipo_garantia,no_documento,valor,id_prestamo) VALUES (?, ?, ?, ?, ?)";
 
                     try {
@@ -154,22 +156,23 @@ public class form_garantia extends javax.swing.JFrame {
                         str.setString(2, garantia);
                         str.setString(3, documento);
                         str.setDouble(4, valor);
-                        str.setString(5, dato);
+                        str.setInt(5, dato);
 
 
                         int res = str.executeUpdate();
-                        if (res > 0) {
+                       if (res > 0) {
                             JOptionPane.showMessageDialog(null, "Ingreso completado");
+
                         } else {
                             JOptionPane.showMessageDialog(null, "Error");
                         }
                     } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos."+e);
+                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                     }
                 }
             }
         }
-    }//GEN-LAST:event_btn_GuardarActionPerformed
+    }//GEN-LAST:event_btn_guardaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,7 +210,7 @@ public class form_garantia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_Guardar;
+    private javax.swing.JButton btn_guarda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

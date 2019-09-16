@@ -38,7 +38,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         tbl.addColumn("Telefono");
         tbla_clie.setModel(tbl);
 
-        String query = "SELECT id_cliente,nombre_cliente,apellido_cliente,dpi,telefono FROM tbl_cliente  ";
+        String query = "SELECT id_cliente,nombre_cliente,apellido_cliente,dpi,telefono FROM tbl_cliente";
         String[] dato = new String[5];
         Statement str;
 
@@ -56,11 +56,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
                 tbl.addRow(dato);
             }
-
+            str.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
-        // con.desconectar();
+        con.desconectar();
     }
 
     /**
@@ -353,7 +353,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         int seleccion = cmb_plazo.getSelectedIndex();
         String fec_c;
         String fec_f;
-        int estadod = 0;
+        int estadod = 0, res = 0, ga = 0;
         int id_cliente;
         int garantia = 0;
         double monto;
@@ -431,17 +431,16 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                         str.setInt(10, seleccion);
                                         str.setInt(11, 1);
 
-                                        int res = str.executeUpdate();
+                                        res = str.executeUpdate();
                                         if (res > 0) {
                                             JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                            ga = 1;
                                         } else {
                                             JOptionPane.showMessageDialog(null, "Error");
                                         }
+                                        str.close();
                                     } catch (SQLException e) {
                                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
-                                    }
-                                    if (garantia == 1) {
-                                        
                                     }
                                     con.desconectar();
                                 }
@@ -451,8 +450,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                 }
             }
         }
-
-
+        if (ga == 1) {
+            if (garantia == 1) {
+                this.setVisible(false);
+                new form_garantia().setVisible(true);
+            }
+        }
+        //con.desconectar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
