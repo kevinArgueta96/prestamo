@@ -1,4 +1,3 @@
-
 package Front;
 
 import java.sql.PreparedStatement;
@@ -61,7 +60,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
-     // con.desconectar();
+        // con.desconectar();
     }
 
     /**
@@ -354,7 +353,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         int seleccion = cmb_plazo.getSelectedIndex();
         String fec_c;
         String fec_f;
-        int estadod=0;
+        int estadod = 0;
         int id_cliente;
         int garantia = 0;
         double monto;
@@ -364,91 +363,97 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         conexcion con = new conexcion();
         String query = "INSERT INTO tbl_prestamo (id_prestamo,monto,interes,fecha_creacion,fecha_finalizacion,monto_interes,ganancia,estado_garantia"
                 + ",id_cliente,id_plazo,estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-         String query2="SELECT id_cliente,estado FROM tbl_prestamo";
-         String[] dato = new String[2];
-         Statement str1;
+        String query2 = "SELECT id_cliente,estado FROM tbl_prestamo";
+        String[] dato = new String[2];
+        Statement str1;
 
         try {
 
             str1 = con.getConnection().createStatement();
             ResultSet result = str1.executeQuery(query2);
             while (result.next()) {
-                
-                dato[0]=result.getString(1);
-                dato[1]=result.getString(2);
-                if(txt_id.getText().equals(dato[0])&&dato[1].equals("1")){
-                    estadod=1;
-                }else{
+
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                if (txt_id.getText().equals(dato[0]) && dato[1].equals("1")) {
+                    estadod = 1;
+                } else {
                 }
             }
-        }catch(SQLException e){
-            
+        } catch (SQLException e) {
+
         }
-        
-        if(estadod==1){
+
+        if (estadod == 1) {
             JOptionPane.showMessageDialog(null, "El cliente tiene un prestamo activo");
-        }else{
-        if (chk_gara.isSelected() == true) {
-            garantia = 1;
-        }
-        if (txt_id.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Seleccione un cliente");
         } else {
-            if (txt_monto_s.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado");
+            if (chk_gara.isSelected() == true) {
+                garantia = 1;
+            }
+            if (txt_id.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Seleccione un cliente");
             } else {
-                if (txt_interes.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Ingrese el Interes");
+                if (txt_monto_s.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado");
                 } else {
-                    if (date_cre.getDate()==null) {
-                        JOptionPane.showMessageDialog(null, "Ingrese  fecha inicio");
+                    if (txt_interes.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese el Interes");
                     } else {
-                        if (date_fin.getDate()==null) {
-                            JOptionPane.showMessageDialog(null, "Ingrese  fecha finalizacion");
+                        if (date_cre.getDate() == null) {
+                            JOptionPane.showMessageDialog(null, "Ingrese  fecha inicio");
                         } else {
-                            if (seleccion == 0) {
-                                JOptionPane.showMessageDialog(null, "Seleccione un Plazo");
+                            if (date_fin.getDate() == null) {
+                                JOptionPane.showMessageDialog(null, "Ingrese  fecha finalizacion");
                             } else {
+                                if (seleccion == 0) {
+                                    JOptionPane.showMessageDialog(null, "Seleccione un Plazo");
+                                } else {
 
-                                monto = Double.parseDouble(txt_monto_s.getText());
-                                interes = Double.parseDouble(txt_interes.getText());
-                                id_cliente = Integer.parseInt(txt_id.getText());
-                                ganancia = Double.parseDouble(txt_ganan.getText());
-                                monto_a_pa = Double.parseDouble(txt_monto_a.getText());
-                                fec_c = dformat.format(date_cre.getDate());
-                                fec_f =dformat.format(date_fin.getDate());
+                                    monto = Double.parseDouble(txt_monto_s.getText());
+                                    interes = Double.parseDouble(txt_interes.getText());
+                                    id_cliente = Integer.parseInt(txt_id.getText());
+                                    ganancia = Double.parseDouble(txt_ganan.getText());
+                                    monto_a_pa = Double.parseDouble(txt_monto_a.getText());
+                                    fec_c = dformat.format(date_cre.getDate());
+                                    fec_f = dformat.format(date_fin.getDate());
 
-                                try {
-                                    PreparedStatement str = con.getConnection().prepareStatement(query);
-                                    str.setNull(1, java.sql.Types.BIGINT);
-                                    str.setDouble(2, monto);
-                                    str.setDouble(3, interes);
-                                    str.setString(4, fec_c);
-                                    str.setString(5, fec_f);
-                                    str.setDouble(6, monto_a_pa);
-                                    str.setDouble(7, ganancia);
-                                    str.setInt(8, garantia);
-                                    str.setInt(9, id_cliente);
-                                    str.setInt(10, seleccion);
-                                    str.setInt(11, 1);
+                                    try {
+                                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                                        str.setNull(1, java.sql.Types.BIGINT);
+                                        str.setDouble(2, monto);
+                                        str.setDouble(3, interes);
+                                        str.setString(4, fec_c);
+                                        str.setString(5, fec_f);
+                                        str.setDouble(6, monto_a_pa);
+                                        str.setDouble(7, ganancia);
+                                        str.setInt(8, garantia);
+                                        str.setInt(9, id_cliente);
+                                        str.setInt(10, seleccion);
+                                        str.setInt(11, 1);
 
-                                    int res = str.executeUpdate();
-                                    if (res > 0) {
-                                        JOptionPane.showMessageDialog(null, "Ingreso completado");
-                                    } else {
-                                        JOptionPane.showMessageDialog(null, "Error");
+                                        int res = str.executeUpdate();
+                                        if (res > 0) {
+                                            JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Error");
+                                        }
+                                    } catch (SQLException e) {
+                                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                                     }
-                                } catch (SQLException e) {
-                                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                                    if (garantia == 1) {
+                                        form_garantia g = new form_garantia();
+                                        g.show();
+                                    }
+                                    con.desconectar();
                                 }
-                                con.desconectar();
                             }
                         }
                     }
-                    }
                 }
             }
         }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
