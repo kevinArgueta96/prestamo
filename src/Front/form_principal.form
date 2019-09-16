@@ -127,7 +127,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_pagocliente1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Reportes"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/report.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="         Reportes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

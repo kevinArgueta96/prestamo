@@ -93,7 +93,8 @@ public class form_principal extends javax.swing.JFrame {
 
         btn_pagocliente.setText("Pago de Clientes");
 
-        btn_pagocliente1.setText("Reportes");
+        btn_pagocliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report.png"))); // NOI18N
+        btn_pagocliente1.setText("         Reportes");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Pagos Pendientes:");
