@@ -98,6 +98,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,6 +206,13 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,12 +238,15 @@ public class form_pago_cliente extends javax.swing.JFrame {
                                             .addComponent(jLabel4))
                                         .addGap(33, 33, 33)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txt_nombre)
-                                                .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txt_monto_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txt_nombre)
+                                                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(128, 128, 128)
+                                                .addComponent(jButton4))))
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +269,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                                         .addComponent(txt_saldo_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(47, 47, 47)
                                 .addComponent(jButton3)))
-                        .addGap(0, 224, Short.MAX_VALUE)))
+                        .addGap(0, 160, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -272,14 +283,19 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -356,7 +372,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         double pago = 0, saldo_fal = 0;
-        int cuota = 0, modifica = 0, id,dato=0;
+        int cuota = 0, modifica = 0, id, dato = 0;
         LocalDate date = LocalDate.now();
 
         if (txt_dpi.getText().isEmpty() && txt_nombre.getText().isEmpty()) {
@@ -395,6 +411,10 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 }
                 String query_update = "UPDATE tbl_prestamo SET  saldo_faltante = " + monto_restante + ", cuota_faltante = " + cuota_res + " WHERE (id_prestamo = " + id + ")";
                 String query_last = "select max(id_abono) from tbl_abonos";
+                String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + " WHERE (id_prestamo = " + id + ")";
+                String query_cambio = "select saldo_faltante,cuota_faltante from tbl_prestamo WHERE (id_prestamo = " + id + ")";
+                int[] cambio = new int[3];
+                boolean bandera_estado = false;
                 if (modifica == 1) {
                     try {
                         PreparedStatement str_update = con.getConnection().prepareStatement(query_update);
@@ -404,8 +424,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                             ////////////////////////////////////////////  
                             try {
                                 PreparedStatement str_last = con.getConnection().prepareStatement(query_last);
-                                
-                                
+
                                 ResultSet result = str_last.executeQuery(query_last);
                                 while (result.next()) {
                                     dato = result.getInt(1);
@@ -415,8 +434,35 @@ public class form_pago_cliente extends javax.swing.JFrame {
                                 str_pago.setInt(2, dato);
                                 int res_pago = str_pago.executeUpdate();
                                 if (res_pago > 0) {
-                                   //JOptionPane.showMessageDialog(null, "Ingreso completado");
-                                }else{
+                                    try {
+                                        PreparedStatement str_estado_cambio = con.getConnection().prepareStatement(query_estado);
+                                        PreparedStatement str_cambio = con.getConnection().prepareStatement(query_cambio);
+
+                                        ResultSet result_cambio = str_last.executeQuery(query_cambio);
+                                        while (result_cambio.next()) {
+                                            cambio[0] = result_cambio.getInt(1);
+                                            cambio[1] = result_cambio.getInt(2);
+                                        }
+                                        if (cambio[0] == 0 && cambio[1] == 0) {
+                                            
+                                            bandera_estado = true;
+                                        } else {
+                                            bandera_estado = false;
+                                        }
+                                        if (bandera_estado == true) {
+                                           
+                                           int res_estado = str_estado_cambio.executeUpdate();
+                                            if (res_update > 0) {
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Error");
+                                            }
+                                        }
+                                        str_estado_cambio.close();
+                                        str_cambio.close();
+                                    } catch (SQLException e) {
+
+                                    }
+                                } else {
                                     JOptionPane.showMessageDialog(null, "Error");
                                 }
                                 str_pago.close();
@@ -435,8 +481,59 @@ public class form_pago_cliente extends javax.swing.JFrame {
                     }
                 }
             }
+            actualizar();
+            txt_Faltante.setText("");
+            txt_Faltante_cuota.setText("");
+            txt_dpi.setText("");
+            txt_id.setText("");
+            txt_monto_prestamo.setText("");
+            txt_nombre.setText("");
+            txt_pago_estipulado.setText("");
+            txt_saldo_pagar.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void actualizar(){
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Prestamo");
+        tbl.addColumn("Saldo a pagar");
+        tbl.addColumn("Cuotas Faltantes");
+        tbl.addColumn("Pago estupilado");
+        tbl_prestamo.setModel(tbl);
+
+        String query = "select id_prestamo,nombre_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante,total_cuota from tbl_prestamo\n"
+                + "inner join tbl_cliente \n"
+                + "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n"
+                + "where estado=1";
+        String[] dato = new String[7];
+        Statement str;
+
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+                dato[6] = result.getString(7);
+                tbl.addRow(dato);
+            }
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+        }
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        actualizar();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -477,6 +574,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
