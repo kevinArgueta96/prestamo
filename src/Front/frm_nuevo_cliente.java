@@ -31,7 +31,6 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_apellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txt_dpi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txt_telefono = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -40,6 +39,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         cmb_sexo = new javax.swing.JComboBox<String>();
         btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
+        txt_dpi = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,17 +66,6 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("Sexo");
-
-        txt_dpi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_dpiActionPerformed(evt);
-            }
-        });
-        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_dpiKeyTyped(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("Telefono");
@@ -129,7 +118,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -143,7 +132,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,8 +171,8 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -213,14 +202,6 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_apellidoActionPerformed
 
-    private void txt_dpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dpiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_dpiActionPerformed
-
-    private void txt_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_telefonoActionPerformed
-
     private void txt_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_direccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_direccionActionPerformed
@@ -232,12 +213,12 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         String nombre = "";
         String apellido = "";
-        int dpi = 0;
+        long dpi;
         int telefono = 0;
         int seleccion =cmb_sexo.getSelectedIndex();
         String direc = "";
         conexcion con = new conexcion();
-
+        try{
         if (txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "ingrese nombre");
         } else {
@@ -262,11 +243,11 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                             
                     nombre = txt_nombre.getText();
                     apellido = txt_apellido.getText();
-                    dpi = Integer.parseInt(txt_dpi.getText());
+                    dpi = Long.parseLong(txt_dpi.getText());
                     telefono = Integer.parseInt(txt_telefono.getText());
                     direc = txt_direccion.getText();
                     String query = "INSERT INTO tbl_cliente (id_cliente,nombre_cliente,apellido_cliente,direccion,telefono,sexo,dpi) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
+                    
                     try {
                         PreparedStatement str = con.getConnection().prepareStatement(query);
                         str.setNull(1, java.sql.Types.BIGINT);
@@ -275,7 +256,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                         str.setString(4, direc);
                         str.setInt(5, telefono);
                         str.setString(6, sexo);
-                        str.setInt(7, dpi);
+                        str.setLong(7, dpi);
 
                         int res = str.executeUpdate();
                         if (res > 0) {
@@ -292,18 +273,11 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                 }
             }
         }
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
 
     }//GEN-LAST:event_btn_guardarActionPerformed
-
-    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
-        char valida = evt.getKeyChar();
-        if (Character.isLetter(valida)) {
-            getToolkit().beep();
-            evt.consume();
-
-            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
-        }
-    }//GEN-LAST:event_txt_dpiKeyTyped
 
     private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
         char valida = evt.getKeyChar();
@@ -314,6 +288,10 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
         }
     }//GEN-LAST:event_txt_telefonoKeyTyped
+
+    private void txt_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_telefonoActionPerformed
 
     /**
      * @param args the command line arguments
