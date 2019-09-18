@@ -381,103 +381,106 @@ public class form_pago_cliente extends javax.swing.JFrame {
             if (txt_saldo_pagar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Ingrese el monto a pagar");
             } else {
-                pago = Double.parseDouble(txt_saldo_pagar.getText());
-                cuota = Integer.parseInt(txt_Faltante_cuota.getText());
-                cuota_res = cuota - 1;
-                monto_restante = Double.parseDouble(txt_Faltante.getText());
-                monto_restante = monto_restante - pago;
-                id = Integer.parseInt(txt_id.getText());
+                int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Realizar el Pago?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                if (valor == JOptionPane.YES_OPTION) {
+                    pago = Double.parseDouble(txt_saldo_pagar.getText());
+                    cuota = Integer.parseInt(txt_Faltante_cuota.getText());
+                    cuota_res = cuota - 1;
+                    monto_restante = Double.parseDouble(txt_Faltante.getText());
+                    monto_restante = monto_restante - pago;
+                    id = Integer.parseInt(txt_id.getText());
 
-                String query = "INSERT INTO tbl_abonos (id_abono,pago_cliente,fecha_pago,saldo_faltante,no_cuota) VALUES (?, ?, ?, ?, ?)";
-                String query_pagos = "INSERT INTO tbl_detalle_pago (id_prestamo, id_abono) VALUES (?,?) ";
-                try {
-                    PreparedStatement str = con.getConnection().prepareStatement(query);
-                    str.setNull(1, java.sql.Types.BIGINT);
-                    str.setDouble(2, pago);
-                    str.setString(3, date.toString());
-                    str.setDouble(4, monto_restante);
-                    str.setInt(5, cuota);
-
-                    int res = str.executeUpdate();
-                    if (res > 0) {
-                        JOptionPane.showMessageDialog(null, "Ingreso completado abono");
-                        modifica = 1;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error");
-                    }
-                    str.close();
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
-                }
-                String query_update = "UPDATE tbl_prestamo SET  saldo_faltante = " + monto_restante + ", cuota_faltante = " + cuota_res + " WHERE (id_prestamo = " + id + ")";
-                String query_last = "select max(id_abono) from tbl_abonos";
-                String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + " WHERE (id_prestamo = " + id + ")";
-                String query_cambio = "select saldo_faltante,cuota_faltante from tbl_prestamo WHERE (id_prestamo = " + id + ")";
-                int[] cambio = new int[3];
-                boolean bandera_estado = false;
-                if (modifica == 1) {
+                    String query = "INSERT INTO tbl_abonos (id_abono,pago_cliente,fecha_pago,saldo_faltante,no_cuota) VALUES (?, ?, ?, ?, ?)";
+                    String query_pagos = "INSERT INTO tbl_detalle_pago (id_prestamo, id_abono) VALUES (?,?) ";
                     try {
-                        PreparedStatement str_update = con.getConnection().prepareStatement(query_update);
+                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                        str.setNull(1, java.sql.Types.BIGINT);
+                        str.setDouble(2, pago);
+                        str.setString(3, date.toString());
+                        str.setDouble(4, monto_restante);
+                        str.setInt(5, cuota);
 
-                        int res_update = str_update.executeUpdate();
-                        if (res_update > 0) {
-                            ////////////////////////////////////////////  
-                            try {
-                                PreparedStatement str_last = con.getConnection().prepareStatement(query_last);
-
-                                ResultSet result = str_last.executeQuery(query_last);
-                                while (result.next()) {
-                                    dato = result.getInt(1);
-                                }
-                                PreparedStatement str_pago = con.getConnection().prepareStatement(query_pagos);
-                                str_pago.setInt(1, id);
-                                str_pago.setInt(2, dato);
-                                int res_pago = str_pago.executeUpdate();
-                                if (res_pago > 0) {
-                                    try {
-                                        PreparedStatement str_estado_cambio = con.getConnection().prepareStatement(query_estado);
-                                        PreparedStatement str_cambio = con.getConnection().prepareStatement(query_cambio);
-
-                                        ResultSet result_cambio = str_last.executeQuery(query_cambio);
-                                        while (result_cambio.next()) {
-                                            cambio[0] = result_cambio.getInt(1);
-                                            cambio[1] = result_cambio.getInt(2);
-                                        }
-                                        if (cambio[0] == 0 && cambio[1] == 0) {
-                                            
-                                            bandera_estado = true;
-                                        } else {
-                                            bandera_estado = false;
-                                        }
-                                        if (bandera_estado == true) {
-                                           
-                                           int res_estado = str_estado_cambio.executeUpdate();
-                                            if (res_update > 0) {
-                                            } else {
-                                                JOptionPane.showMessageDialog(null, "Error");
-                                            }
-                                        }
-                                        str_estado_cambio.close();
-                                        str_cambio.close();
-                                    } catch (SQLException e) {
-
-                                    }
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Error");
-                                }
-                                str_pago.close();
-                                str_last.close();
-                            } catch (SQLException e) {
-                                JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
-                            }
-
-                            //////////////////////////////////////////////
+                        int res = str.executeUpdate();
+                        if (res > 0) {
+                            JOptionPane.showMessageDialog(null, "Ingreso completado abono");
+                            modifica = 1;
                         } else {
                             JOptionPane.showMessageDialog(null, "Error");
                         }
-                        str_update.close();
+                        str.close();
                     } catch (SQLException e) {
                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                    }
+                    String query_update = "UPDATE tbl_prestamo SET  saldo_faltante = " + monto_restante + ", cuota_faltante = " + cuota_res + " WHERE (id_prestamo = " + id + ")";
+                    String query_last = "select max(id_abono) from tbl_abonos";
+                    String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + " WHERE (id_prestamo = " + id + ")";
+                    String query_cambio = "select saldo_faltante,cuota_faltante from tbl_prestamo WHERE (id_prestamo = " + id + ")";
+                    int[] cambio = new int[3];
+                    boolean bandera_estado = false;
+                    if (modifica == 1) {
+                        try {
+                            PreparedStatement str_update = con.getConnection().prepareStatement(query_update);
+
+                            int res_update = str_update.executeUpdate();
+                            if (res_update > 0) {
+                                ////////////////////////////////////////////  
+                                try {
+                                    PreparedStatement str_last = con.getConnection().prepareStatement(query_last);
+
+                                    ResultSet result = str_last.executeQuery(query_last);
+                                    while (result.next()) {
+                                        dato = result.getInt(1);
+                                    }
+                                    PreparedStatement str_pago = con.getConnection().prepareStatement(query_pagos);
+                                    str_pago.setInt(1, id);
+                                    str_pago.setInt(2, dato);
+                                    int res_pago = str_pago.executeUpdate();
+                                    if (res_pago > 0) {
+                                        try {
+                                            PreparedStatement str_estado_cambio = con.getConnection().prepareStatement(query_estado);
+                                            PreparedStatement str_cambio = con.getConnection().prepareStatement(query_cambio);
+
+                                            ResultSet result_cambio = str_last.executeQuery(query_cambio);
+                                            while (result_cambio.next()) {
+                                                cambio[0] = result_cambio.getInt(1);
+                                                cambio[1] = result_cambio.getInt(2);
+                                            }
+                                            if (cambio[0] == 0 && cambio[1] == 0) {
+
+                                                bandera_estado = true;
+                                            } else {
+                                                bandera_estado = false;
+                                            }
+                                            if (bandera_estado == true) {
+
+                                                int res_estado = str_estado_cambio.executeUpdate();
+                                                if (res_update > 0) {
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "Error");
+                                                }
+                                            }
+                                            str_estado_cambio.close();
+                                            str_cambio.close();
+                                        } catch (SQLException e) {
+
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Error");
+                                    }
+                                    str_pago.close();
+                                    str_last.close();
+                                } catch (SQLException e) {
+                                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                                }
+
+                                //////////////////////////////////////////////
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error");
+                            }
+                            str_update.close();
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                        }
                     }
                 }
             }
@@ -493,7 +496,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void actualizar(){
+    public void actualizar() {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID");
         tbl.addColumn("Nombre");
