@@ -5,11 +5,13 @@
  */
 package Front;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
 
 /**
  *
@@ -20,20 +22,28 @@ public class form_pago_cliente extends javax.swing.JFrame {
     /**
      * Creates new form form_pago_cliente
      */
+    conexcion con = new conexcion();
+    double monto_restante;
+    int cuota_res;
+
     public form_pago_cliente() {
+
         initComponents();
-        conexcion con = new conexcion();
         DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
         tbl.addColumn("Nombre");
         tbl.addColumn("DPI");
         tbl.addColumn("Prestamo");
+        tbl.addColumn("Saldo a pagar");
+        tbl.addColumn("Cuotas Faltantes");
+        tbl.addColumn("Pago estupilado");
         tbl_prestamo.setModel(tbl);
 
-        String query = "select nombre_cliente, dpi, monto_interes from tbl_prestamo\n" +
-                        "inner join tbl_cliente \n" +
-                        "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n" +
-                        "where estado=1";
-        String[] dato = new String[3];
+        String query = "select id_prestamo,nombre_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante,total_cuota from tbl_prestamo\n"
+                + "inner join tbl_cliente \n"
+                + "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n"
+                + "where estado=1";
+        String[] dato = new String[7];
         Statement str;
 
         try {
@@ -45,7 +55,10 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 dato[0] = result.getString(1);
                 dato[1] = result.getString(2);
                 dato[2] = result.getString(3);
-
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+                dato[6] = result.getString(7);
                 tbl.addRow(dato);
             }
             str.close();
@@ -79,6 +92,13 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txt_Faltante_cuota = new javax.swing.JTextField();
+        txt_pago_estipulado = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +116,11 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbl_prestamo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_prestamoMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbl_prestamo);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
@@ -144,10 +169,49 @@ public class form_pago_cliente extends javax.swing.JFrame {
         });
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Limpiar");
 
         jButton3.setText("Cancelar");
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel7.setText("Cuotas Faltantes");
+
+        txt_Faltante_cuota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Faltante_cuotaActionPerformed(evt);
+            }
+        });
+
+        txt_pago_estipulado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_pago_estipuladoActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel8.setText("Pago estipulado");
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel9.setText("ID");
+
+        txt_id.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_idActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,83 +219,109 @@ public class form_pago_cliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_monto_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE)
-                                    .addComponent(txt_dpi))
-                                .addGap(196, 196, 196))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel9))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(239, 239, 239)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addGap(33, 33, 33)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_monto_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txt_nombre)
+                                                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(128, 128, 128)
+                                                .addComponent(jButton4))))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(118, 118, 118)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txt_Faltante_cuota, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txt_pago_estipulado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel6)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(txt_saldo_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(57, 57, 57))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
+                                        .addContainerGap()
                                         .addComponent(jButton1)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(jButton2)
+                                        .addGap(46, 46, 46)
+                                        .addComponent(jButton2))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(225, 225, 225)
+                                        .addComponent(jLabel6)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                                        .addComponent(jLabel5)))
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(txt_saldo_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(47, 47, 47)
+                                .addComponent(jButton3)))
+                        .addGap(0, 160, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_monto_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_Faltante_cuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_pago_estipulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_saldo_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
-                        .addGap(35, 35, 35))))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap())
         );
 
         pack();
@@ -256,6 +346,197 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private void txt_saldo_pagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_saldo_pagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_saldo_pagarActionPerformed
+
+    private void tbl_prestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_prestamoMouseClicked
+        int seleccion = tbl_prestamo.rowAtPoint(evt.getPoint());
+        txt_id.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
+        txt_nombre.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 1)));
+        txt_dpi.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
+        txt_monto_prestamo.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 3)));
+        txt_Faltante.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 4)));
+        txt_Faltante_cuota.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
+        txt_pago_estipulado.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
+    }//GEN-LAST:event_tbl_prestamoMouseClicked
+
+    private void txt_Faltante_cuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Faltante_cuotaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Faltante_cuotaActionPerformed
+
+    private void txt_pago_estipuladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_pago_estipuladoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_pago_estipuladoActionPerformed
+
+    private void txt_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_idActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_idActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        double pago = 0, saldo_fal = 0;
+        int cuota = 0, modifica = 0, id, dato = 0;
+        LocalDate date = LocalDate.now();
+
+        if (txt_dpi.getText().isEmpty() && txt_nombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
+        } else {
+            if (txt_saldo_pagar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese el monto a pagar");
+            } else {
+                int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Realizar el Pago?", "Advertencia", JOptionPane.YES_NO_OPTION);
+                if (valor == JOptionPane.YES_OPTION) {
+                    pago = Double.parseDouble(txt_saldo_pagar.getText());
+                    cuota = Integer.parseInt(txt_Faltante_cuota.getText());
+                    cuota_res = cuota - 1;
+                    monto_restante = Double.parseDouble(txt_Faltante.getText());
+                    monto_restante = monto_restante - pago;
+                    id = Integer.parseInt(txt_id.getText());
+
+                    String query = "INSERT INTO tbl_abonos (id_abono,pago_cliente,fecha_pago,saldo_faltante,no_cuota) VALUES (?, ?, ?, ?, ?)";
+                    String query_pagos = "INSERT INTO tbl_detalle_pago (id_prestamo, id_abono) VALUES (?,?) ";
+                    try {
+                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                        str.setNull(1, java.sql.Types.BIGINT);
+                        str.setDouble(2, pago);
+                        str.setString(3, date.toString());
+                        str.setDouble(4, monto_restante);
+                        str.setInt(5, cuota);
+
+                        int res = str.executeUpdate();
+                        if (res > 0) {
+                            JOptionPane.showMessageDialog(null, "Ingreso completado abono");
+                            modifica = 1;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error");
+                        }
+                        str.close();
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                    }
+                    String query_update = "UPDATE tbl_prestamo SET  saldo_faltante = " + monto_restante + ", cuota_faltante = " + cuota_res + " WHERE (id_prestamo = " + id + ")";
+                    String query_last = "select max(id_abono) from tbl_abonos";
+                    String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + " WHERE (id_prestamo = " + id + ")";
+                    String query_cambio = "select saldo_faltante,cuota_faltante from tbl_prestamo WHERE (id_prestamo = " + id + ")";
+                    int[] cambio = new int[3];
+                    boolean bandera_estado = false;
+                    if (modifica == 1) {
+                        try {
+                            PreparedStatement str_update = con.getConnection().prepareStatement(query_update);
+
+                            int res_update = str_update.executeUpdate();
+                            if (res_update > 0) {
+                                ////////////////////////////////////////////  
+                                try {
+                                    PreparedStatement str_last = con.getConnection().prepareStatement(query_last);
+
+                                    ResultSet result = str_last.executeQuery(query_last);
+                                    while (result.next()) {
+                                        dato = result.getInt(1);
+                                    }
+                                    PreparedStatement str_pago = con.getConnection().prepareStatement(query_pagos);
+                                    str_pago.setInt(1, id);
+                                    str_pago.setInt(2, dato);
+                                    int res_pago = str_pago.executeUpdate();
+                                    if (res_pago > 0) {
+                                        try {
+                                            PreparedStatement str_estado_cambio = con.getConnection().prepareStatement(query_estado);
+                                            PreparedStatement str_cambio = con.getConnection().prepareStatement(query_cambio);
+
+                                            ResultSet result_cambio = str_last.executeQuery(query_cambio);
+                                            while (result_cambio.next()) {
+                                                cambio[0] = result_cambio.getInt(1);
+                                                cambio[1] = result_cambio.getInt(2);
+                                            }
+                                            if (cambio[0] == 0 && cambio[1] == 0) {
+
+                                                bandera_estado = true;
+                                            } else {
+                                                bandera_estado = false;
+                                            }
+                                            if (bandera_estado == true) {
+
+                                                int res_estado = str_estado_cambio.executeUpdate();
+                                                if (res_update > 0) {
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "Error");
+                                                }
+                                            }
+                                            str_estado_cambio.close();
+                                            str_cambio.close();
+                                        } catch (SQLException e) {
+
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Error");
+                                    }
+                                    str_pago.close();
+                                    str_last.close();
+                                } catch (SQLException e) {
+                                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                                }
+
+                                //////////////////////////////////////////////
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error");
+                            }
+                            str_update.close();
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                        }
+                    }
+                }
+            }
+            actualizar();
+            txt_Faltante.setText("");
+            txt_Faltante_cuota.setText("");
+            txt_dpi.setText("");
+            txt_id.setText("");
+            txt_monto_prestamo.setText("");
+            txt_nombre.setText("");
+            txt_pago_estipulado.setText("");
+            txt_saldo_pagar.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void actualizar() {
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Prestamo");
+        tbl.addColumn("Saldo a pagar");
+        tbl.addColumn("Cuotas Faltantes");
+        tbl.addColumn("Pago estupilado");
+        tbl_prestamo.setModel(tbl);
+
+        String query = "select id_prestamo,nombre_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante,total_cuota from tbl_prestamo\n"
+                + "inner join tbl_cliente \n"
+                + "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n"
+                + "where estado=1";
+        String[] dato = new String[7];
+        Statement str;
+
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+                dato[6] = result.getString(7);
+                tbl.addRow(dato);
+            }
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+        }
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        actualizar();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,18 +577,25 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_Faltante;
+    private javax.swing.JTextField txt_Faltante_cuota;
     private javax.swing.JTextField txt_dpi;
+    private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_monto_prestamo;
     private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_pago_estipulado;
     private javax.swing.JTextField txt_saldo_pagar;
     // End of variables declaration//GEN-END:variables
 }
