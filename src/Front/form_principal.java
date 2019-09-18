@@ -5,13 +5,15 @@
  */
 package Front;
 
-
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.awt.Dimension;
 
 /**
  *
@@ -26,30 +28,34 @@ public class form_principal extends javax.swing.JFrame {
 
     public form_principal() {
         initComponents();
-        cerrar();
-        setSize(750,600);
-        setLocation(0,0);
-        setResizable(false);
         
-        conexcion con = new conexcion();
+        cerrar();
+        //setLocationRelativeTo(form_principal.this);
+        setSize(750, 600);
+        setResizable(false);
+
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+
+        /*
+         conexcion con = new conexcion();
 
        
-        String query = "SELECT sum(estado) FROM tbl_prestamo";
-        Statement str;
-        try {
+         String query = "SELECT sum(estado) FROM tbl_prestamo";
+         Statement str;
+         try {
 
-            str = con.getConnection().createStatement();
-            ResultSet result = str.executeQuery(query);
+         str = con.getConnection().createStatement();
+         ResultSet result = str.executeQuery(query);
 
-            while (result.next()) {
-                datos = result.getString(1);
-                lbl_pagos.setText(datos);
-            }
-            str.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
-        }
-
+         while (result.next()) {
+         datos = result.getString(1);
+         lbl_pagos.setText(datos);
+         }
+         str.close();
+         } catch (SQLException e) {
+         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+         }*/
     }
 
     /**
@@ -72,9 +78,10 @@ public class form_principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle(" Menú Principal");
         setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 
@@ -86,7 +93,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ingclient);
-        btn_ingclient.setBounds(62, 63, 201, 105);
+        btn_ingclient.setBounds(62, 68, 210, 100);
 
         btn_ingprestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton_personales.png"))); // NOI18N
         btn_ingprestamo.setText("Pagos Pendientes");
@@ -96,7 +103,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ingprestamo);
-        btn_ingprestamo.setBounds(62, 200, 201, 97);
+        btn_ingprestamo.setBounds(60, 200, 210, 100);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         jButton4.setText("Modificar");
@@ -106,21 +113,23 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(508, 328, 190, 100);
+        jButton4.setBounds(520, 330, 210, 100);
 
         btn_pagocliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/equipment.png"))); // NOI18N
         btn_pagocliente1.setText("         Reportes");
         getContentPane().add(btn_pagocliente1);
-        btn_pagocliente1.setBounds(62, 328, 201, 100);
+        btn_pagocliente1.setBounds(62, 328, 210, 100);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pagos Pendientes:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(227, 491, 185, 28);
+        jLabel1.setBounds(150, 490, 185, 28);
 
         lbl_pagos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lbl_pagos.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(lbl_pagos);
-        lbl_pagos.setBounds(418, 491, 37, 28);
+        lbl_pagos.setBounds(340, 490, 37, 28);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consult.png"))); // NOI18N
         jButton5.setText("Consultas");
@@ -130,7 +139,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(281, 328, 204, 100);
+        jButton5.setBounds(290, 330, 210, 100);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/newprestamo.png"))); // NOI18N
         jButton2.setText("Nuevo Prestamo");
@@ -140,7 +149,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(281, 63, 209, 105);
+        jButton2.setBounds(290, 70, 210, 100);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/pagos.png"))); // NOI18N
         jButton1.setText("     Pagos");
@@ -150,21 +159,27 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(508, 67, 190, 101);
+        jButton1.setBounds(520, 70, 210, 100);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/motorcycle.png"))); // NOI18N
         jButton3.setText("       Cobradores");
+        jButton3.setMaximumSize(new java.awt.Dimension(145, 76));
+        jButton3.setMinimumSize(new java.awt.Dimension(145, 76));
+        jButton3.setPreferredSize(new java.awt.Dimension(145, 76));
         getContentPane().add(jButton3);
-        jButton3.setBounds(281, 201, 209, 95);
+        jButton3.setBounds(290, 200, 210, 100);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/coins.png"))); // NOI18N
         jButton6.setText("Comisiones");
+        jButton6.setMaximumSize(new java.awt.Dimension(145, 76));
+        jButton6.setMinimumSize(new java.awt.Dimension(145, 76));
+        jButton6.setPreferredSize(new java.awt.Dimension(145, 76));
         getContentPane().add(jButton6);
-        jButton6.setBounds(508, 186, 190, 111);
+        jButton6.setBounds(520, 200, 210, 100);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/background.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 720, 550);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 760, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -174,7 +189,7 @@ public class form_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ingprestamoActionPerformed
 
     private void btn_ingclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingclientActionPerformed
-         frm_nuevo_cliente client = new frm_nuevo_cliente();
+        frm_nuevo_cliente client = new frm_nuevo_cliente();
         client.setVisible(true);
     }//GEN-LAST:event_btn_ingclientActionPerformed
 
@@ -192,37 +207,30 @@ public class form_principal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-         form_nuevo_prestamo frm = new form_nuevo_prestamo();
+        form_nuevo_prestamo frm = new form_nuevo_prestamo();
         frm.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-     public void cerrar(){
-         try {
-            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
-            addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e){
-                     confirmarSalida();
-                }
-            }
-            );
-            this.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+     /*public void centrarventana() {
+        //Tamaño de pantalla
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = getSize();
+        if (frameSize.height > screenSize.height) {
+            frameSize.height = screenSize.height;
         }
-        
-      
-    }  
-     
-      public void confirmarSalida(){
-            int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia",JOptionPane.YES_NO_OPTION);
-            if(valor==JOptionPane.YES_OPTION){
-                System.exit(0);   
-            
-            }
+        if (frameSize.width > screenSize.width) {
+            frameSize.width = screenSize.width;
         }
+        //centrar ventana
+        setLocation ((screenSize.width - frameSize.width) / 2,
+                (screenSize.height - frameSize.height) / 2);
+                
+
+    }*/
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -253,7 +261,32 @@ public class form_principal extends javax.swing.JFrame {
                 new form_principal().setVisible(true);
             }
         });
+    } 
+    public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ingclient;
@@ -266,7 +299,7 @@ public class form_principal extends javax.swing.JFrame {
     public javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lbl_pagos;
     // End of variables declaration//GEN-END:variables
 }
