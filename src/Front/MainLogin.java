@@ -112,7 +112,7 @@ public class MainLogin extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(410, 340, 150, 50);
 
-        jButton2.setBackground(new java.awt.Color(0, 51, 153));
+        jButton2.setBackground(new java.awt.Color(51, 51, 255));
         jButton2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jButton2.setText("X");
         jButton2.setBorder(null);
