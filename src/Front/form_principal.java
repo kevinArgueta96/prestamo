@@ -72,7 +72,6 @@ public class form_principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(new java.awt.Color(255, 255, 255));
@@ -161,10 +160,6 @@ public class form_principal extends javax.swing.JFrame {
         jButton6.setText("Comisiones");
         getContentPane().add(jButton6);
         jButton6.setBounds(508, 186, 190, 111);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/background.png"))); // NOI18N
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 720, 550);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -266,7 +261,6 @@ public class form_principal extends javax.swing.JFrame {
     public javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbl_pagos;
     // End of variables declaration//GEN-END:variables
 }
