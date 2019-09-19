@@ -7,6 +7,8 @@ package Front;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -15,7 +17,7 @@ import javax.swing.WindowConstants;
  * @author Franklyn Escobar
  */
 public class form_newcobrador extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form form_newcobrador
      */
@@ -41,21 +43,20 @@ public class form_newcobrador extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txt_nombres = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
         txt_dpi = new javax.swing.JTextField();
-        txt_tel = new javax.swing.JTextField();
-        txt_apellidos = new javax.swing.JTextField();
-        txt_vehiculos = new javax.swing.JTextField();
-        txt_placa = new javax.swing.JTextField();
-        txt_direc = new javax.swing.JTextField();
+        txt_telefono = new javax.swing.JTextField();
+        txt_apellido = new javax.swing.JTextField();
+        txt_direccion = new javax.swing.JTextField();
         cmb_sexo = new javax.swing.JComboBox();
         btn_guardar = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        cmb_vehiculo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("JFrame"); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("INGRESO NUEVO COBRADOR");
 
         jLabel2.setText("Nombres");
@@ -72,9 +73,7 @@ public class form_newcobrador extends javax.swing.JFrame {
 
         jLabel8.setText("Vehiculo");
 
-        jLabel9.setText("Placas");
-
-        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Femenino" }));
+        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un sexo", "Masculino", "Femenino" }));
 
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
         btn_guardar.setText("   Guardar");
@@ -92,70 +91,75 @@ public class form_newcobrador extends javax.swing.JFrame {
             }
         });
 
+        cmb_vehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vehiculo", "Si", "No", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(222, 222, 222)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel9))
-                        .addGap(47, 47, 47)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(47, 47, 47))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_tel, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                            .addComponent(txt_nombres)
+                            .addComponent(txt_telefono)
+                            .addComponent(txt_nombre)
                             .addComponent(txt_dpi)
-                            .addComponent(txt_vehiculos)
-                            .addComponent(txt_placa)
-                            .addComponent(txt_direc, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_direccion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_apellidos)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                            .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(259, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btn_guardar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(415, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(398, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(294, 294, 294))
+                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(309, 309, 309))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(245, 245, 245))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txt_direc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(txt_tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -163,69 +167,107 @@ public class form_newcobrador extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txt_placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                    .addComponent(cmb_vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_guardar))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        //Validaciones Formulario Vacio
-        
-        String sNombresCobrador;
-        String sApellidosCobrador;
-        int iDpi;
-        String sDireccion;
-        
-        if (txt_nombres.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese Nombre del combrador");
+        String nombre = "";
+        String apellido = "";
+
+        long dpi;
+        int telefono = 0;
+        int seleccion = cmb_sexo.getSelectedIndex();
+        int vehiculo = cmb_vehiculo.getSelectedIndex();
+        String direc = "";
+        conexcion con = new conexcion();
+        try {
+            if (txt_nombre.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "ingrese nombre");
+            } else {
+                if (txt_dpi.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese dpi");
+                } else {
+                    if (txt_telefono.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese Telefono");
+                    } else {
+                        if (vehiculo == 0) {
+                            JOptionPane.showMessageDialog(null, "Seleccione si tiene Vehiculo");
+                        } else {
+                            if (seleccion == 0) {
+                                JOptionPane.showMessageDialog(null, "Seleccione un sexo");
+                            } else {
+                                String sexo = "";
+                                switch (seleccion) {
+                                    case (1):
+                                        sexo = "M";
+                                        break;
+                                    case (2):
+                                        sexo = "F";
+                                        break;
+                                }
+
+                                nombre = txt_nombre.getText();
+                                apellido = txt_apellido.getText();
+                                dpi = Long.parseLong(txt_dpi.getText());
+                                //vehiculo=txt_vehiculo.getText();
+                                telefono = Integer.parseInt(txt_telefono.getText());
+                                direc = txt_direccion.getText();
+                                String query = "INSERT INTO tbl_cobrador (id_cobrador,nombre,apellido,dpi,sexo,direccion,telefono,vehiculo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+                                try {
+                                    PreparedStatement str = con.getConnection().prepareStatement(query);
+                                    str.setNull(1, java.sql.Types.BIGINT);
+                                    str.setString(2, nombre);
+                                    str.setString(3, apellido);
+                                    str.setLong(4, dpi);
+                                    str.setString(5, sexo);
+                                    str.setString(6, direc);
+                                    str.setInt(7, telefono);
+                                    str.setInt(8, vehiculo);
+
+                                    int res = str.executeUpdate();
+                                    if (res > 0) {
+                                        JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Error");
+                                    }
+                                    str.close();
+                                } catch (SQLException e) {
+                                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                                }
+                                con.desconectar();
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        else{
-            if(txt_apellidos.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Ingrese los Apellidos del Cobrador:");  
-            }
-            else{
-            if(txt_dpi.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Ingrese DPI del Cobrador");
-            }
-            else{
-            if(txt_direc.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Ingrese Dirección del Combrador");
-            }
-            else{
-            if(txt_tel.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Ingrese número de Teléffono del Cobrador");
-            }
-            }
-            }
-            }
-        
-        }
-            
-            
+
+
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-      
-              
+
+
     }//GEN-LAST:event_btn_salirActionPerformed
 
-        // Metodo para confirmar cerrar el JFrame
-        public void cerrar(){
-         try {
+    // Metodo para confirmar cerrar el JFrame
+    public void cerrar() {
+        try {
             this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
-                public void windowClosing(WindowEvent e){
-                     confirmarSalida();
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
                 }
             }
             );
@@ -233,19 +275,17 @@ public class form_newcobrador extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
-      
-    }                                         
-        public void confirmarSalida(){
-            int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia",JOptionPane.YES_NO_OPTION);
-            if(valor==JOptionPane.YES_OPTION){
-                System.exit(0);   
-            
-            }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
         }
-    
-        
-    
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -285,6 +325,7 @@ public class form_newcobrador extends javax.swing.JFrame {
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_salir;
     private javax.swing.JComboBox cmb_sexo;
+    private javax.swing.JComboBox<String> cmb_vehiculo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,13 +334,10 @@ public class form_newcobrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txt_apellidos;
-    private javax.swing.JTextField txt_direc;
+    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_dpi;
-    private javax.swing.JTextField txt_nombres;
-    private javax.swing.JTextField txt_placa;
-    private javax.swing.JTextField txt_tel;
-    private javax.swing.JTextField txt_vehiculos;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }
