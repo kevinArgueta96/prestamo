@@ -31,12 +31,12 @@ public class form_principal extends javax.swing.JFrame {
         
         cerrar();
         //setLocationRelativeTo(form_principal.this);
-        setSize(750, 600);
+        setSize(800, 570);
         setResizable(false);
 
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
-
+/*
         
          conexcion con = new conexcion();
 
@@ -55,7 +55,7 @@ public class form_principal extends javax.swing.JFrame {
          str.close();
          } catch (SQLException e) {
          JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
-         }
+         }*/
     }
 
     /**
@@ -79,10 +79,14 @@ public class form_principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(" Menú Principal");
         setForeground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(700, 500));
+        setMinimumSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
 
         btn_ingclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new_user.png"))); // NOI18N
@@ -93,7 +97,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ingclient);
-        btn_ingclient.setBounds(62, 68, 210, 100);
+        btn_ingclient.setBounds(70, 90, 210, 100);
 
         btn_ingprestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton_personales.png"))); // NOI18N
         btn_ingprestamo.setText("Pagos Pendientes");
@@ -103,7 +107,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_ingprestamo);
-        btn_ingprestamo.setBounds(60, 200, 210, 100);
+        btn_ingprestamo.setBounds(70, 220, 210, 100);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         jButton4.setText("Modificar");
@@ -113,23 +117,23 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(520, 330, 210, 100);
+        jButton4.setBounds(530, 350, 210, 100);
 
         btn_pagocliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/equipment.png"))); // NOI18N
         btn_pagocliente1.setText("         Reportes");
         getContentPane().add(btn_pagocliente1);
-        btn_pagocliente1.setBounds(62, 328, 210, 100);
+        btn_pagocliente1.setBounds(70, 350, 210, 100);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pagos Pendientes:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 490, 185, 28);
+        jLabel1.setBounds(80, 500, 185, 28);
 
         lbl_pagos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         lbl_pagos.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(lbl_pagos);
-        lbl_pagos.setBounds(340, 490, 37, 28);
+        lbl_pagos.setBounds(270, 500, 37, 28);
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consult.png"))); // NOI18N
         jButton5.setText("Consultas");
@@ -139,7 +143,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(290, 330, 210, 100);
+        jButton5.setBounds(300, 350, 210, 100);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/newprestamo.png"))); // NOI18N
         jButton2.setText("Nuevo Prestamo");
@@ -149,7 +153,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(290, 70, 210, 100);
+        jButton2.setBounds(300, 90, 210, 100);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/pagos.png"))); // NOI18N
         jButton1.setText("     Pagos");
@@ -159,7 +163,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(520, 70, 210, 100);
+        jButton1.setBounds(530, 90, 210, 100);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/motorcycle.png"))); // NOI18N
         jButton3.setText("       Cobradores");
@@ -167,7 +171,7 @@ public class form_principal extends javax.swing.JFrame {
         jButton3.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton3.setPreferredSize(new java.awt.Dimension(145, 76));
         getContentPane().add(jButton3);
-        jButton3.setBounds(290, 200, 210, 100);
+        jButton3.setBounds(300, 220, 210, 100);
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/coins.png"))); // NOI18N
         jButton6.setText("Comisiones");
@@ -175,13 +179,27 @@ public class form_principal extends javax.swing.JFrame {
         jButton6.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton6.setPreferredSize(new java.awt.Dimension(145, 76));
         getContentPane().add(jButton6);
-        jButton6.setBounds(520, 200, 210, 100);
+        jButton6.setBounds(530, 220, 210, 100);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/black.png"))); // NOI18N
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setText("MENÚ PRINCIPAL");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 0, 760, 560);
+        jLabel2.setBounds(300, 30, 220, 28);
+
+        jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
+        jPanel1.setLayout(null);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back2.jpg"))); // NOI18N
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(0, 0, 800, 540);
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 840, 540);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_ingprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingprestamoActionPerformed
@@ -300,6 +318,8 @@ public class form_principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_pagos;
     // End of variables declaration//GEN-END:variables
 }
