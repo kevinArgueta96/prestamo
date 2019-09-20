@@ -5,17 +5,35 @@
  */
 package Front;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Kevin
  */
+;
+
 public class form_Modificar extends javax.swing.JFrame {
 
     /**
      * Creates new form form_Modificar
      */
+    int id, bandera = 0;
+    DefaultTableModel dm;
+    conexcion con = new conexcion();
+
     public form_Modificar() {
         initComponents();
+        txt_id.setEditable(false);
+        panel_clien.setVisible(false);
     }
 
     /**
@@ -27,22 +45,431 @@ public class form_Modificar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btn_cliente = new javax.swing.JButton();
+        btn_cobrador = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_datos = new javax.swing.JTable();
+        panel_clien = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        txt_nombre = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txt_apellido = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_dpi = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txt_telefono = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txt_direccion = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txt_id = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btn_cliente.setText("Cliente");
+        btn_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_clienteActionPerformed(evt);
+            }
+        });
+
+        btn_cobrador.setText("Cobrador");
+        btn_cobrador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cobradorActionPerformed(evt);
+            }
+        });
+
+        tbl_datos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "id", "Nombres", "Apellidos", "DPI", "Direccion", "Telefono"
+            }
+        ));
+        tbl_datos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_datosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_datos);
+
+        jLabel6.setText("Nombres");
+
+        jLabel7.setText("Apeliidos");
+
+        jLabel8.setText("Dpi");
+
+        jLabel9.setText("Telefono");
+
+        jLabel10.setText("Direccion");
+
+        jLabel11.setText("ID");
+
+        javax.swing.GroupLayout panel_clienLayout = new javax.swing.GroupLayout(panel_clien);
+        panel_clien.setLayout(panel_clienLayout);
+        panel_clienLayout.setHorizontalGroup(
+            panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_clienLayout.createSequentialGroup()
+                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_clienLayout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel_clienLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_clienLayout.createSequentialGroup()
+                                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txt_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                    .addComponent(txt_apellido))
+                                .addGap(98, 98, 98)
+                                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(18, 18, 18)
+                                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txt_telefono)
+                                    .addComponent(txt_dpi, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_clienLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(247, 247, 247)))))
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+        panel_clienLayout.setVerticalGroup(
+            panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_clienLayout.createSequentialGroup()
+                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(48, 48, 48)
+                .addGroup(panel_clienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("MODIFICAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 799, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panel_clien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(315, 315, 315)
+                            .addComponent(btn_cliente)
+                            .addGap(83, 83, 83)
+                            .addComponent(btn_cobrador))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(48, 48, 48)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(381, 381, 381))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 489, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_cobrador)
+                    .addComponent(btn_cliente))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panel_clien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jButton1)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clienteActionPerformed
+        bandera = 1;
+        limpia();
+        //panel_cobrador.setVisible(false);
+        panel_clien.setVisible(true);
+        conexcion con = new conexcion();
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre");
+        tbl.addColumn("Apellido");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Direccion");
+        tbl.addColumn("Telefono");
+        tbl_datos.setModel(tbl);
+        Statement str;
+        String[] dato = new String[7];
+        String query = "select id_cliente, nombre_cliente, apellido_cliente,dpi,direccion,telefono from tbl_cliente";
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+
+                tbl.addRow(dato);
+            }
+
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+        }
+
+    }//GEN-LAST:event_btn_clienteActionPerformed
+
+    private void btn_cobradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cobradorActionPerformed
+        limpia();
+        bandera = 2;
+        panel_clien.setVisible(true);
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre");
+        tbl.addColumn("Apellido");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Direccion");
+        tbl.addColumn("Telefono");
+        tbl_datos.setModel(tbl);
+        Statement str;
+        String[] dato = new String[7];
+        String query = "select id_cobrador, nombre, apellido,dpi,direccion,telefono from tbl_cobrador";
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+
+                tbl.addRow(dato);
+            }
+
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+        }
+
+    }//GEN-LAST:event_btn_cobradorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (bandera == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un boton");
+        }
+
+        if (bandera == 1) {
+            if (txt_nombre.getText().isEmpty() && txt_id.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Seleccione un dato");
+            } else {
+                id = Integer.parseInt(txt_id.getText());
+                String query = "UPDATE tbl_cliente SET  nombre_cliente = '" + txt_nombre.getText() + "'" + " , apellido_cliente=n'" + txt_apellido.getText() + "'"
+                        + " , direccion= '" + txt_direccion.getText() + "'" + " , telefono=" + txt_telefono.getText() + " , dpi=" + txt_dpi.getText() + " WHERE (id_cliente = " + id + ")";
+                try {
+                    PreparedStatement str_update = con.getConnection().prepareStatement(query);
+
+                    int res_update = str_update.executeUpdate();
+                    if (res_update > 0) {
+                        JOptionPane.showMessageDialog(null, "Modificacion correcta");
+                        limpia();
+                        actualiza();
+                        tbl_limpiar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error");
+                        limpia();
+                    }
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                }
+            }
+            bandera = 0;
+        }
+        if (bandera == 2) {
+            if (txt_nombre.getText().isEmpty() && txt_id.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Seleccione un dato");
+            } else {
+                id = Integer.parseInt(txt_id.getText());
+                String query_c = "UPDATE tbl_cobrador SET  nombre = '" + txt_nombre.getText() + "'" + " , apellido='" + txt_apellido.getText() + "'"
+                        + " , direccion= '" + txt_direccion.getText() + "'" + " , telefono=" + txt_telefono.getText() + " , dpi=" + txt_dpi.getText() + " WHERE (id_cobrador = " + id + ")";
+
+                try {
+                    PreparedStatement str_update = con.getConnection().prepareStatement(query_c);
+
+                    int res_update = str_update.executeUpdate();
+                    if (res_update > 0) {
+                        JOptionPane.showMessageDialog(null, "Modificacion correcta");
+                        limpia();
+                        actualiza_cobrador();
+                        tbl_limpiar();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error");
+                        limpia();
+                    }
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                }
+            }
+            bandera = 0;
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void limpia() {
+        txt_apellido.setText("");
+        txt_direccion.setText("");
+        txt_nombre.setText("");
+        txt_dpi.setText("");
+        txt_id.setText("");
+        txt_telefono.setText("");
+    }
+
+    public void tbl_limpiar() {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) tbl_datos.getModel();
+
+            for (int i = 0; i < tbl_datos.getRowCount(); i++) {
+                modelo.removeRow(i);
+                i -= 1;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+    }
+
+    public void actualiza() {
+        panel_clien.setVisible(true);
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre");
+        tbl.addColumn("Apellido");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Direccion");
+        tbl.addColumn("Telefono");
+        tbl_datos.setModel(tbl);
+        Statement str;
+        String[] dato = new String[7];
+        String query = "select id_cliente, nombre_cliente, apellido_cliente,dpi,direccion,telefono from tbl_cliente";
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+
+                tbl.addRow(dato);
+            }
+
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+        }
+
+    }
+
+    public void actualiza_cobrador() {
+        panel_clien.setVisible(true);
+        conexcion con = new conexcion();
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre");
+        tbl.addColumn("Apellido");
+        tbl.addColumn("DPI");
+        tbl.addColumn("Direccion");
+        tbl.addColumn("Telefono");
+        tbl_datos.setModel(tbl);
+        Statement str;
+        String[] dato = new String[7];
+        String query = "select id_cobrador, nombre, apellido,dpi,direccion,telefono from tbl_cobrador";
+        try {
+
+            str = con.getConnection().createStatement();
+            ResultSet result = str.executeQuery(query);
+
+            while (result.next()) {
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
+
+                tbl.addRow(dato);
+            }
+
+            str.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+        }
+    }
+    private void tbl_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_datosMouseClicked
+        int seleccion = tbl_datos.rowAtPoint(evt.getPoint());
+        txt_id.setText(String.valueOf(tbl_datos.getValueAt(seleccion, 0)));
+        txt_nombre.setText(String.valueOf(tbl_datos.getValueAt(seleccion, 1)));
+        txt_apellido.setText(String.valueOf(tbl_datos.getValueAt(seleccion, 2)));
+        txt_dpi.setText(String.valueOf(tbl_datos.getValueAt(seleccion, 3)));
+        txt_direccion.setText(String.valueOf(tbl_datos.getValueAt(seleccion, 4)));
+        txt_telefono.setText(String.valueOf(tbl_datos.getValueAt(seleccion, 5)));
+
+    }//GEN-LAST:event_tbl_datosMouseClicked
+
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
     /**
      * @param args the command line arguments
      */
@@ -79,5 +506,23 @@ public class form_Modificar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cliente;
+    private javax.swing.JButton btn_cobrador;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel panel_clien;
+    private javax.swing.JTable tbl_datos;
+    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextField txt_direccion;
+    private javax.swing.JTextField txt_dpi;
+    private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
 }
