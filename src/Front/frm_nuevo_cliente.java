@@ -1,5 +1,7 @@
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
 
@@ -14,6 +16,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
      */
     public frm_nuevo_cliente() {
         initComponents();
+        cerrar();
     }
 
     /**
@@ -40,36 +43,61 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         txt_dpi = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ingreso Nuevo Cliente");
+        setMaximumSize(new java.awt.Dimension(600, 385));
+        setMinimumSize(new java.awt.Dimension(600, 385));
+        setPreferredSize(new java.awt.Dimension(600, 385));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel1.setText("INGRESO NUEVO CLIENTE");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Ingreso Nuevo Cliente");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(170, 20, 238, 42);
 
+        txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(157, 82, 353, 22);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Nombres");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(75, 86, 47, 14);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Apellidos");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(75, 110, 49, 24);
 
+        txt_apellido.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_apellidoActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_apellido);
+        txt_apellido.setBounds(157, 111, 353, 22);
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Sexo");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(75, 232, 54, 24);
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Telefono");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(325, 140, 47, 24);
 
+        txt_telefono.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_telefonoActionPerformed(evt);
@@ -80,25 +108,37 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                 txt_telefonoKeyTyped(evt);
             }
         });
+        getContentPane().add(txt_telefono);
+        txt_telefono.setBounds(378, 141, 132, 22);
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Dpi");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(75, 140, 32, 24);
 
+        txt_direccion.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_direccionActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_direccion);
+        txt_direccion.setBounds(157, 177, 353, 43);
 
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("Direccion");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(75, 176, 54, 24);
 
+        cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sexo", "Masculino", "Femenino" }));
         cmb_sexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_sexoActionPerformed(evt);
             }
         });
+        getContentPane().add(cmb_sexo);
+        cmb_sexo.setBounds(157, 232, 85, 24);
 
         btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
@@ -108,90 +148,35 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                 btn_guardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_guardar);
+        btn_guardar.setBounds(201, 283, 108, 46);
 
         btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_cancelar);
+        btn_cancelar.setBounds(315, 283, 107, 44);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_guardar)
-                        .addGap(44, 44, 44)
-                        .addComponent(btn_cancelar)
-                        .addGap(223, 223, 223))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_guardar)
-                    .addComponent(btn_cancelar))
-                .addContainerGap(58, Short.MAX_VALUE))
-        );
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(157, 141, 162, 22);
+
+        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
+        jPanel1.setLayout(null);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(60, 70, 460, 200);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientelogo.jpg"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, 0, 610, 360);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
@@ -293,9 +278,39 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_telefonoActionPerformed
 
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+        confirmarSalida();
+        
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -339,6 +354,8 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_dpi;

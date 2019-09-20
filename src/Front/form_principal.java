@@ -223,6 +223,7 @@ public class form_principal extends javax.swing.JFrame {
     private void btn_ingclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingclientActionPerformed
         frm_nuevo_cliente client = new frm_nuevo_cliente();
         client.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btn_ingclientActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -241,6 +242,7 @@ public class form_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         form_nuevo_prestamo frm = new form_nuevo_prestamo();
         frm.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
