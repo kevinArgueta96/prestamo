@@ -29,6 +29,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     public form_nuevo_prestamo() {
         initComponents();
+        setSize(980, 500);
         
         cerrar();
         txt_monto_a.setEditable(false);
@@ -44,10 +45,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         tbl.addColumn("Dpi");
         tbl.addColumn("Telefono");
         tbla_clie.setModel(tbl);
-        
-        
-        // set size
-        setSize(750, 600);
         setResizable(false);
         // set icon image
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
@@ -119,6 +116,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_cuota_pagar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(850, 600));
+        setMinimumSize(new java.awt.Dimension(850, 600));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -142,7 +141,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel7.setText("Solicitud de  Nuevo Prestamo");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(283, 6, 300, 39);
+        jLabel7.setBounds(340, 10, 300, 39);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -294,6 +293,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_cuota_pagar.setBounds(426, 364, 118, 24);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmb_plazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_plazoActionPerformed

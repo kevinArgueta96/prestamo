@@ -28,7 +28,6 @@ public class form_principal extends javax.swing.JFrame {
 
     public form_principal() {
         initComponents();
-        
         cerrar();
         //setLocationRelativeTo(form_principal.this);
         setSize(800, 570);
@@ -79,6 +78,7 @@ public class form_principal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -89,6 +89,7 @@ public class form_principal extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
 
+        btn_ingclient.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btn_ingclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new_user.png"))); // NOI18N
         btn_ingclient.setText("Ingreso Cliente");
         btn_ingclient.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +100,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(btn_ingclient);
         btn_ingclient.setBounds(70, 90, 210, 100);
 
+        btn_ingprestamo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btn_ingprestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton_personales.png"))); // NOI18N
         btn_ingprestamo.setText("Pagos Pendientes");
         btn_ingprestamo.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +111,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(btn_ingprestamo);
         btn_ingprestamo.setBounds(70, 220, 210, 100);
 
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         jButton4.setText("Modificar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +122,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(530, 350, 210, 100);
 
+        btn_pagocliente1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btn_pagocliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/equipment.png"))); // NOI18N
         btn_pagocliente1.setText("         Reportes");
         getContentPane().add(btn_pagocliente1);
@@ -135,6 +139,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(lbl_pagos);
         lbl_pagos.setBounds(270, 500, 37, 28);
 
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consult.png"))); // NOI18N
         jButton5.setText("Consultas");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +150,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton5);
         jButton5.setBounds(300, 350, 210, 100);
 
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/newprestamo.png"))); // NOI18N
         jButton2.setText("Nuevo Prestamo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +161,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(300, 90, 210, 100);
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/pagos.png"))); // NOI18N
         jButton1.setText("     Pagos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -165,6 +172,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(530, 90, 210, 100);
 
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/motorcycle.png"))); // NOI18N
         jButton3.setText("       Cobradores");
         jButton3.setMaximumSize(new java.awt.Dimension(145, 76));
@@ -173,6 +181,7 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(300, 220, 210, 100);
 
+        jButton6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/coins.png"))); // NOI18N
         jButton6.setText("Comisiones");
         jButton6.setMaximumSize(new java.awt.Dimension(145, 76));
@@ -181,17 +190,22 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton6);
         jButton6.setBounds(530, 220, 210, 100);
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MENÚ PRINCIPAL");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(300, 30, 220, 28);
 
+        jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
+        jPanel2.setForeground(new java.awt.Color(204, 204, 204,80));
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(60, 80, 690, 380);
+
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
         jPanel1.setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back2.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/forest.jpg"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 800, 540);
 
@@ -320,6 +334,7 @@ public class form_principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl_pagos;
     // End of variables declaration//GEN-END:variables
 }
