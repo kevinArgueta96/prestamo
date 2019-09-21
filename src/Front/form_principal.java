@@ -77,8 +77,8 @@ public class form_principal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -190,24 +190,24 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(jButton6);
         jButton6.setBounds(530, 220, 210, 100);
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
+        jPanel2.setForeground(new java.awt.Color(204, 204, 204,80));
+
+        jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MENÚ PRINCIPAL");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(300, 30, 220, 28);
+        jPanel2.add(jLabel2);
 
-        jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
-        jPanel2.setForeground(new java.awt.Color(204, 204, 204,80));
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(60, 80, 690, 380);
+        jPanel2.setBounds(60, 50, 690, 410);
 
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
         jPanel1.setLayout(null);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/forest.jpg"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(0, 0, 800, 540);
+        jLabel3.setBounds(0, 0, 800, 550);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 840, 540);

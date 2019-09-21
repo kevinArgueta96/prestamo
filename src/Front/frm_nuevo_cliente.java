@@ -43,18 +43,18 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         txt_dpi = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingreso Nuevo Cliente");
-        setMaximumSize(new java.awt.Dimension(600, 385));
         setMinimumSize(new java.awt.Dimension(600, 385));
-        setPreferredSize(new java.awt.Dimension(600, 385));
         setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingreso Nuevo Cliente");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(170, 20, 238, 42);
@@ -149,31 +149,46 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_guardar);
-        btn_guardar.setBounds(201, 283, 108, 46);
+        btn_guardar.setBounds(210, 300, 108, 46);
 
         btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
-        btn_cancelar.setText("Cancelar");
+        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        btn_cancelar.setText("Regresar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_cancelar);
-        btn_cancelar.setBounds(315, 283, 107, 44);
+        btn_cancelar.setBounds(320, 300, 120, 44);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_dpi);
         txt_dpi.setBounds(157, 141, 162, 22);
 
-        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
-        jPanel1.setLayout(null);
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(60, 70, 460, 200);
+        jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
+        jPanel2.setLayout(null);
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
+        jButton1.setText("   Borrar");
+        jButton1.setMaximumSize(new java.awt.Dimension(107, 41));
+        jButton1.setMinimumSize(new java.awt.Dimension(107, 41));
+        jButton1.setPreferredSize(new java.awt.Dimension(107, 41));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(330, 160, 110, 40);
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(70, 70, 450, 200);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientelogo.jpg"))); // NOI18N
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(0, 0, 610, 360);
+        jLabel8.setBounds(0, 0, 600, 370);
 
         pack();
         setLocationRelativeTo(null);
@@ -280,9 +295,27 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
-        confirmarSalida();
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+        form_principal frm = new form_principal();
+        frm.setVisible(true);
+        this.dispose();
+        }
         
     }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea borrar los datos?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+       
+        txt_nombre.setText(null);
+        txt_apellido.setText(null);
+        txt_dpi.setText(null);
+        txt_telefono.setText(null);
+        txt_direccion.setText(null);
+        cmb_sexo.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,7 +338,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
     }
 
     public void confirmarSalida() {
-        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
             System.exit(0);
 
@@ -347,6 +380,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JComboBox<String> cmb_sexo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -355,7 +389,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_dpi;

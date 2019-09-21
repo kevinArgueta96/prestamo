@@ -29,6 +29,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     public form_nuevo_prestamo() {
         initComponents();
+        txt_id.setVisible(false);
         setResizable(false);
         SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy");
         txt_fecha_creacion.setEditable(false);
@@ -114,7 +115,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         chk_gara = new javax.swing.JCheckBox();
         txt_id = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbla_clie = new javax.swing.JTable();
         date_cre = new com.toedter.calendar.JDateChooser();
@@ -270,12 +270,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         chk_gara.setBounds(71, 390, 75, 32);
         getContentPane().add(txt_id);
         txt_id.setBounds(930, 0, 46, 26);
-
-        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("ID");
-        getContentPane().add(jLabel11);
-        jLabel11.setBounds(900, 0, 28, 26);
 
         tbla_clie.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbla_clie.setModel(new javax.swing.table.DefaultTableModel(
@@ -660,7 +654,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
