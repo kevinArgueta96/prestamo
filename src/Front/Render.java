@@ -22,18 +22,20 @@ public class Render extends DefaultTableCellRenderer {
             String valor = (String) value;
             if (column == 6) {
                 cambio = Integer.parseInt(valor);
-                if (cambio > 5) {
+                if (cambio <= 6) {
                     cell.setBackground(Color.RED);
                     cell.setForeground(Color.BLACK);
-                }
-                if (cambio > 11) {
+                }else{
+                if (cambio <= 14) {
                     cell.setBackground(Color.YELLOW);
                     cell.setForeground(Color.BLACK);
 
-                }
+                }else{
                 if (cambio > 20) {
                     cell.setBackground(Color.GREEN);
                     cell.setForeground(Color.BLACK);
+                }
+                }
                 }
 
             } else {
