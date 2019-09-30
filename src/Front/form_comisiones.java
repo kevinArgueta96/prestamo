@@ -381,7 +381,8 @@ public class form_comisiones extends javax.swing.JFrame {
                             } else {
                                 Descr = txt_desc.getText();
                                 monto = Double.parseDouble(txt_comision.getText());
-                                int id = Integer.parseInt(txt_id_co.getText());
+                                int id = Integer.parseInt(txt_id_pres.getText());
+                                int id_cobrador= Integer.parseInt(txt_id_co.getText());
 
                                 String query = "INSERT INTO tbl_comision (id_comision,descripcion,monto_comision,fecha_pago,id_prestamo) VALUES ( ?, ?, ?, ?, ?)";
                                 String query_pagos = "INSERT INTO tbl_detalle_comision (id_cobrador,id_comision) VALUES ( ?, ?)";
@@ -405,7 +406,7 @@ public class form_comisiones extends javax.swing.JFrame {
                                                 dato_final = result.getInt(1);
                                             }
                                             PreparedStatement str_pago = con.getConnection().prepareStatement(query_pagos);
-                                            str_pago.setInt(1, id);
+                                            str_pago.setInt(1, id_cobrador);
                                             str_pago.setInt(2, dato_final);
                                             int res_pago = str_pago.executeUpdate();
                                             if (res > 0) {
