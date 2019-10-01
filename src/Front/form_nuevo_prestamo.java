@@ -51,7 +51,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         tbl.addColumn("DPI");
         tbl.addColumn("Teléfono");
         tbla_clie.setModel(tbl);
-/*
+
         String query = "SELECT id_cliente,nombre_cliente,apellido_cliente,dpi,telefono FROM tbl_cliente";
         String query_socio = "SELECT nombres_socio from tbl_socio";
         String[] dato = new String[5];
@@ -82,7 +82,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             str.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
-        }*/
+        }
     }
 
     /**
@@ -123,7 +123,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_cuota_pagar = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cmb_socio = new javax.swing.JComboBox<String>();
+        cmb_socio = new javax.swing.JComboBox<>();
         txt_fecha_creacion = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -177,7 +177,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(337, 474, 108, 46);
+        jButton1.setBounds(337, 474, 111, 39);
 
         salir.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -188,7 +188,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(463, 477, 107, 41);
+        salir.setBounds(463, 477, 109, 33);
 
         txt_monto_s.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_monto_s.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -228,7 +228,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cmb_plazo);
-        cmb_plazo.setBounds(255, 392, 80, 26);
+        cmb_plazo.setBounds(255, 392, 65, 20);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel10.setText("Forma de pago");
@@ -267,7 +267,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chk_gara);
-        chk_gara.setBounds(71, 390, 75, 32);
+        chk_gara.setBounds(71, 390, 73, 32);
         getContentPane().add(txt_id);
         txt_id.setBounds(930, 0, 46, 26);
 
@@ -293,7 +293,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(71, 199, 812, 123);
         getContentPane().add(date_cre);
-        date_cre.setBounds(740, 340, 143, 29);
+        date_cre.setBounds(740, 340, 143, 20);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Cuotas");
@@ -302,7 +302,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         txt_couta.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_couta);
-        txt_couta.setBounds(600, 393, 79, 22);
+        txt_couta.setBounds(600, 393, 79, 20);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Cuota a pagar");
@@ -311,7 +311,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         txt_cuota_pagar.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_cuota_pagar);
-        txt_cuota_pagar.setBounds(438, 393, 95, 22);
+        txt_cuota_pagar.setBounds(438, 393, 95, 20);
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel16.setText("Socio");
@@ -319,13 +319,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel16.setBounds(568, 442, 38, 26);
 
         cmb_socio.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_socio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Socio" }));
+        cmb_socio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Socio" }));
         getContentPane().add(cmb_socio);
-        cmb_socio.setBounds(624, 441, 72, 24);
+        cmb_socio.setBounds(624, 441, 72, 20);
 
         txt_fecha_creacion.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_fecha_creacion);
-        txt_fecha_creacion.setBounds(534, 344, 82, 22);
+        txt_fecha_creacion.setBounds(534, 344, 82, 20);
 
         jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
 
