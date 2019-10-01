@@ -9,11 +9,23 @@ package Front;
  *
  * @author Kevin
  */
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.view.JasperViewer;
+
 public class form_reportes extends javax.swing.JFrame {
 
     /**
      * Creates new form form_reportes
      */
+    conexcion con = new conexcion();
+
     public form_reportes() {
         initComponents();
     }
@@ -49,6 +61,11 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel2.setText("Seleccione reporte por plazo");
 
         btn_Generar.setText("Generar");
+        btn_Generar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GenerarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setText("Cancelar");
 
@@ -103,6 +120,29 @@ public class form_reportes extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void btn_GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GenerarActionPerformed
+        try {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\prueba1.jasper", null,
+                    con.getConnection());
+            JRPdfExporter exp = new JRPdfExporter();
+            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("Detalle_prueba.pdf"));
+            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+            exp.setConfiguration(conf);
+            exp.exportReport();
+
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\prueba1.jasper", null,
+                    con.getConnection());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
+            jasperViewer.setVisible(true);
+        } catch (JRException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_btn_GenerarActionPerformed
 
     /**
      * @param args the command line arguments
