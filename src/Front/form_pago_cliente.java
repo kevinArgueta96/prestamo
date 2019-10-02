@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +24,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     /**
      * Creates new form form_pago_cliente
      */
+    
     conexcion con = new conexcion();
     double monto_restante;
     int cuota_res;
@@ -29,7 +32,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
     public form_pago_cliente() {
 
         initComponents();
-        this.setLocationRelativeTo(form_pago_cliente.this);
+        this.setLocationRelativeTo(null);
+        cerrar();
         txt_id.setEditable(false);
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID");
@@ -100,11 +104,19 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(835, 640));
+        setPreferredSize(new java.awt.Dimension(835, 640));
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("PAGO DE CLIENTES");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(320, 10, 233, 28);
 
         tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,50 +136,73 @@ public class form_pago_cliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_prestamo);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 67, 826, 166);
+
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("Nombres");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(6, 287, 46, 13);
 
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(124, 280, 341, 24);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel3.setText("DPI");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(6, 323, 19, 13);
 
         txt_dpi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_dpiActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(124, 316, 341, 24);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("Monto Prestamo");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(6, 359, 85, 13);
 
         txt_monto_prestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_monto_prestamoActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_monto_prestamo);
+        txt_monto_prestamo.setBounds(124, 352, 178, 24);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel5.setText("Saldo Faltante");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(6, 395, 75, 13);
 
         txt_Faltante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_FaltanteActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_Faltante);
+        txt_Faltante.setBounds(124, 388, 98, 24);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel6.setText("Saldo a Pagar");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(225, 509, 71, 13);
 
         txt_saldo_pagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_saldo_pagarActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_saldo_pagar);
+        txt_saldo_pagar.setBounds(314, 498, 170, 32);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
@@ -177,6 +212,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(202, 567, 108, 46);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -186,6 +223,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(328, 568, 109, 44);
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -195,133 +234,56 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(455, 570, 107, 41);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel7.setText("Cuotas Faltantes");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(6, 431, 88, 13);
 
         txt_Faltante_cuota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_Faltante_cuotaActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_Faltante_cuota);
+        txt_Faltante_cuota.setBounds(124, 424, 98, 24);
 
         txt_pago_estipulado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_pago_estipuladoActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_pago_estipulado);
+        txt_pago_estipulado.setBounds(124, 460, 98, 24);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel8.setText("Pago estipulado");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(6, 467, 82, 13);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel9.setText("ID");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(6, 251, 12, 13);
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_id);
+        txt_id.setBounds(124, 244, 168, 24);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(33, 33, 33)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_monto_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txt_nombre)
-                                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(118, 118, 118)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txt_Faltante_cuota, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_pago_estipulado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_saldo_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 202, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(283, 283, 283))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addGap(270, 270, 270))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_monto_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_Faltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txt_Faltante_cuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txt_pago_estipulado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txt_saldo_pagar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)))
-        );
+        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
+        jPanel1.setLayout(null);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 240, 830, 310);
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/prestamo_picture.jpg"))); // NOI18N
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(0, 0, 830, 610);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -494,7 +456,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             txt_saldo_pagar.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+ 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
@@ -551,13 +513,30 @@ public class form_pago_cliente extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+       
+    public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
     public void confirmarSalida() {
-        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
             System.exit(0);
 
         }
     }
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -586,6 +565,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new form_pago_cliente().setVisible(true);
+               
             }
         });
     }
@@ -595,6 +575,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -603,6 +584,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_Faltante;
