@@ -101,6 +101,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_dpi = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         txt_monto_s = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -123,7 +124,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_cuota_pagar = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cmb_socio = new javax.swing.JComboBox<>();
+        cmb_socio = new javax.swing.JComboBox<String>();
         txt_fecha_creacion = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -177,7 +178,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(337, 474, 111, 39);
+        jButton1.setBounds(340, 480, 108, 46);
 
         salir.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -188,7 +189,18 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(salir);
-        salir.setBounds(463, 477, 109, 33);
+        salir.setBounds(570, 480, 107, 40);
+
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(450, 480, 110, 44);
 
         txt_monto_s.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_monto_s.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -228,7 +240,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cmb_plazo);
-        cmb_plazo.setBounds(255, 392, 65, 20);
+        cmb_plazo.setBounds(255, 392, 80, 26);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel10.setText("Forma de pago");
@@ -267,7 +279,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chk_gara);
-        chk_gara.setBounds(71, 390, 73, 32);
+        chk_gara.setBounds(71, 390, 75, 32);
         getContentPane().add(txt_id);
         txt_id.setBounds(930, 0, 46, 26);
 
@@ -293,7 +305,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(71, 199, 812, 123);
         getContentPane().add(date_cre);
-        date_cre.setBounds(740, 340, 143, 20);
+        date_cre.setBounds(740, 340, 143, 29);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Cuotas");
@@ -302,7 +314,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         txt_couta.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_couta);
-        txt_couta.setBounds(600, 393, 79, 20);
+        txt_couta.setBounds(600, 393, 79, 22);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Cuota a pagar");
@@ -311,7 +323,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         txt_cuota_pagar.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_cuota_pagar);
-        txt_cuota_pagar.setBounds(438, 393, 95, 20);
+        txt_cuota_pagar.setBounds(438, 393, 95, 22);
 
         jLabel16.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel16.setText("Socio");
@@ -319,13 +331,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel16.setBounds(568, 442, 38, 26);
 
         cmb_socio.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_socio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Socio" }));
+        cmb_socio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Socio" }));
         getContentPane().add(cmb_socio);
-        cmb_socio.setBounds(624, 441, 72, 20);
+        cmb_socio.setBounds(624, 441, 72, 24);
 
         txt_fecha_creacion.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_fecha_creacion);
-        txt_fecha_creacion.setBounds(534, 344, 82, 20);
+        txt_fecha_creacion.setBounds(534, 344, 82, 22);
 
         jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
 
@@ -337,11 +349,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(50, 100, 850, 430);
+        jPanel1.setBounds(50, 100, 850, 450);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/prestamo_picture.jpg"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(900, 666));
@@ -584,6 +596,18 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         confirmarSalida();
     }//GEN-LAST:event_salirActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+        form_principal frm = new form_principal();
+        frm.setVisible(true);
+        this.dispose();
+        }
+        
+       
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -652,6 +676,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_socio;
     private com.toedter.calendar.JDateChooser date_cre;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
