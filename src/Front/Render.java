@@ -20,7 +20,7 @@ public class Render extends DefaultTableCellRenderer {
         JLabel cell = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         if (value instanceof String) {
             String valor = (String) value;
-            if (column == 6) {
+            if (column == 7) {
                 cambio = Integer.parseInt(valor);
                 if (cambio <= 6) {
                     cell.setBackground(Color.RED);

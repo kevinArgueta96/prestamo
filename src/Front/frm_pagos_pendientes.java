@@ -38,16 +38,19 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         tbl.addColumn("Nombre");
         tbl.addColumn("Apellido");
         tbl.addColumn("Dpi");
+        tbl.addColumn("Forma de Pago");
         tbl.addColumn("Cuotas Faltantes");
         tbl.addColumn("Fecha final de Pago");
         tbl.addColumn("Días restantes");
         tbl_prestamo.setModel(tbl);
 
         Statement str;
-        String[] dato = new String[7];
-        String query = "select id_prestamo, nombre_cliente, apellido_cliente,dpi,cuota_faltante,fecha_finalizacion from tbl_prestamo\n"
+        String[] dato = new String[8];
+        String query = "select id_prestamo, nombre_cliente, apellido_cliente,dpi,forma_pago,cuota_faltante,fecha_finalizacion from tbl_prestamo\n"
                 + "inner join tbl_cliente \n"
-                + "on tbl_prestamo.id_cliente=tbl_cliente.id_cliente\n"
+                +"on tbl_prestamo.id_cliente=tbl_cliente.id_cliente\n"
+                +"inner join tbl_plazo\n"
+                +"on tbl_prestamo.id_plazo=tbl_plazo.id_plazo\n"
                 + "where estado=1";
         try {
 
@@ -61,12 +64,13 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
                 dato[3] = result.getString(4);
                 dato[4] = result.getString(5);
                 dato[5] = result.getString(6);
-                LocalDate localDate = LocalDate.parse(result.getString(6));
+                dato[6] = result.getString(7);
+                LocalDate localDate = LocalDate.parse(result.getString(7));
                 dia_n = localDate.getDayOfYear();
                 restante = dia_n - dia_m;
-                dato[6] = Integer.toString(restante);
+                dato[7] = Integer.toString(restante);
                 tbl.addRow(dato);
-                //tbl_prestamo.setDefaultRenderer(Object.class, new Render());
+                //*tbl_prestamo.setDefaultRenderer(Object.class, new Render());
             }
             tbl_prestamo.setDefaultRenderer(Object.class, new Render());
             str.close();
@@ -150,20 +154,19 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 852, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(jButton2)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(0, 408, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(295, 295, 295))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(329, 329, 329)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,14 +174,13 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
                     .addComponent(jLabel2))
                 .addGap(39, 39, 39)
                 .addComponent(jButton2)
@@ -199,7 +201,7 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
-        filtro(txt_nombre.getText().toUpperCase(), tbl_prestamo);
+        filtro(txt_nombre.getText(), tbl_prestamo);
     }//GEN-LAST:event_txt_nombreKeyReleased
 
     private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
