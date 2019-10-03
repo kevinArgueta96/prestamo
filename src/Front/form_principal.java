@@ -218,6 +218,9 @@ public class form_principal extends javax.swing.JFrame {
 
     private void btn_ingprestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingprestamoActionPerformed
         // TODO add your handling code here:
+        frm_pagos_pendientes client = new frm_pagos_pendientes();
+        client.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btn_ingprestamoActionPerformed
 
     private void btn_ingclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingclientActionPerformed

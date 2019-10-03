@@ -247,7 +247,12 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                     telefono = Integer.parseInt(txt_telefono.getText());
                     direc = txt_direccion.getText();
                     String query = "INSERT INTO tbl_cliente (id_cliente,nombre_cliente,apellido_cliente,direccion,telefono,sexo,dpi) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                    
+                    txt_nombre.setText(null);
+        txt_apellido.setText(null);
+        txt_direccion.setText(null);
+        txt_dpi.setText(null);
+        txt_telefono.setText(null);
+        cmb_sexo.setSelectedIndex(0);
                     try {
                         PreparedStatement str = con.getConnection().prepareStatement(query);
                         str.setNull(1, java.sql.Types.BIGINT);
@@ -275,15 +280,9 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, ex);
+        
         }
-        
-        txt_nombre.setText(null);
-        txt_apellido.setText(null);
-        txt_direccion.setText(null);
-        txt_dpi.setText(null);
-        txt_telefono.setText(null);
-        cmb_sexo.setSelectedIndex(0);
-        
+     
 
     }//GEN-LAST:event_btn_guardarActionPerformed
 
