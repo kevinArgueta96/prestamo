@@ -32,6 +32,7 @@ public class form_principal extends javax.swing.JFrame {
         //setLocationRelativeTo(form_principal.this);
         setSize(800, 570);
         setResizable(false);
+       
 
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
@@ -178,6 +179,11 @@ public class form_principal extends javax.swing.JFrame {
         jButton3.setMaximumSize(new java.awt.Dimension(145, 76));
         jButton3.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton3.setPreferredSize(new java.awt.Dimension(145, 76));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(300, 220, 210, 100);
 
@@ -205,12 +211,12 @@ public class form_principal extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
         jPanel1.setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/forest.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/thought-catalog-I0TDRP0fj6Y-unsplash.jpg"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 800, 550);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 840, 540);
+        jPanel1.setBounds(0, 0, 810, 560);
 
         pack();
         setLocationRelativeTo(null);
@@ -250,6 +256,13 @@ public class form_principal extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        form_newcobrador client = new form_newcobrador();
+        client.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
