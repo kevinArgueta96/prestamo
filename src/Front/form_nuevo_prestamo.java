@@ -366,9 +366,10 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmb_plazoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_plazoActionPerformed
-        int seleccion = 0;
-        double monto = 0, total = 0;
+        int seleccion;
+        double monto , total;
         seleccion = cmb_plazo.getSelectedIndex();
+        
         if (txt_monto_s.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese monto");
         } else {
@@ -394,6 +395,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                         total = monto / 1;
                         txt_cuota_pagar.setText(Double.toString(total));
                         break;
+                        
                 }
             }
         }
@@ -509,18 +511,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                             str.setInt(16, socio);
 
                                             res = str.executeUpdate();
-                                            txt_nombre.setText(null);
-                                            txt_dpi.setText(null);
-                                            txt_couta.setText(null);
-                                            txt_cuota_pagar.setText(null);
-                                            txt_ganan.setText(null);
-                                            txt_id.setText(null);
-                                            txt_interes.setText(null);
-                                            txt_monto_a.setText(null);
-                                            txt_monto_s.setText(null);
-                                            cmb_plazo.setSelectedIndex(0);
-                                            cmb_socio.setSelectedIndex(0);
-                                            chk_gara.setAction(null);
+                                            
         
                                             if (res > 0) {
                                                 JOptionPane.showMessageDialog(null, "Ingreso completado");
@@ -534,12 +525,26 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                         }
                                         con.desconectar();
                                     }
+                                          
                                 }
                             }
                         }
                     
                 }
             }
+                                            txt_nombre.setText(null);
+                                            txt_dpi.setText(null);
+                                            txt_couta.setText(null);
+                                            txt_cuota_pagar.setText(null);
+                                            txt_ganan.setText(null);
+                                            txt_id.setText(null);
+                                            txt_interes.setText(null);
+                                            txt_monto_a.setText(null);
+                                            txt_monto_s.setText(null);
+                                            cmb_plazo.setSelectedIndex(0);
+                                            cmb_socio.setSelectedIndex(0);
+                                            chk_gara.setAction(null);
+       
         }
         if (ga == 1) {
             if (garantia == 1) {
@@ -548,7 +553,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         }
         //con.desconectar();
-       
+                                           
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
