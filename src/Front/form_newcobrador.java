@@ -74,7 +74,7 @@ public class form_newcobrador extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Nombres");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 110, 47, 14);
+        jLabel2.setBounds(50, 110, 50, 20);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Apellidos");
@@ -89,22 +89,22 @@ public class form_newcobrador extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Dirección");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(47, 235, 51, 14);
+        jLabel5.setBounds(50, 240, 51, 14);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Teléfono");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(47, 283, 54, 14);
+        jLabel6.setBounds(50, 300, 54, 14);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("Sexo");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(47, 327, 54, 14);
+        jLabel7.setBounds(50, 340, 54, 14);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setText("Vehiculo");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(47, 378, 54, 14);
+        jLabel8.setBounds(50, 380, 54, 14);
 
         txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.setMinimumSize(new java.awt.Dimension(16, 22));
@@ -122,7 +122,7 @@ public class form_newcobrador extends javax.swing.JFrame {
         txt_telefono.setMinimumSize(new java.awt.Dimension(16, 22));
         txt_telefono.setPreferredSize(new java.awt.Dimension(16, 22));
         getContentPane().add(txt_telefono);
-        txt_telefono.setBounds(119, 279, 317, 30);
+        txt_telefono.setBounds(120, 290, 317, 30);
 
         txt_apellido.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_apellido.setMinimumSize(new java.awt.Dimension(16, 22));
@@ -134,17 +134,17 @@ public class form_newcobrador extends javax.swing.JFrame {
         txt_direccion.setMinimumSize(new java.awt.Dimension(16, 22));
         txt_direccion.setPreferredSize(new java.awt.Dimension(16, 22));
         getContentPane().add(txt_direccion);
-        txt_direccion.setBounds(119, 222, 317, 41);
+        txt_direccion.setBounds(120, 230, 317, 41);
 
         cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un sexo", "Masculino", "Femenino" }));
         getContentPane().add(cmb_sexo);
-        cmb_sexo.setBounds(119, 322, 130, 24);
+        cmb_sexo.setBounds(120, 340, 130, 24);
 
         cmb_vehiculo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_vehiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vehiculo", "Si", "No", " " }));
         getContentPane().add(cmb_vehiculo);
-        cmb_vehiculo.setBounds(119, 373, 77, 24);
+        cmb_vehiculo.setBounds(120, 380, 77, 24);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
         jButton1.setText("Regresar");
@@ -180,16 +180,16 @@ public class form_newcobrador extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 310, Short.MAX_VALUE)
+            .addGap(0, 320, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(40, 100, 410, 310);
+        jPanel1.setBounds(40, 90, 410, 320);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/harley-davidson.jpg"))); // NOI18N
         jLabel9.setPreferredSize(new java.awt.Dimension(492, 495));
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(0, 0, 490, 480);
+        jLabel9.setBounds(0, 0, 492, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
