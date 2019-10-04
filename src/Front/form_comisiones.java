@@ -28,6 +28,7 @@ public class form_comisiones extends javax.swing.JFrame {
 
     public form_comisiones() {
         initComponents();
+        txt_id_co.setVisible(false);
         DefaultTableModel tbl = new DefaultTableModel();
 
         SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy");
@@ -107,7 +108,6 @@ public class form_comisiones extends javax.swing.JFrame {
         txt_apellidos = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbl_datoscobra = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -142,8 +142,6 @@ public class form_comisiones extends javax.swing.JFrame {
         jLabel4.setText("Datos Cobrador");
 
         jLabel5.setText("Datos Prestamo");
-
-        jLabel6.setText("ID cobrador");
 
         tbl_datoscobra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,8 +267,7 @@ public class form_comisiones extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txt_id_pres, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(78, 78, 78)
                                 .addComponent(txt_id_co, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -296,7 +293,6 @@ public class form_comisiones extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
                     .addComponent(txt_id_co, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -498,7 +494,6 @@ public class form_comisiones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
