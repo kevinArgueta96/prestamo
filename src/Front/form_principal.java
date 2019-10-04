@@ -32,6 +32,7 @@ public class form_principal extends javax.swing.JFrame {
         //setLocationRelativeTo(form_principal.this);
         setSize(800, 570);
         setResizable(false);
+       
 
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
@@ -178,6 +179,11 @@ public class form_principal extends javax.swing.JFrame {
         jButton3.setMaximumSize(new java.awt.Dimension(145, 76));
         jButton3.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton3.setPreferredSize(new java.awt.Dimension(145, 76));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(300, 220, 210, 100);
 
@@ -250,6 +256,13 @@ public class form_principal extends javax.swing.JFrame {
         frm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        form_newcobrador client = new form_newcobrador();
+        client.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

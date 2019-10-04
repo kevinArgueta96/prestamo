@@ -24,6 +24,9 @@ public class form_newcobrador extends javax.swing.JFrame {
     public form_newcobrador() {
         initComponents();
         cerrar();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Nuevo Cobrador");
     }
 
     /**
@@ -49,137 +52,161 @@ public class form_newcobrador extends javax.swing.JFrame {
         txt_apellido = new javax.swing.JTextField();
         txt_direccion = new javax.swing.JTextField();
         cmb_sexo = new javax.swing.JComboBox();
+        cmb_vehiculo = new javax.swing.JComboBox<String>();
+        jButton1 = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
-        btn_salir = new javax.swing.JButton();
-        cmb_vehiculo = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(492, 476));
         setName("JFrame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(475, 495));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("INGRESO NUEVO COBRADOR");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(70, 30, 346, 35);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Nombres");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(50, 110, 47, 14);
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Apellidos");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(50, 160, 49, 14);
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("DPI");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(50, 200, 54, 14);
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("Dirección");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(47, 235, 51, 14);
 
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Teléfono");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(47, 283, 54, 14);
 
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("Sexo");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(47, 327, 54, 14);
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setText("Vehiculo");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(47, 378, 54, 14);
 
+        txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_nombre.setMinimumSize(new java.awt.Dimension(16, 22));
+        txt_nombre.setPreferredSize(new java.awt.Dimension(16, 22));
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(119, 106, 317, 30);
+
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi.setMinimumSize(new java.awt.Dimension(16, 22));
+        txt_dpi.setPreferredSize(new java.awt.Dimension(16, 22));
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(119, 188, 317, 30);
+
+        txt_telefono.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_telefono.setMinimumSize(new java.awt.Dimension(16, 22));
+        txt_telefono.setPreferredSize(new java.awt.Dimension(16, 22));
+        getContentPane().add(txt_telefono);
+        txt_telefono.setBounds(119, 279, 317, 30);
+
+        txt_apellido.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_apellido.setMinimumSize(new java.awt.Dimension(16, 22));
+        txt_apellido.setPreferredSize(new java.awt.Dimension(16, 22));
+        getContentPane().add(txt_apellido);
+        txt_apellido.setBounds(119, 148, 317, 30);
+
+        txt_direccion.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_direccion.setMinimumSize(new java.awt.Dimension(16, 22));
+        txt_direccion.setPreferredSize(new java.awt.Dimension(16, 22));
+        getContentPane().add(txt_direccion);
+        txt_direccion.setBounds(119, 222, 317, 41);
+
+        cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un sexo", "Masculino", "Femenino" }));
+        getContentPane().add(cmb_sexo);
+        cmb_sexo.setBounds(119, 322, 130, 24);
+
+        cmb_vehiculo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        cmb_vehiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vehiculo", "Si", "No", " " }));
+        getContentPane().add(cmb_vehiculo);
+        cmb_vehiculo.setBounds(119, 373, 77, 24);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton1.setText("Regresar");
+        jButton1.setMaximumSize(new java.awt.Dimension(117, 46));
+        jButton1.setMinimumSize(new java.awt.Dimension(115, 46));
+        jButton1.setPreferredSize(new java.awt.Dimension(117, 46));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(250, 420, 117, 40);
 
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
-        btn_guardar.setText("   Guardar");
+        btn_guardar.setText("  Guardar");
+        btn_guardar.setPreferredSize(new java.awt.Dimension(117, 46));
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_guardar);
+        btn_guardar.setBounds(120, 420, 120, 40);
 
-        btn_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
-        btn_salir.setText("  Salir");
-        btn_salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_salirActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
 
-        cmb_vehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vehiculo", "Si", "No", " " }));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(47, 47, 47))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_telefono)
-                            .addComponent(txt_nombre)
-                            .addComponent(txt_dpi)
-                            .addComponent(txt_direccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmb_vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(259, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_guardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(309, 309, 309))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(245, 245, 245))))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(txt_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(cmb_sexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(cmb_vehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 310, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(40, 100, 410, 310);
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/harley-davidson.jpg"))); // NOI18N
+        jLabel9.setPreferredSize(new java.awt.Dimension(492, 495));
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(0, 0, 490, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+        form_principal frm = new form_principal();
+        frm.setVisible(true);
+        this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        String nombre = "";
+        // TODO add your handling code here:
+         String nombre = "";
         String apellido = "";
 
         long dpi;
@@ -252,14 +279,8 @@ public class form_newcobrador extends javax.swing.JFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
-
+        
     }//GEN-LAST:event_btn_guardarActionPerformed
-
-    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
-
-
-    }//GEN-LAST:event_btn_salirActionPerformed
 
     // Metodo para confirmar cerrar el JFrame
     public void cerrar() {
@@ -323,9 +344,9 @@ public class form_newcobrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JButton btn_salir;
     private javax.swing.JComboBox cmb_sexo;
     private javax.swing.JComboBox<String> cmb_vehiculo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -334,6 +355,8 @@ public class form_newcobrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_direccion;
     private javax.swing.JTextField txt_dpi;

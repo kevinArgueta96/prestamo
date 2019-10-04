@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +32,9 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
 
     public frm_pagos_pendientes() {
         initComponents();
+        this.setTitle("Pagos Pendientes Clientes");
+        cerrar();
+        setResizable(false);
         this.setLocationRelativeTo(null);
         LocalDate fecha = LocalDate.now();
         int dia_m = fecha.getDayOfYear(), restante, dia_n;
@@ -42,7 +47,6 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         tbl.addColumn("Fecha final de Pago");
         tbl.addColumn("Días restantes");
         tbl_prestamo.setModel(tbl);
-
         Statement str;
         String[] dato = new String[7];
         String query = "select id_prestamo, nombre_cliente, apellido_cliente,dpi,cuota_faltante,fecha_finalizacion from tbl_prestamo\n"
@@ -89,12 +93,17 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         tbl_prestamo = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         txt_dpi = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 408));
+        getContentPane().setLayout(null);
 
         tbl_prestamo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
@@ -110,80 +119,82 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbl_prestamo);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(18, 101, 852, 165);
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("Pagos Pendientes");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(339, 41, 264, 42);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
         jButton2.setText("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(310, 318, 109, 44);
 
-        jLabel2.setText("Nombre");
-
-        jLabel3.setText("DPI");
-
+        txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_nombreKeyReleased(evt);
             }
         });
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(156, 284, 173, 30);
 
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_dpiKeyReleased(evt);
             }
         });
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(470, 284, 176, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 852, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(jButton2)))
-                .addContainerGap(32, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(295, 295, 295))
+        jLabel3.setText("DPI");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(440, 290, 29, 16);
+
+        jLabel2.setText("Nombre");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(100, 290, 45, 16);
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
+        jButton1.setText("Salir");
+        jButton1.setPreferredSize(new java.awt.Dimension(109, 44));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(431, 318, 109, 44);
+
+        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 860, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addComponent(jLabel2))
-                .addGap(39, 39, 39)
-                .addComponent(jButton2)
-                .addContainerGap(31, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 230, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(10, 90, 860, 230);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pago_pendiente.jpg"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(0, 0, 900, 380);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -194,18 +205,49 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(consulta));
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        form_principal p = new form_principal();
-        p.setVisible(true);
+         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+        form_principal frm = new form_principal();
+        frm.setVisible(true);
+        this.dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
-        filtro(txt_nombre.getText().toUpperCase(), tbl_prestamo);
+        filtro(txt_nombre.getText(), tbl_prestamo);
     }//GEN-LAST:event_txt_nombreKeyReleased
 
     private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
         filtro(txt_dpi.getText().toUpperCase(), tbl_prestamo);
     }//GEN-LAST:event_txt_dpiKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        confirmarSalida();
+    }//GEN-LAST:event_jButton1ActionPerformed
+     public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -242,10 +284,13 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_dpi;

@@ -29,6 +29,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     public form_nuevo_prestamo() {
         initComponents();
+        cerrar();
         txt_id.setVisible(false);
         setResizable(false);
         SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy");
@@ -37,7 +38,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         Date date = java.sql.Date.valueOf(local);
         String fecha = dformat.format(date);
         txt_fecha_creacion.setText(fecha);
-        cerrar();
         txt_monto_a.setEditable(false);
         txt_ganan.setEditable(false);
         txt_id.setEditable(false);
@@ -51,7 +51,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         tbl.addColumn("DPI");
         tbl.addColumn("Teléfono");
         tbla_clie.setModel(tbl);
-
         String query = "SELECT id_cliente,nombre_cliente,apellido_cliente,dpi,telefono FROM tbl_cliente";
         String query_socio = "SELECT nombres_socio from tbl_socio";
         String[] dato = new String[5];
@@ -553,7 +552,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
-        filtro(txt_nombre.getText().toUpperCase(), tbla_clie);
+        filtro(txt_nombre.getText(), tbla_clie);
     }//GEN-LAST:event_txt_nombreKeyReleased
 
     private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
