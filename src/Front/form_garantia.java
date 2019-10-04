@@ -20,20 +20,23 @@ public class form_garantia extends javax.swing.JFrame {
     /**
      * Creates new form form_garantia
      */
-   int dato;
-   conexcion con =new conexcion();
+    int dato, estado = 0;
+    conexcion con = new conexcion();
+    
+
     public form_garantia() {
-     
         initComponents();
+        pnl_pro.setVisible(false);
+        pnl_vehi.setVisible(false);
         String query = "select max(id_prestamo) from tbl_prestamo";
         Statement str;
         try {
 
             str = con.getConnection().createStatement();
             ResultSet result = str.executeQuery(query);
-            
-            while(result.next()){
-              dato=result.getInt(1);
+
+            while (result.next()) {
+                dato = result.getInt(1);
             }
             str.close();
         } catch (SQLException e) {
@@ -52,24 +55,38 @@ public class form_garantia extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txt_documento = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txt_garantia = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txt_valor = new javax.swing.JTextField();
         btn_guarda = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        pnl_vehi = new javax.swing.JPanel();
+        txt_kilometraje = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txt_marca = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_placa = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txt_modelo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txt_año = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txt_precio_vehiculo = new javax.swing.JTextField();
+        pnl_pro = new javax.swing.JPanel();
+        txt_nombre_ne = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_ubicacion = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txt_precio_terreno = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txt_medidas = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txt_documento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("GARANTÍA ");
-
-        jLabel2.setText("Definicion Garantia");
-
-        jLabel3.setText("No. Documento");
-
-        jLabel4.setText("Valor");
 
         btn_guarda.setText("Guardar");
         btn_guarda.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +94,117 @@ public class form_garantia extends javax.swing.JFrame {
                 btn_guardaActionPerformed(evt);
             }
         });
+
+        jButton1.setText("Vehiculo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Propiedad");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        pnl_vehi.setLayout(null);
+        pnl_vehi.add(txt_kilometraje);
+        txt_kilometraje.setBounds(160, 110, 108, 20);
+
+        jLabel3.setText("Kilometraje");
+        pnl_vehi.add(jLabel3);
+        jLabel3.setBounds(66, 111, 70, 20);
+        pnl_vehi.add(txt_marca);
+        txt_marca.setBounds(158, 11, 92, 20);
+
+        jLabel4.setText("Placa");
+        pnl_vehi.add(jLabel4);
+        jLabel4.setBounds(68, 156, 40, 14);
+        pnl_vehi.add(txt_placa);
+        txt_placa.setBounds(160, 140, 82, 30);
+
+        jLabel2.setText("Marca");
+        pnl_vehi.add(jLabel2);
+        jLabel2.setBounds(62, 14, 50, 14);
+
+        jLabel5.setText("Modelo");
+        pnl_vehi.add(jLabel5);
+        jLabel5.setBounds(67, 45, 50, 14);
+        pnl_vehi.add(txt_modelo);
+        txt_modelo.setBounds(158, 45, 82, 20);
+
+        jLabel6.setText("Año");
+        pnl_vehi.add(jLabel6);
+        jLabel6.setBounds(72, 71, 30, 14);
+        pnl_vehi.add(txt_año);
+        txt_año.setBounds(158, 71, 82, 20);
+
+        jLabel7.setText("Precio vehículo");
+        pnl_vehi.add(jLabel7);
+        jLabel7.setBounds(64, 187, 90, 14);
+        pnl_vehi.add(txt_precio_vehiculo);
+        txt_precio_vehiculo.setBounds(160, 190, 82, 20);
+
+        jLabel8.setText("Nombre del negocio");
+
+        jLabel9.setText("Precio Terreno ");
+
+        jLabel10.setText("Ubicacion");
+
+        jLabel11.setText("Medidas del terreno");
+
+        jLabel12.setText("Documento Legal");
+
+        javax.swing.GroupLayout pnl_proLayout = new javax.swing.GroupLayout(pnl_pro);
+        pnl_pro.setLayout(pnl_proLayout);
+        pnl_proLayout.setHorizontalGroup(
+            pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_proLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addGroup(pnl_proLayout.createSequentialGroup()
+                        .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_medidas, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_precio_terreno, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_nombre_ne, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(87, Short.MAX_VALUE))
+        );
+        pnl_proLayout.setVerticalGroup(
+            pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_proLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txt_ubicacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_medidas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_nombre_ne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(pnl_proLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_precio_terreno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(37, 37, 37))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,91 +216,161 @@ public class form_garantia extends javax.swing.JFrame {
                         .addGap(345, 345, 345)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(174, 174, 174)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(176, Short.MAX_VALUE))
+                        .addGap(296, 296, 296)
+                        .addComponent(jButton1)
+                        .addGap(111, 111, 111)
+                        .addComponent(jButton2)))
+                .addGap(178, 178, 178))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btn_guarda)
-                .addGap(338, 338, 338))
+                .addGap(263, 263, 263))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(pnl_vehi, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(pnl_pro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(122, 122, 122)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_garantia, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel4))
-                    .addComponent(txt_valor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(pnl_vehi, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnl_pro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_guarda)
-                .addGap(68, 68, 68))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_guardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardaActionPerformed
-        String garantia,documento;
-        double valor;
-        
-        
-        if(txt_garantia.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese la garantia ");
-        }else{
-            if(txt_documento.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese el no. Documento ");
-        }else{
-                if(txt_valor.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Ingrese el valor ");
-            }else{
-                    garantia=txt_garantia.getText();
-                    documento=txt_documento.getText();
-                    valor=Double.parseDouble(txt_valor.getText());
-          
-                    String query = "INSERT INTO tbl_garantia (id_garantia,tipo_garantia,no_documento,valor,id_prestamo) VALUES (?, ?, ?, ?, ?)";
+        int año;
+        double valor, kilometraje;
+        form_principal menu = new form_principal();
+        if (estado == 0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un boton");
+        }
+        if (estado == 1) {
 
-                    try {
-                        PreparedStatement str = con.getConnection().prepareStatement(query);
-                        str.setNull(1, java.sql.Types.BIGINT);
-                        str.setString(2, garantia);
-                        str.setString(3, documento);
-                        str.setDouble(4, valor);
-                        str.setInt(5, dato);
+            if (txt_marca.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese la Marca del Vehiculo ");
+            } else {
+                if (txt_modelo.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese Modelo del vehiculo ");
+                } else {
+                    if (txt_año.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese el Año del Vehiculo");
+                    } else {
+                        if (txt_kilometraje.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Ingrese el kilometraje del vehiculo");
+                        } else {
+                            if (txt_placa.getText().isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Ingrese la Placa deñ vehiculo ");
+                            } else {
+                                if (txt_precio_vehiculo.getText().isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Ingrese el valor ");
+                                } else {
+                                    año = Integer.parseInt(txt_año.getText());
+                                    kilometraje = Double.parseDouble(txt_kilometraje.getText());
+                                    valor = Double.parseDouble(txt_precio_vehiculo.getText());
+                                    String query = "INSERT INTO tbl_vehiculo (id_vehiculo,marca,modelo,año,kilometraje,placa,precio_vehiculo,id_prestamo) VALUES (?, ?, ?, ?, ?,? ,? ,?)";
 
+                                    try {
+                                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                                        str.setNull(1, java.sql.Types.BIGINT);
+                                        str.setString(2, txt_marca.getText());
+                                        str.setString(3, txt_modelo.getText());
+                                        str.setInt(4, año);
+                                        str.setDouble(5, kilometraje);
+                                        str.setString(6, txt_placa.getText());
+                                        str.setDouble(7, valor);
+                                        str.setInt(8, dato);
 
-                        int res = str.executeUpdate();
-                       if (res > 0) {
-                            JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                        int res = str.executeUpdate();
+                                        if (res > 0) {
+                                            JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                            this.dispose();
+                                            menu.setVisible(true);
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Error");
+                                        }
+                                    } catch (SQLException e) {
+                                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (estado == 2) {
+            if (txt_ubicacion.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese la Ubicacion ");
+            } else {
+                if (txt_medidas.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese las medidas ");
+                } else {
+                    if (txt_documento.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese el documento Legal");
+                    } else {
+                        if (txt_precio_terreno.getText().isEmpty()) {
+                            JOptionPane.showMessageDialog(null, "Ingrese el precio del terreno");
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "Error");
+                            valor = Double.parseDouble(txt_precio_terreno.getText());
+
+                            String query = "INSERT INTO tbl_propiedad (id_propiedad,ubicacion,medida_terreno,documento_legal,nombre_negocio,precio_terreno,id_prestamo) VALUES (?, ?, ?, ?, ?,? ,? )";
+
+                            try {
+                                PreparedStatement str = con.getConnection().prepareStatement(query);
+                                str.setNull(1, java.sql.Types.BIGINT);
+                                str.setString(2, txt_ubicacion.getText());
+                                str.setString(3, txt_medidas.getText());
+                                str.setString(4, txt_documento.getText());
+                                str.setString(5, txt_nombre_ne.getText());
+                                str.setDouble(6, valor);
+                                str.setInt(7, dato);
+
+                                int res = str.executeUpdate();
+                                if (res > 0) {
+                                    JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                    this.dispose();
+                                    menu.setVisible(true);
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Error");
+                                }
+                            } catch (SQLException e) {
+                                JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                            }
                         }
-                    } catch (SQLException e) {
-                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                     }
                 }
             }
         }
     }//GEN-LAST:event_btn_guardaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pnl_pro.setVisible(false);
+        pnl_vehi.setVisible(true);
+        estado = 1;
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        pnl_vehi.setVisible(false);
+        pnl_pro.setVisible(true);
+        estado = 2;
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,12 +409,32 @@ public class form_garantia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guarda;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel pnl_pro;
+    private javax.swing.JPanel pnl_vehi;
+    private javax.swing.JTextField txt_año;
     private javax.swing.JTextField txt_documento;
-    private javax.swing.JTextField txt_garantia;
-    private javax.swing.JTextField txt_valor;
+    private javax.swing.JTextField txt_kilometraje;
+    private javax.swing.JTextField txt_marca;
+    private javax.swing.JTextField txt_medidas;
+    private javax.swing.JTextField txt_modelo;
+    private javax.swing.JTextField txt_nombre_ne;
+    private javax.swing.JTextField txt_placa;
+    private javax.swing.JTextField txt_precio_terreno;
+    private javax.swing.JTextField txt_precio_vehiculo;
+    private javax.swing.JTextField txt_ubicacion;
     // End of variables declaration//GEN-END:variables
 }
