@@ -44,8 +44,6 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_Generar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmb_mes = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -54,6 +52,10 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         btn_cancelar2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        btn_cancelar3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        btn_cancelar4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,24 +70,6 @@ public class form_reportes extends javax.swing.JFrame {
         });
 
         btn_cancelar.setText("Cancelar");
-
-        jLabel5.setText("PAGO TOTALES DEL MES");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel5)
-                .addGap(0, 18, Short.MAX_VALUE))
-        );
 
         jLabel2.setText("Seleccione Mes:");
 
@@ -116,56 +100,81 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("GENERADO POR EL SOCIO");
+
+        btn_cancelar3.setText("Generar");
+        btn_cancelar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelar3ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("GANANCIA COMISION POR MES");
+
+        btn_cancelar4.setText("Generar");
+        btn_cancelar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelar4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(254, 254, 254))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cmb_mes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(228, 228, 228))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(btn_cancelar1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_Generar)
-                            .addComponent(jLabel6))))
-                .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_cancelar)
-                            .addComponent(btn_cancelar2))))
+                .addGap(37, 37, 37)
+                .addComponent(btn_Generar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(254, 254, 254))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cmb_mes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(228, 228, 228))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(btn_cancelar1))
+                            .addComponent(jLabel6))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(btn_cancelar2)
+                                .addGap(60, 60, 60))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(btn_cancelar3)))
+                        .addGap(73, 73, 73))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_cancelar)
+                            .addComponent(btn_cancelar4))
+                        .addGap(256, 256, 256))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,21 +183,33 @@ public class form_reportes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(33, 33, 33)
                         .addComponent(btn_cancelar1))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
                         .addGap(33, 33, 33)
-                        .addComponent(btn_cancelar2)))
-                .addGap(103, 103, 103)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Generar)
-                    .addComponent(btn_cancelar))
-                .addGap(66, 66, 66))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_cancelar3)
+                            .addComponent(btn_cancelar2))))
+                .addGap(38, 38, 38)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addComponent(btn_cancelar4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(btn_Generar)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancelar)
+                        .addContainerGap())))
         );
 
         pack();
@@ -199,6 +220,7 @@ public class form_reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_mesActionPerformed
 
     private void btn_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar1ActionPerformed
+
         int seleccion = cmb_mes.getSelectedIndex();
         String mes = " ", año, fecha_u = "";
         switch (seleccion) {
@@ -245,7 +267,7 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\pago_mes.jasper", parametros,
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
@@ -256,7 +278,7 @@ public class form_reportes extends javax.swing.JFrame {
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\pago_mes.jasper", parametros,
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -355,6 +377,140 @@ public class form_reportes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_GenerarActionPerformed
 
+    private void btn_cancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar3ActionPerformed
+            int seleccion = cmb_mes.getSelectedIndex();
+        String mes = " ", año, fecha_u = "";
+        switch (seleccion) {
+            case 1:
+                mes = "01";
+                break;
+            case 2:
+                mes = "02";
+                break;
+            case 3:
+                mes = "03";
+                break;
+            case 4:
+                mes = "04";
+                break;
+            case 5:
+                mes = "05";
+                break;
+            case 6:
+                mes = "06";
+                break;
+            case 7:
+                mes = "07";
+                break;
+            case 8:
+                mes = "08";
+                break;
+            case 9:
+                mes = "09";
+                break;
+            case 10:
+                mes = "10";
+                break;
+            case 11:
+                mes = "11";
+                break;
+            case 12:
+                mes = "12";
+                break;
+        }
+        año = txt_año.getText();
+        fecha_u = mes + "-" + año;
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("idfecha", new String(fecha_u));
+        try {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                    con.getConnection());
+            JRPdfExporter exp = new JRPdfExporter();
+            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\reportes\\Detalle_socio.pdf"));
+            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+            exp.setConfiguration(conf);
+            exp.exportReport();
+
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                    con.getConnection());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
+            jasperViewer.setVisible(true);
+        } catch (JRException ex) {
+
+        }
+    }//GEN-LAST:event_btn_cancelar3ActionPerformed
+
+    private void btn_cancelar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar4ActionPerformed
+        int seleccion = cmb_mes.getSelectedIndex();
+        String mes = " ", año, fecha_u = "";
+        switch (seleccion) {
+            case 1:
+                mes = "01";
+                break;
+            case 2:
+                mes = "02";
+                break;
+            case 3:
+                mes = "03";
+                break;
+            case 4:
+                mes = "04";
+                break;
+            case 5:
+                mes = "05";
+                break;
+            case 6:
+                mes = "06";
+                break;
+            case 7:
+                mes = "07";
+                break;
+            case 8:
+                mes = "08";
+                break;
+            case 9:
+                mes = "09";
+                break;
+            case 10:
+                mes = "10";
+                break;
+            case 11:
+                mes = "11";
+                break;
+            case 12:
+                mes = "12";
+                break;
+        }
+        año = txt_año.getText();
+        fecha_u = mes + "-" + año;
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("idfecha", new String(fecha_u));
+        try {
+            JasperPrint jasperPrint = JasperFillManager.fillReport(
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    con.getConnection());
+            JRPdfExporter exp = new JRPdfExporter();
+            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\reportes\\Detalle_comision.pdf"));
+            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+            exp.setConfiguration(conf);
+            exp.exportReport();
+
+            // se muestra en una ventana aparte para su descarga
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    con.getConnection());
+            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
+            jasperViewer.setVisible(true);
+        } catch (JRException ex) {
+
+        }
+    }//GEN-LAST:event_btn_cancelar4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -395,14 +551,16 @@ public class form_reportes extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_cancelar1;
     private javax.swing.JButton btn_cancelar2;
+    private javax.swing.JButton btn_cancelar3;
+    private javax.swing.JButton btn_cancelar4;
     private javax.swing.JComboBox<String> cmb_mes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txt_año;
     // End of variables declaration//GEN-END:variables
 }
