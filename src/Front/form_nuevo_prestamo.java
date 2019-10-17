@@ -516,6 +516,18 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                             if (res > 0) {
                                                 JOptionPane.showMessageDialog(null, "Ingreso completado");
                                                 ga = 1;
+                                            txt_nombre.setText(null);
+                                            txt_dpi.setText(null);
+                                            txt_couta.setText(null);
+                                            txt_cuota_pagar.setText(null);
+                                            txt_ganan.setText(null);
+                                            txt_id.setText(null);
+                                            txt_interes.setText(null);
+                                            txt_monto_a.setText(null);
+                                            txt_monto_s.setText(null);
+                                            cmb_plazo.setSelectedIndex(0);
+                                            cmb_socio.setSelectedIndex(0);
+                                            chk_gara.setAction(null);
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "Error");
                                             }
@@ -532,19 +544,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     
                 }
             }
-                                            txt_nombre.setText(null);
-                                            txt_dpi.setText(null);
-                                            txt_couta.setText(null);
-                                            txt_cuota_pagar.setText(null);
-                                            txt_ganan.setText(null);
-                                            txt_id.setText(null);
-                                            txt_interes.setText(null);
-                                            txt_monto_a.setText(null);
-                                            txt_monto_s.setText(null);
-                                            cmb_plazo.setSelectedIndex(0);
-                                            cmb_socio.setSelectedIndex(0);
-                                            chk_gara.setAction(null);
-       
+                                            
         }
         if (ga == 1) {
             if (garantia == 1) {

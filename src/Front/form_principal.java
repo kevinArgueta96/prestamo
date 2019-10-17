@@ -193,6 +193,11 @@ public class form_principal extends javax.swing.JFrame {
         jButton6.setMaximumSize(new java.awt.Dimension(145, 76));
         jButton6.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton6.setPreferredSize(new java.awt.Dimension(145, 76));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
         jButton6.setBounds(530, 220, 210, 100);
 
@@ -263,6 +268,13 @@ public class form_principal extends javax.swing.JFrame {
         client.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        form_comisiones comision = new form_comisiones();
+        comision.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
