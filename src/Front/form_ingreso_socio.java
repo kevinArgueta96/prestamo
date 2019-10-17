@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -22,6 +24,9 @@ public class form_ingreso_socio extends javax.swing.JFrame {
 
     public form_ingreso_socio() {
         initComponents();
+        cerrar();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,79 +46,91 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         txt_dpi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ingreso Nuevo Socio");
+        setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        setMinimumSize(new java.awt.Dimension(428, 280));
+        setPreferredSize(new java.awt.Dimension(428, 280));
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel1.setText("Nombre ");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(104, 82, 42, 14);
+
+        txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(181, 78, 166, 30);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setText("Ingreso Socio");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(172, 17, 138, 28);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txt_apellido.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        getContentPane().add(txt_apellido);
+        txt_apellido.setBounds(181, 118, 166, 30);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel3.setText("Apellidos");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(104, 122, 47, 14);
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(181, 158, 166, 30);
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel4.setText("DPI ");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(104, 162, 23, 14);
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(144, 216, 81, 33);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(343, 343, 343)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(34, 34, 34)
-                                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_dpi)
-                                    .addComponent(txt_apellido))))))
-                .addContainerGap(255, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(308, 308, 308))
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(237, 216, 86, 33);
+
+        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 290, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2)
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
-                .addComponent(jButton1)
-                .addContainerGap(89, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(90, 70, 290, 130);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nuevo socio background.jpg"))); // NOI18N
+        jLabel5.setMaximumSize(new java.awt.Dimension(495, 280));
+        jLabel5.setMinimumSize(new java.awt.Dimension(495, 280));
+        jLabel5.setPreferredSize(new java.awt.Dimension(495, 280));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, -10, 430, 290);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,6 +175,38 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+        form_principal frm = new form_principal();
+        frm.setVisible(true);
+        this.dispose();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desa Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -195,10 +244,13 @@ public class form_ingreso_socio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_apellido;
     private javax.swing.JTextField txt_dpi;
     private javax.swing.JTextField txt_nombre;

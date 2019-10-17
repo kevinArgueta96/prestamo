@@ -263,6 +263,15 @@ public class form_newcobrador extends javax.swing.JFrame {
                                     int res = str.executeUpdate();
                                     if (res > 0) {
                                         JOptionPane.showMessageDialog(null, "Ingreso completado");
+                                        txt_nombre.setText(null);
+                                        txt_apellido.setText(null);
+                                        txt_direccion.setText(null);
+                                        txt_dpi.setText(null);
+                                        txt_telefono.setText(null);
+                                        cmb_sexo.setSelectedIndex(0);
+                                        cmb_vehiculo.setSelectedIndex(0);
+                                        
+                                        
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Error");
                                     }
