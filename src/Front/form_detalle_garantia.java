@@ -8,8 +8,12 @@ package Front;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -21,8 +25,10 @@ public class form_detalle_garantia extends javax.swing.JFrame {
      * Creates new form form_detalle_garantia
      */
     conexcion con = new conexcion();
+    DefaultTableModel dm;
     int sele = 0;
-
+    SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy");
+    
     public form_detalle_garantia() {
         initComponents();
         pnl_tabla.setVisible(false);
@@ -46,11 +52,12 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         pnl_tabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_detalle = new javax.swing.JTable();
+        txt_nombre = new javax.swing.JTextField();
         pnl_datos = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_datos = new javax.swing.JTable();
-        txt_id = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
+        txt_id = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,6 +106,12 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbl_detalle);
 
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_tablaLayout = new javax.swing.GroupLayout(pnl_tabla);
         pnl_tabla.setLayout(pnl_tablaLayout);
         pnl_tablaLayout.setHorizontalGroup(
@@ -106,11 +119,17 @@ public class form_detalle_garantia extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnl_tablaLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_tablaLayout.setVerticalGroup(
             pnl_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_tablaLayout.createSequentialGroup()
-                .addGap(0, 29, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -162,41 +181,43 @@ public class form_detalle_garantia extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(144, 144, 144)
                 .addComponent(jButton1)
+                .addGap(97, 97, 97)
+                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(145, 145, 145))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(365, 365, 365)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(141, 141, 141))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(367, 367, 367))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addComponent(pnl_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(56, 56, 56)
                 .addComponent(pnl_datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(jButton3)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -204,7 +225,11 @@ public class form_detalle_garantia extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         sele = 1;
+
+        pnl_datos.setVisible(false);
         pnl_tabla.setVisible(true);
+        txt_nombre.setText(null);
+        txt_id.setText(null);
         DefaultTableModel tbl = new DefaultTableModel();
 
         tbl.addColumn("ID");
@@ -250,6 +275,9 @@ public class form_detalle_garantia extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         sele = 2;
         pnl_tabla.setVisible(true);
+        pnl_datos.setVisible(false);
+        txt_id.setText(null);
+        txt_nombre.setText(null);
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID");
         tbl.addColumn("Nombres");
@@ -291,8 +319,10 @@ public class form_detalle_garantia extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tbl_detalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_detalleMouseClicked
+        txt_nombre.setText(null);
         int seleccion = tbl_detalle.rowAtPoint(evt.getPoint());
         txt_id.setText(String.valueOf(tbl_detalle.getValueAt(seleccion, 0)));
+        txt_nombre.setText(String.valueOf(tbl_detalle.getValueAt(seleccion, 1)));
     }//GEN-LAST:event_tbl_detalleMouseClicked
 
     private void tbl_datosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_datosMouseClicked
@@ -300,10 +330,10 @@ public class form_detalle_garantia extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_datosMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       if(txt_id.getText().isEmpty()){
-                JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
-            }
-        
+        if (txt_id.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
+        }
+
         if (sele == 1) {
             if (txt_id.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
@@ -384,6 +414,17 @@ public class form_detalle_garantia extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
+        //filtro(txt_nombre.getText(), tbl_detalle);
+    }//GEN-LAST:event_txt_nombreKeyReleased
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
+
     public void tbl_limpiar() {
         try {
             DefaultTableModel modelo = (DefaultTableModel) tbl_detalle.getModel();
@@ -445,5 +486,6 @@ public class form_detalle_garantia extends javax.swing.JFrame {
     private javax.swing.JTable tbl_datos;
     private javax.swing.JTable tbl_detalle;
     private javax.swing.JTextField txt_id;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }
