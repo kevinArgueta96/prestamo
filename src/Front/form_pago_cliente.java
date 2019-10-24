@@ -14,6 +14,9 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -24,17 +27,23 @@ public class form_pago_cliente extends javax.swing.JFrame {
     /**
      * Creates new form form_pago_cliente
      */
-    
     conexcion con = new conexcion();
     double monto_restante;
     int cuota_res;
+    DefaultTableModel dm;
 
     public form_pago_cliente() {
 
         initComponents();
+        setResizable(false);
         this.setLocationRelativeTo(null);
         cerrar();
         txt_id.setEditable(false);
+        txt_Faltante.setEditable(false);
+        txt_Faltante_cuota.setEditable(false);
+        txt_pago_estipulado.setEditable(false);
+        txt_monto_prestamo.setEditable(false);
+        txt_saldo_pagar.setEditable(false);
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID");
         tbl.addColumn("Nombre");
@@ -149,6 +158,11 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 txt_nombreActionPerformed(evt);
             }
         });
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyReleased(evt);
+            }
+        });
         getContentPane().add(txt_nombre);
         txt_nombre.setBounds(124, 280, 341, 24);
 
@@ -160,6 +174,11 @@ public class form_pago_cliente extends javax.swing.JFrame {
         txt_dpi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_dpiActionPerformed(evt);
+            }
+        });
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyReleased(evt);
             }
         });
         getContentPane().add(txt_dpi);
@@ -291,7 +310,12 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_nombreActionPerformed
-
+    private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+    }
     private void txt_dpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dpiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_dpiActionPerformed
@@ -317,6 +341,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         txt_Faltante.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 4)));
         txt_Faltante_cuota.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
         txt_pago_estipulado.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
+        txt_saldo_pagar.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
     }//GEN-LAST:event_tbl_prestamoMouseClicked
 
     private void txt_Faltante_cuotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Faltante_cuotaActionPerformed
@@ -417,7 +442,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                                                 int res_estado = str_estado_cambio.executeUpdate();
                                                 if (res_update > 0) {
                                                 } else {
-                                                    
+
                                                 }
                                             }
                                             str_estado_cambio.close();
@@ -456,21 +481,29 @@ public class form_pago_cliente extends javax.swing.JFrame {
             txt_saldo_pagar.setText("");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
- 
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
-        form_principal frm = new form_principal();
-        frm.setVisible(true);
-        this.dispose();
+            form_principal frm = new form_principal();
+            frm.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         confirmarSalida();
+        confirmarSalida();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
+        filtro(txt_nombre.getText(), tbl_prestamo);
+    }//GEN-LAST:event_txt_nombreKeyReleased
+
+    private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
+        filtro(txt_dpi.getText(), tbl_prestamo);
+    }//GEN-LAST:event_txt_dpiKeyReleased
 
     public void actualizar() {
         DefaultTableModel tbl = new DefaultTableModel();
@@ -510,10 +543,10 @@ public class form_pago_cliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
     }
+
     /**
      * @param args the command line arguments
      */
-       
     public void cerrar() {
         try {
             this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
@@ -529,6 +562,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         }
 
     }
+
     public void confirmarSalida() {
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
@@ -536,7 +570,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
         }
     }
-   
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -565,7 +599,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new form_pago_cliente().setVisible(true);
-               
+
             }
         });
     }
