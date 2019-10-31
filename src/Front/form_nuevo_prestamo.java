@@ -100,7 +100,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txt_dpi = new javax.swing.JTextField();
-        salir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txt_monto_s = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -127,7 +127,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         cmb_socio = new javax.swing.JComboBox<String>();
         txt_fecha_creacion = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -168,16 +167,16 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         getContentPane().add(txt_dpi);
         txt_dpi.setBounds(139, 116, 212, 28);
 
-        salir.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
-        salir.setText("Cancelar");
-        salir.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
+        jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(salir);
-        salir.setBounds(570, 480, 107, 40);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(350, 480, 108, 46);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -188,7 +187,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(450, 480, 110, 44);
+        jButton2.setBounds(480, 480, 110, 44);
 
         txt_monto_s.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_monto_s.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -329,34 +328,19 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(291, 291, 291)
-                .addComponent(jButton1)
-                .addContainerGap(451, Short.MAX_VALUE))
+            .addGap(0, 730, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(367, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(37, 37, 37))
+            .addGap(0, 280, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(50, 100, 850, 450);
+        jPanel1.setBounds(50, 100, 730, 280);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/prestamo_picture.jpg"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(900, 666));
@@ -618,11 +602,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_interesKeyTyped
 
-    private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-        // TODO add your handling code here:
-        confirmarSalida();
-    }//GEN-LAST:event_salirActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
@@ -721,7 +700,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton salir;
     private javax.swing.JTable tbla_clie;
     private javax.swing.JTextField txt_couta;
     private javax.swing.JTextField txt_cuota_pagar;

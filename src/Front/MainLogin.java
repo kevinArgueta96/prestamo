@@ -91,7 +91,7 @@ public class MainLogin extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(400, 170, 160, 40);
+        jTextField1.setBounds(400, 180, 160, 40);
 
         jPasswordField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
