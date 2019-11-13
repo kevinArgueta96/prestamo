@@ -81,6 +81,11 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         jLabel3.setBounds(104, 122, 47, 14);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyTyped(evt);
+            }
+        });
         getContentPane().add(txt_dpi);
         txt_dpi.setBounds(181, 158, 166, 30);
 
@@ -97,7 +102,7 @@ public class form_ingreso_socio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(144, 216, 81, 33);
+        jButton1.setBounds(144, 216, 83, 25);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jButton2.setText("Regresar");
@@ -107,7 +112,7 @@ public class form_ingreso_socio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(237, 216, 86, 33);
+        jButton2.setBounds(237, 216, 89, 25);
 
         jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
 
@@ -142,7 +147,7 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         if (txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "ingrese nombre");
         } else {
-            if (txt_dpi.getText().isEmpty()) {
+            if (txt_dpi.getText().isEmpty() || txt_dpi.getText().length()< 13) {
                 JOptionPane.showMessageDialog(null, "Ingrese dpi");
             } else {
                 if (txt_dpi.getText().isEmpty()) {
@@ -184,6 +189,22 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         this.dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
+        // TODO add your handling code here:
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_dpi.getText().length() == 13) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 13 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_dpiKeyTyped
     public void cerrar() {
         try {
             this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);

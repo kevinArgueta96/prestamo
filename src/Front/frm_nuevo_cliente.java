@@ -39,7 +39,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_direccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cmb_sexo = new javax.swing.JComboBox<String>();
+        cmb_sexo = new javax.swing.JComboBox<>();
         btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         txt_dpi = new javax.swing.JTextField();
@@ -66,7 +66,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_nombre);
-        txt_nombre.setBounds(157, 82, 353, 22);
+        txt_nombre.setBounds(157, 82, 353, 20);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Nombres");
@@ -85,7 +85,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_apellido);
-        txt_apellido.setBounds(157, 111, 353, 22);
+        txt_apellido.setBounds(157, 111, 353, 20);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Sexo");
@@ -109,7 +109,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_telefono);
-        txt_telefono.setBounds(378, 141, 132, 22);
+        txt_telefono.setBounds(378, 141, 132, 20);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Dpi");
@@ -131,14 +131,14 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel7.setBounds(75, 176, 54, 24);
 
         cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sexo", "Masculino", "Femenino" }));
+        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Femenino" }));
         cmb_sexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_sexoActionPerformed(evt);
             }
         });
         getContentPane().add(cmb_sexo);
-        cmb_sexo.setBounds(157, 232, 85, 24);
+        cmb_sexo.setBounds(157, 232, 80, 20);
 
         btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
@@ -149,7 +149,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_guardar);
-        btn_guardar.setBounds(210, 300, 108, 46);
+        btn_guardar.setBounds(210, 300, 111, 39);
 
         btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -163,8 +163,13 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         btn_cancelar.setBounds(320, 300, 120, 44);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyTyped(evt);
+            }
+        });
         getContentPane().add(txt_dpi);
-        txt_dpi.setBounds(157, 141, 162, 22);
+        txt_dpi.setBounds(157, 141, 162, 20);
 
         jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
         jPanel2.setLayout(null);
@@ -222,10 +227,10 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         if (txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "ingrese nombre");
         } else {
-            if (txt_dpi.getText().isEmpty()) {
+            if (txt_dpi.getText().isEmpty() || txt_dpi.getText().length()< 13) {
                 JOptionPane.showMessageDialog(null, "Ingrese dpi");
             } else {
-                if (txt_telefono.getText().isEmpty()) {
+                if (txt_telefono.getText().isEmpty() || txt_telefono.getText().length() < 8) {
                     JOptionPane.showMessageDialog(null, "Ingrese Telefono");
                 } else {
                     if(seleccion==0){
@@ -293,7 +298,14 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             evt.consume();
 
             JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }else {
+            if (txt_telefono.getText().length() == 8) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 8 digitos");
+            }
         }
+        
     }//GEN-LAST:event_txt_telefonoKeyTyped
 
     private void txt_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_telefonoActionPerformed
@@ -323,6 +335,22 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         cmb_sexo.setSelectedIndex(0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
+        // TODO add your handling code here:
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_dpi.getText().length() == 13) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 13 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_dpiKeyTyped
 
     /**
      * @param args the command line arguments
