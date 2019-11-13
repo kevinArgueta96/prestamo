@@ -115,12 +115,22 @@ public class form_newcobrador extends javax.swing.JFrame {
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_dpi.setMinimumSize(new java.awt.Dimension(16, 22));
         txt_dpi.setPreferredSize(new java.awt.Dimension(16, 22));
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyTyped(evt);
+            }
+        });
         getContentPane().add(txt_dpi);
         txt_dpi.setBounds(119, 188, 317, 30);
 
         txt_telefono.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_telefono.setMinimumSize(new java.awt.Dimension(16, 22));
         txt_telefono.setPreferredSize(new java.awt.Dimension(16, 22));
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
         getContentPane().add(txt_telefono);
         txt_telefono.setBounds(120, 290, 317, 30);
 
@@ -219,10 +229,10 @@ public class form_newcobrador extends javax.swing.JFrame {
             if (txt_nombre.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "ingrese nombre");
             } else {
-                if (txt_dpi.getText().isEmpty()) {
+                if (txt_dpi.getText().isEmpty()||txt_dpi.getText().length()<13) {
                     JOptionPane.showMessageDialog(null, "Ingrese dpi");
                 } else {
-                    if (txt_telefono.getText().isEmpty()) {
+                    if (txt_telefono.getText().isEmpty()||txt_telefono.getText().length()<8){
                         JOptionPane.showMessageDialog(null, "Ingrese Telefono");
                     } else {
                         if (vehiculo == 0) {
@@ -290,6 +300,36 @@ public class form_newcobrador extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
+         char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_dpi.getText().length() == 13) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 13 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_dpiKeyTyped
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+         char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_telefono.getText().length() == 8) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 8 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_telefonoKeyTyped
 
     // Metodo para confirmar cerrar el JFrame
     public void cerrar() {
