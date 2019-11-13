@@ -3,10 +3,12 @@ package Front;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +21,8 @@ import javax.swing.JOptionPane;
  *
  */
 public class MainLogin extends javax.swing.JFrame {
-
+    public conexcion cnx = new conexcion();
+    
     /**
      * Creates new form MainLogin
      */
@@ -47,8 +50,8 @@ public class MainLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txt_user = new javax.swing.JTextField();
+        txt_contraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -88,15 +91,15 @@ public class MainLogin extends javax.swing.JFrame {
         getContentPane().add(jLabel6);
         jLabel6.setBounds(410, 50, 130, 40);
 
-        jTextField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(400, 170, 160, 40);
+        txt_user.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_user.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(txt_user);
+        txt_user.setBounds(400, 170, 160, 40);
 
-        jPasswordField1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(jPasswordField1);
-        jPasswordField1.setBounds(400, 260, 160, 40);
+        txt_contraseña.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txt_contraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(txt_contraseña);
+        txt_contraseña.setBounds(400, 260, 160, 40);
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -126,7 +129,7 @@ public class MainLogin extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white_back_login.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(300, 0, 340, 450);
+        jLabel3.setBounds(170, 10, 340, 450);
 
         setSize(new java.awt.Dimension(633, 439));
         setLocationRelativeTo(null);
@@ -137,10 +140,40 @@ public class MainLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //pmazariegos 12/11/2019 
         
-        form_principal fmp = new form_principal();
-        fmp.setVisible(true);
-        this.setVisible(false);
+        String qry =    "SELECT\n" +
+                        " COUNT(*)Result\n" +
+                        "FROM tbl_usuarios\n" +
+                        "WHERE UPPER(usuario) = UPPER(?)\n" +
+                        "AND contraseña = ?";
+        String txt = new String(txt_contraseña.getPassword());
+        JOptionPane.showMessageDialog(null,txt );
+        try {
+            
+            PreparedStatement st = cnx.getConnection().prepareStatement(qry);
+            st.setString(1, txt_user.getText());
+            st.setString(2, txt);
+            
+             ResultSet result = st.executeQuery();
+             result.next();
+             if(result.getString(1).equals("1")){
+                form_principal fmp = new form_principal();
+                fmp.setVisible(true);
+                this.setVisible(false);
+             }else{
+                 JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
+             }
+        
+           
+            //String result = st.executeQuery().toString();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+                
+        cnx.getConnection();
+        
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -189,7 +222,7 @@ public class MainLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txt_contraseña;
+    private javax.swing.JTextField txt_user;
     // End of variables declaration//GEN-END:variables
 }
