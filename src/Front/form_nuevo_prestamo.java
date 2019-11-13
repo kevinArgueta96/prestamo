@@ -174,6 +174,9 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_dpiKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyTyped(evt);
+            }
         });
         getContentPane().add(txt_dpi);
         txt_dpi.setBounds(139, 116, 212, 28);
@@ -677,6 +680,21 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_dpi.getText().length() == 13) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 16 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_dpiKeyTyped
 
     /**
      * @param args the command line arguments
