@@ -138,7 +138,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         cmb_socio = new javax.swing.JComboBox<>();
         txt_monto_a = new javax.swing.JTextField();
         txt_ganan = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txt_porcentaje = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        txt_pago_porce = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txt_cuota_pagar1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Solicitud de Nuevo Préstamo");
@@ -349,6 +355,24 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         cmb_socio.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_socio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Socio" }));
 
+        jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel11.setText("Porcentaje");
+
+        txt_porcentaje.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_porcentaje.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_porcentajeKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_porcentajeKeyTyped(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel18.setText("Pago comision");
+
+        txt_pago_porce.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -358,15 +382,23 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(273, 273, 273)
+                .addContainerGap()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmb_cobrador, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_porcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_pago_porce, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cmb_socio, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_ganan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -375,16 +407,28 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(291, Short.MAX_VALUE)
-                .addComponent(txt_ganan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmb_cobrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_socio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_porcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(292, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(txt_ganan, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmb_cobrador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmb_socio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_monto_a, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_pago_porce, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(8, 8, 8)
                 .addComponent(jButton1)
                 .addGap(37, 37, 37))
         );
@@ -398,6 +442,15 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel4.setPreferredSize(new java.awt.Dimension(900, 666));
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 0, 1070, 550);
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel5.setText("Cuota a pagar");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(353, 399, 73, 14);
+
+        txt_cuota_pagar1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        getContentPane().add(txt_cuota_pagar1);
+        txt_cuota_pagar1.setBounds(438, 393, 95, 20);
 
         pack();
         setLocationRelativeTo(null);
@@ -474,13 +527,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         int id_cliente;
         int garantia = 0;
         double monto;
-        double interes;
-        double monto_a_pa;
+        double interes,porcentaje;
+        double monto_a_pa,pago_comi;
         double ganancia, cuota_tot;
         conexcion con = new conexcion();
         String query = "INSERT INTO tbl_prestamo (id_prestamo,monto,interes,fecha_creacion,fecha_finalizacion,monto_interes,ganancia,estado_garantia,"
                 + "cuotas,total_cuota"
-                + ",id_cliente,id_plazo,estado,saldo_faltante,cuota_faltante,id_socio,id_cobrador ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
+                + ",id_cliente,id_plazo,estado,saldo_faltante,cuota_faltante,id_socio,estado_comision,id_cobrador,porcentaje_cobra,pago_comision) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)";
         String query2 = "SELECT id_cliente,estado FROM tbl_prestamo";
         String[] dato = new String[2];
         Statement str1;
@@ -531,6 +584,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                     } else {
                                         monto = Double.parseDouble(txt_monto_s.getText());
                                         interes = Double.parseDouble(txt_interes.getText());
+                                        porcentaje = Double.parseDouble(txt_porcentaje.getText());
+                                        pago_comi = Double.parseDouble(txt_pago_porce.getText());
                                         id_cliente = Integer.parseInt(txt_id.getText());
                                         ganancia = Double.parseDouble(txt_monto_a.getText());
                                         monto_a_pa = Double.parseDouble(txt_ganan.getText());
@@ -557,7 +612,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                             str.setDouble(14, monto_a_pa);
                                             str.setInt(15, cuota);
                                             str.setInt(16, socio);
-                                            str.setInt(17, cobrador);
+                                            str.setInt(17, 0);
+                                            str.setInt(18, cobrador);
+                                            str.setDouble(19, porcentaje);
+                                            str.setDouble(20, pago_comi);
+                                            
 
                                             res = str.executeUpdate();
 
@@ -696,6 +755,47 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_dpiKeyTyped
 
+    private void txt_porcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyTyped
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida) || Character.isWhitespace(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txt_porcentajeKeyTyped
+
+    private void txt_porcentajeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyReleased
+       double monto;
+        double interes;
+        double total;
+        double ganancia;
+        String gana, tot;
+        DecimalFormatSymbols punto = new DecimalFormatSymbols();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
+        try {
+            if (txt_monto_a.getText().isEmpty()) {
+                //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero");
+            } else {
+                if (txt_interes.getText().isEmpty()) {
+                    //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero");
+                } else {
+                    monto = Double.parseDouble(txt_monto_a.getText());
+                    interes = Double.parseDouble(txt_porcentaje.getText());
+                    interes = interes / 100;
+                    total = monto * interes;
+                    //tot = String.valueOf(total);
+                    //gana = String.valueOf(ganancia);
+                    //txt_monto_a.setText(dc.format(total));
+                    txt_pago_porce.setText(dc.format(total));
+                }
+            }
+        } catch (NumberFormatException ex) {
+
+        }
+    }//GEN-LAST:event_txt_porcentajeKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -769,15 +869,18 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -788,6 +891,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JTable tbla_clie;
     private javax.swing.JTextField txt_couta;
     private javax.swing.JTextField txt_cuota_pagar;
+    private javax.swing.JTextField txt_cuota_pagar1;
     private javax.swing.JTextField txt_dpi;
     private javax.swing.JTextField txt_fecha_creacion;
     private javax.swing.JTextField txt_ganan;
@@ -796,5 +900,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JTextField txt_monto_a;
     private javax.swing.JTextField txt_monto_s;
     private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_pago_porce;
+    private javax.swing.JTextField txt_porcentaje;
     // End of variables declaration//GEN-END:variables
 }
