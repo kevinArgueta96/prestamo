@@ -50,7 +50,7 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        cmb_mes = new javax.swing.JComboBox<>();
+        cmb_mes = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         txt_año = new javax.swing.JTextField();
         btn_cancelar1 = new javax.swing.JButton();
@@ -69,33 +69,39 @@ public class form_reportes extends javax.swing.JFrame {
 
         btn_cancelar.setText("Cancelar");
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione Mes:");
 
-        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmb_mes.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cmb_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_mesActionPerformed(evt);
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Ingrese Año:");
 
+        txt_año.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_año.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_añoKeyTyped(evt);
             }
         });
 
-        btn_cancelar1.setText("Generar");
+        btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/monthly report.png"))); // NOI18N
         btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelar1ActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("PAGO TOTALES DEL MES");
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel6.setText("PAGOS MENSUALES");
 
-        jLabel7.setText("CUANTO SE GENERO AL MES");
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setText("GENERADO MENSUALMENTE");
 
         btn_cancelar2.setText("Generar");
         btn_cancelar2.addActionListener(new java.awt.event.ActionListener() {
@@ -104,6 +110,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel8.setText("GENERADO POR EL SOCIO");
 
         btn_cancelar3.setText("Generar");
@@ -113,6 +120,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel9.setText("GANANCIA COMISION POR MES");
 
         btn_cancelar4.setText("Generar");
@@ -126,8 +134,8 @@ public class form_reportes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(129, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -142,33 +150,37 @@ public class form_reportes extends javax.swing.JFrame {
                             .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(228, 228, 228))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(btn_cancelar1))
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addComponent(btn_cancelar2)
-                                .addGap(60, 60, 60))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(38, 38, 38))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(68, 68, 68)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(jLabel7))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(39, 39, 39)
+                                        .addComponent(btn_cancelar2)))))
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel8))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
                                 .addComponent(btn_cancelar3)))
-                        .addGap(73, 73, 73))
+                        .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_cancelar)
                             .addComponent(btn_cancelar4))
-                        .addGap(256, 256, 256))))
+                        .addGap(282, 282, 282))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,27 +195,24 @@ public class form_reportes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(33, 33, 33)
-                        .addComponent(btn_cancelar1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_cancelar3)
-                            .addComponent(btn_cancelar2))))
-                .addGap(38, 38, 38)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_cancelar2)
+                        .addComponent(btn_cancelar3))
+                    .addComponent(btn_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(btn_cancelar4)
-                .addGap(73, 73, 73)
+                .addGap(58, 58, 58)
                 .addComponent(btn_cancelar)
-                .addContainerGap())
+                .addGap(61, 61, 61))
         );
 
         pack();
@@ -261,18 +270,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\reportes\\"+fecha+"Pagos_del_Mes.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\"+fecha+"Pagos_del_Mes.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -328,18 +337,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\reporte_mes.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\reporte_mes.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\reportes\\"+fecha+"Detalle_Inversion.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\"+fecha+"Detalle_Inversion.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\reporte_mes.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\reporte_mes.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -395,18 +404,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\reportes\\"+fecha+"Detalle_socio.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\"+fecha+"Detalle_socio.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -462,18 +471,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\reportes\\"+fecha+"Detalle_comision.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte"+fecha+"Detalle_comision.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\Prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
