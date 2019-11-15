@@ -30,7 +30,7 @@ public class form_detalle_comision extends javax.swing.JFrame {
     public form_detalle_comision() {
         initComponents();
         DefaultTableModel tbl = new DefaultTableModel();
-        tbl.addColumn("ID");
+        tbl.addColumn("ID COBRADOR");
         tbl.addColumn("Nombres del Cobrador");
         tbl.addColumn("Apellidos del Cobrador");
         tbl.addColumn("DPI");
@@ -40,14 +40,14 @@ public class form_detalle_comision extends javax.swing.JFrame {
         tbl.addColumn("Fecha del pago");
         tbl_prestamo.setModel(tbl);
 
-        String query = "SELECT tbl_detalle_comision.id_comision,nombre,apellido,dpi,monto_interes,\n"
-                + "tbl_prestamo.ganancia,monto_comision,fecha_pago from tbl_detalle_comision\n"
-                + "inner join tbl_cobrador \n"
-                + "on tbl_detalle_comision.id_cobrador=tbl_cobrador.id_cobrador \n"
-                + "inner join tbl_comision\n"
-                + "on tbl_detalle_comision.id_comision=tbl_comision.id_comision\n"
-                + "inner join tbl_prestamo\n"
-                + "on tbl_comision.id_prestamo=tbl_prestamo.id_prestamo;";
+        String query = "select cob.id_cobrador,cob.nombre,cob.apellido,cob.dpi, pres.monto_interes,\n"
+                + "pres.ganancia,com.monto_comision,com.fecha_pago from tbl_detalle_comision det\n"
+                + "inner join tbl_comision com\n"
+                + "on com.id_comision=det.id_comision\n"
+                + "inner join tbl_prestamo pres\n"
+                + "on pres.id_prestamo=det.id_prestamo\n"
+                + "inner join tbl_cobrador cob\n"
+                + "on cob.id_cobrador=pres.id_cobrador";
         String[] dato = new String[8];
         Statement str;
         try {
@@ -226,11 +226,11 @@ public class form_detalle_comision extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idActionPerformed
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
-         filtro(txt_nombre.getText(), tbl_prestamo);
+        filtro(txt_nombre.getText(), tbl_prestamo);
     }//GEN-LAST:event_txt_nombreKeyReleased
 
     private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
-         filtro(txt_nombre.getText().toUpperCase(), tbl_prestamo);
+        filtro(txt_nombre.getText().toUpperCase(), tbl_prestamo);
     }//GEN-LAST:event_txt_dpiKeyReleased
 
     /**

@@ -33,8 +33,7 @@ public class form_comisiones extends javax.swing.JFrame {
         cerrar();
         setResizable(false);
         this.setLocationRelativeTo(null);
-        txt_id_co.setVisible(false);
-        txt_id_pres.setVisible(false);
+        txt_id_pre.setVisible(false);
         DefaultTableModel tbl = new DefaultTableModel();
 
         SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy");
@@ -44,55 +43,41 @@ public class form_comisiones extends javax.swing.JFrame {
         String fecha = dformat.format(date);
         txt_pagocomision.setText(fecha);
         tbl.addColumn("ID");
-        tbl.addColumn("Nombre del cliente");
-        tbl.addColumn("Monto total del prestamo");
-        tbl.addColumn("Ganancia");
-        tbl.addColumn("Fecha creacion");
-        tbl.addColumn("Fecha Finalizacion");
-        tbl_datosprest.setModel(tbl);
+        tbl.addColumn("Nombre del cobrador");
+        tbl.addColumn("Apellido del cobrador");
+        tbl.addColumn("DPI ");
+        tbl.addColumn("Montp + Interes ");
+        tbl.addColumn("Ganancia del Prestamo");
+        tbl.addColumn("%");
+        tbl.addColumn("Pago de la comision");
+        tbl_prestamo.setModel(tbl);
 
-        DefaultTableModel tbl_co = new DefaultTableModel();
-        tbl_co.addColumn("ID");
-        tbl_co.addColumn("Nombre del cobrador");
-        tbl_co.addColumn("Apellido del cobrador");
-        tbl_co.addColumn("DPI");
-        tbl_datoscobra.setModel(tbl_co);
-        String query_pres = "select id_prestamo,nombre_cliente,monto_interes,ganancia, fecha_creacion, fecha_finalizacion from tbl_prestamo\n"
-                + "inner join tbl_cliente\n"
-                + "on tbl_prestamo.id_cliente=tbl_cliente.id_cliente where estado=0";
-        String query_co = " select id_cobrador,nombre,apellido,dpi from tbl_cobrador";
-        String[] dato_pres = new String[7];
-        String[] dato_co = new String[4];
+        String query_co = "select p.id_prestamo,c.nombre,c.apellido,c.dpi,p.monto_interes,\n"
+                + "p.ganancia,p.porcentaje_cobra,p.pago_comision from tbl_prestamo p\n"
+                + "inner join tbl_cobrador c\n"
+                + "on p.id_cobrador=c.id_cobrador\n"
+                + "where estado_comision=1;";
+        String[] dato_co = new String[8];
         Statement str_co;
-        Statement str_pre;
 
         try {
 
-            str_pre = con.getConnection().createStatement();
-            ResultSet result = str_pre.executeQuery(query_pres);
             str_co = con.getConnection().createStatement();
             ResultSet result_co = str_co.executeQuery(query_co);
 
-            while (result.next()) {
-                dato_pres[0] = result.getString(1);
-                dato_pres[1] = result.getString(2);
-                dato_pres[2] = result.getString(3);
-                dato_pres[3] = result.getString(4);
-                dato_pres[4] = result.getString(5);
-                dato_pres[5] = result.getString(6);
-
-                tbl.addRow(dato_pres);
-            }
             while (result_co.next()) {
                 dato_co[0] = result_co.getString(1);
                 dato_co[1] = result_co.getString(2);
                 dato_co[2] = result_co.getString(3);
                 dato_co[3] = result_co.getString(4);
+                dato_co[4] = result_co.getString(5);
+                dato_co[5] = result_co.getString(6);
+                dato_co[6] = result_co.getString(7);
+                dato_co[7] = result_co.getString(8);
 
-                tbl_co.addRow(dato_co);
+                tbl.addRow(dato_co);
             }
             str_co.close();
-            str_pre.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
         }
@@ -108,20 +93,6 @@ public class form_comisiones extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txt_nombres = new javax.swing.JTextField();
-        txt_apellidos = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_datoscobra = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txt_prestnombre = new javax.swing.JTextField();
-        txt_presmonto = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tbl_datosprest = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         txt_monto = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -130,12 +101,19 @@ public class form_comisiones extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btn_regresar = new javax.swing.JButton();
         txt_pagocomision = new javax.swing.JTextField();
-        txt_id_co = new javax.swing.JTextField();
-        txt_id_pres = new javax.swing.JTextField();
+        txt_id_pre = new javax.swing.JTextField();
         txt_desc = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_prestamo = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        txt_apellidos = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txt_nombres = new javax.swing.JTextField();
+        txt_dpi = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,96 +127,6 @@ public class form_comisiones extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(259, 6, 172, 41);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel2.setText("Nombres");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(42, 92, 54, 30);
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel3.setText("Apellidos");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(44, 144, 47, 14);
-
-        txt_nombres.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        getContentPane().add(txt_nombres);
-        txt_nombres.setBounds(114, 96, 326, 22);
-
-        txt_apellidos.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        getContentPane().add(txt_apellidos);
-        txt_apellidos.setBounds(114, 140, 326, 22);
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("Datos Cobrador");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(292, 59, 99, 27);
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel5.setText("Datos Prestamo");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(288, 263, 106, 24);
-
-        tbl_datoscobra.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
-        tbl_datoscobra.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tbl_datoscobra.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_datoscobraMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbl_datoscobra);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(114, 172, 500, 73);
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel7.setText("Nombres");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(44, 299, 44, 25);
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel8.setText("Monto ");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(44, 346, 37, 14);
-
-        txt_prestnombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        getContentPane().add(txt_prestnombre);
-        txt_prestnombre.setBounds(106, 300, 323, 30);
-
-        txt_presmonto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        getContentPane().add(txt_presmonto);
-        txt_presmonto.setBounds(106, 342, 323, 30);
-
-        tbl_datosprest.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
-        tbl_datosprest.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        tbl_datosprest.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_datosprestMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(tbl_datosprest);
-
-        getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(106, 376, 500, 74);
-
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel9.setText("Ganancia");
         getContentPane().add(jLabel9);
@@ -246,7 +134,7 @@ public class form_comisiones extends javax.swing.JFrame {
 
         txt_monto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_monto);
-        txt_monto.setBounds(106, 474, 62, 22);
+        txt_monto.setBounds(106, 474, 62, 20);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel12.setText("Comisión Q");
@@ -255,7 +143,7 @@ public class form_comisiones extends javax.swing.JFrame {
 
         txt_comision.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_comision);
-        txt_comision.setBounds(244, 474, 62, 22);
+        txt_comision.setBounds(244, 474, 62, 20);
 
         btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btn_guardar.setText("Guardar");
@@ -280,15 +168,13 @@ public class form_comisiones extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_regresar);
-        btn_regresar.setBounds(331, 568, 77, 49);
+        btn_regresar.setBounds(331, 568, 79, 49);
 
         txt_pagocomision.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_pagocomision);
-        txt_pagocomision.setBounds(453, 474, 87, 22);
-        getContentPane().add(txt_id_co);
-        txt_id_co.setBounds(623, 65, 14, 14);
-        getContentPane().add(txt_id_pres);
-        txt_id_pres.setBounds(623, 269, 14, 12);
+        txt_pagocomision.setBounds(453, 474, 87, 20);
+        getContentPane().add(txt_id_pre);
+        txt_id_pre.setBounds(609, 65, 20, 14);
 
         txt_desc.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_desc);
@@ -299,41 +185,114 @@ public class form_comisiones extends javax.swing.JFrame {
         getContentPane().add(jLabel15);
         jLabel15.setBounds(200, 525, 58, 14);
 
-        jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(40, 50, 590, 200);
-
         jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
+
+        tbl_prestamo.setFont(new java.awt.Font("Times New Roman", 0, 10)); // NOI18N
+        tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbl_prestamo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_prestamoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_prestamo);
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setText("Datos del Prestamo");
+
+        txt_apellidos.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_apellidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_apellidosActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel2.setText("Nombres");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel3.setText("Apellidos");
+
+        txt_nombres.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_nombres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombresActionPerformed(evt);
+            }
+        });
+
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_dpiActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel5.setText("DPI");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 590, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(40, 260, 590, 300);
+        jPanel2.setBounds(10, 60, 660, 500);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Commision background.jpg"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 643, 640);
+        jLabel6.setBounds(0, 0, 710, 640);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -349,107 +308,167 @@ public class form_comisiones extends javax.swing.JFrame {
         String fecha = local.toString();
         int dato_final = 0;
 
-        if (txt_nombres.getText().isEmpty()) {
+        if (txt_apellidos.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un Cobrador:");
         } else {
             if (txt_apellidos.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Seleccione un Cobrador:");
             } else {
-                if (txt_prestnombre.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Seleccione un Prestamo:");
+                if (txt_id_pre.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Seleccione un cobrador");
                 } else {
-                    if (txt_presmonto.getText().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Seleccione un Prestamo");
+                    if (txt_comision.getText().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ingrese el dinero de la Comision");
                     } else {
-                        if (txt_id_co.getText().isEmpty()) {
-                            JOptionPane.showMessageDialog(null, "Seleccione un cobrador");
-                        } else {
-                            if (txt_comision.getText().isEmpty()) {
-                                JOptionPane.showMessageDialog(null, "Ingrese el dinero de la Comision");
-                            } else {
-                                Descr = txt_desc.getText();
-                                monto = Double.parseDouble(txt_comision.getText());
-                                int id = Integer.parseInt(txt_id_pres.getText());
-                                int id_cobrador= Integer.parseInt(txt_id_co.getText());
+                        Descr = txt_desc.getText();
+                        monto = Double.parseDouble(txt_comision.getText());
+                        int id_prestamo = Integer.parseInt(txt_id_pre.getText());
 
-                                String query = "INSERT INTO tbl_comision (id_comision,descripcion,monto_comision,fecha_pago,id_prestamo) VALUES ( ?, ?, ?, ?, ?)";
-                                String query_pagos = "INSERT INTO tbl_detalle_comision (id_cobrador,id_comision) VALUES ( ?, ?)";
-                                String query_last = "select max(id_comision) from tbl_comision";
+                        String query = "INSERT INTO tbl_comision (id_comision,descripcion,monto_comision,fecha_pago) VALUES ( ?, ?, ?, ?)";
+                        String query_pagos = "INSERT INTO tbl_detalle_comision (id_comision,id_prestamo) VALUES ( ?, ?)";
+                        String query_last = "select max(id_comision) from tbl_comision";
+                        String query_estado = "UPDATE tbl_prestamo SET  estado_comision= " + 2 + " WHERE (id_prestamo = " + id_prestamo + ")";
+                        try {
+                            PreparedStatement str = con.getConnection().prepareStatement(query);
+                            str.setNull(1, java.sql.Types.BIGINT);
+                            str.setString(2, Descr);
+                            str.setDouble(3, monto);
+                            str.setString(4, fecha);
+
+                            int res = str.executeUpdate();
+                            if (res > 0) {
                                 try {
-                                    PreparedStatement str = con.getConnection().prepareStatement(query);
-                                    str.setNull(1, java.sql.Types.BIGINT);
-                                    str.setString(2, Descr);
-                                    str.setDouble(3, monto);
-                                    str.setString(4, fecha);
-                                    str.setInt(5, id);
+                                    PreparedStatement str_last = con.getConnection().prepareStatement(query_last);
 
-                                    int res = str.executeUpdate();
+                                    ResultSet result = str_last.executeQuery(query_last);
+                                    while (result.next()) {
+                                        dato_final = result.getInt(1);
+                                    }
+                                    PreparedStatement str_pago = con.getConnection().prepareStatement(query_pagos);
+                                    str_pago.setInt(1, dato_final);
+                                    str_pago.setInt(2, id_prestamo);
+                                    int res_pago = str_pago.executeUpdate();
                                     if (res > 0) {
                                         try {
-                                            PreparedStatement str_last = con.getConnection().prepareStatement(query_last);
+                                            PreparedStatement str_estado_cambio = con.getConnection().prepareStatement(query_estado);
 
-                                            ResultSet result = str_last.executeQuery(query_last);
-                                            while (result.next()) {
-                                                
-                                                dato_final = result.getInt(1);
-                                            }
-                                            PreparedStatement str_pago = con.getConnection().prepareStatement(query_pagos);
-                                            str_pago.setInt(1, id_cobrador);
-                                            str_pago.setInt(2, dato_final);
-                                            int res_pago = str_pago.executeUpdate();
-                                            if (res > 0) {
+                                            int res_estado = str_estado_cambio.executeUpdate();
+                                            if (res_estado > 0) {
                                                 JOptionPane.showMessageDialog(null, "Ingreso Correcto");
                                             } else {
-                                                JOptionPane.showMessageDialog(null, "Error");
+
                                             }
-                                            str_pago.close();
-                                            str_last.close();
+
+                                            str_estado_cambio.close();
                                         } catch (SQLException e) {
-                                            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
+                                            JOptionPane.showMessageDialog(null, "Error");
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Error");
                                     }
-                                    str.close();
+                                    str_pago.close();
+                                    str_last.close();
                                 } catch (SQLException e) {
                                     JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
                                 }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Error");
                             }
+                            str.close();
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
                         }
                     }
                 }
-            }
 
+            }
+            actualizar();
+            txt_nombres.setText("");
+            txt_apellidos.setText("");
+            txt_desc.setText("");
+            txt_comision.setText("");
+            txt_dpi.setText("");
+            txt_id_pre.setText("");
+            txt_monto.setText("");
         }
 
 
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    private void tbl_datoscobraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_datoscobraMouseClicked
-        int seleccion = tbl_datoscobra.rowAtPoint(evt.getPoint());
-        txt_id_co.setText(String.valueOf(tbl_datoscobra.getValueAt(seleccion, 0)));
-        txt_nombres.setText(String.valueOf(tbl_datoscobra.getValueAt(seleccion, 1)));
-        txt_apellidos.setText(String.valueOf(tbl_datoscobra.getValueAt(seleccion, 2)));
-    }//GEN-LAST:event_tbl_datoscobraMouseClicked
+    public void actualizar() {
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl.addColumn("ID");
+        tbl.addColumn("Nombre del cobrador");
+        tbl.addColumn("Apellido del cobrador");
+        tbl.addColumn("DPI ");
+        tbl.addColumn("Montp + Interes ");
+        tbl.addColumn("Ganancia del Prestamo");
+        tbl.addColumn("%");
+        tbl.addColumn("Pago de la comision");
+        tbl_prestamo.setModel(tbl);
 
-    private void tbl_datosprestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_datosprestMouseClicked
-        int seleccion = tbl_datosprest.rowAtPoint(evt.getPoint());
-        txt_id_pres.setText(String.valueOf(tbl_datosprest.getValueAt(seleccion, 0)));
-        txt_prestnombre.setText(String.valueOf(tbl_datosprest.getValueAt(seleccion, 1)));
-        txt_presmonto.setText(String.valueOf(tbl_datosprest.getValueAt(seleccion, 2)));
-        txt_monto.setText(String.valueOf(tbl_datosprest.getValueAt(seleccion, 3)));
-    }//GEN-LAST:event_tbl_datosprestMouseClicked
+        String query_co = "select p.id_prestamo,c.nombre,c.apellido,c.dpi,p.monto_interes,\n"
+                + "p.ganancia,p.porcentaje_cobra,p.pago_comision from tbl_prestamo p\n"
+                + "inner join tbl_cobrador c\n"
+                + "on p.id_cobrador=c.id_cobrador\n"
+                + "where estado_comision=1;";
+        String[] dato_co = new String[8];
+        Statement str_co;
+
+        try {
+
+            str_co = con.getConnection().createStatement();
+            ResultSet result_co = str_co.executeQuery(query_co);
+
+            while (result_co.next()) {
+                dato_co[0] = result_co.getString(1);
+                dato_co[1] = result_co.getString(2);
+                dato_co[2] = result_co.getString(3);
+                dato_co[3] = result_co.getString(4);
+                dato_co[4] = result_co.getString(5);
+                dato_co[5] = result_co.getString(6);
+                dato_co[6] = result_co.getString(7);
+                dato_co[7] = result_co.getString(8);
+
+                tbl.addRow(dato_co);
+            }
+            str_co.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+        }
+    }
+    private void tbl_prestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_prestamoMouseClicked
+        int seleccion = tbl_prestamo.rowAtPoint(evt.getPoint());
+        txt_id_pre.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
+        txt_nombres.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 1)));
+        txt_apellidos.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
+        txt_dpi.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 3)));
+        txt_monto.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
+        txt_comision.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 7)));
+    }//GEN-LAST:event_tbl_prestamoMouseClicked
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
         // TODO add your handling code here:
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
-        form_principal frm = new form_principal();
-        frm.setVisible(true);
-        this.dispose();
+            form_principal frm = new form_principal();
+            frm.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btn_regresarActionPerformed
-  public void cerrar() {
+
+    private void txt_apellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_apellidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_apellidosActionPerformed
+
+    private void txt_nombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombresActionPerformed
+
+    private void txt_dpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dpiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_dpiActionPerformed
+    public void cerrar() {
         try {
             this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
@@ -472,6 +491,7 @@ public class form_comisiones extends javax.swing.JFrame {
 
         }
     }
+
     /**
      * @param args the command line arguments
      */
@@ -519,24 +539,17 @@ public class form_comisiones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tbl_datoscobra;
-    private javax.swing.JTable tbl_datosprest;
+    private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_comision;
     private javax.swing.JTextField txt_desc;
-    private javax.swing.JTextField txt_id_co;
-    private javax.swing.JTextField txt_id_pres;
+    private javax.swing.JTextField txt_dpi;
+    private javax.swing.JTextField txt_id_pre;
     private javax.swing.JTextField txt_monto;
     private javax.swing.JTextField txt_nombres;
     private javax.swing.JTextField txt_pagocomision;
-    private javax.swing.JTextField txt_presmonto;
-    private javax.swing.JTextField txt_prestnombre;
     // End of variables declaration//GEN-END:variables
 }
