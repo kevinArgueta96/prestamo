@@ -148,7 +148,6 @@ public class MainLogin extends javax.swing.JFrame {
                         "WHERE UPPER(usuario) = UPPER(?)\n" +
                         "AND contraseña = ?";
         String txt = new String(txt_contraseña.getPassword());
-        JOptionPane.showMessageDialog(null,txt );
         try {
             
             PreparedStatement st = cnx.getConnection().prepareStatement(qry);
