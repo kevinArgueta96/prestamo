@@ -5,6 +5,13 @@
  */
 package Front;
 
+import com.sun.corba.se.spi.activation._ActivatorImplBase;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Pablo
@@ -12,6 +19,7 @@ package Front;
 public class form_financiar_restante extends javax.swing.JFrame {
     public static double prm_Restante;
     public static int prm_Plazo, prm_IDPrestamo;
+    conexcion cnx = new conexcion();
     /**
      * Creates new form form_financiar_restante
      */
@@ -48,9 +56,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        btn_procesar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("FINANCIAMIENTO SALDO RESTANTE");
@@ -82,10 +88,10 @@ public class form_financiar_restante extends javax.swing.JFrame {
         txt_cuotas.setText("1");
         txt_cuotas.setEnabled(false);
         txt_cuotas.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txt_cuotasInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txt_cuotas.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +120,12 @@ public class form_financiar_restante extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("CUOTA FINAL");
 
-        jButton1.setText("Procesar");
+        btn_procesar.setText("Procesar");
+        btn_procesar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_procesarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,8 +160,8 @@ public class form_financiar_restante extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txt_cuota_final, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(260, 260, 260)
+                        .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -178,9 +189,9 @@ public class form_financiar_restante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_cuota_final, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(38, 38, 38)
+                .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -234,6 +245,57 @@ public class form_financiar_restante extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txt_cuotasKeyReleased
 
+    private void btn_procesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_procesarActionPerformed
+        // TODO add your handling code here:
+        int cuotas = 0;
+        int SQL_STATUS = 0;
+        double financiado = 0;
+        String query = "";
+        PreparedStatement stm;
+        
+        if(chk_plazo.isSelected() == true){
+            cuotas = prm_Plazo;
+        }else{
+            if(chk_cuotas.isSelected() == true){
+                cuotas = Integer.parseInt(txt_cuotas.getText());
+            }
+        }
+        
+        financiado = Double.parseDouble(txt_cuota_final.getText()); 
+        try {
+            if(cuotas > prm_Plazo){
+                query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ?,  cuotas = ? WHERE id_prestamo = ?";   
+                stm= cnx.getConnection().prepareStatement(query);
+                stm.setInt(1, cuotas);
+                stm.setDouble(2, financiado);
+                stm.setDouble(3, cuotas);
+                stm.setInt(4, prm_IDPrestamo);
+                
+            }else{
+                query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ? WHERE id_prestamo = ?";
+                stm = cnx.getConnection().prepareStatement(query);
+                stm.setInt(1, cuotas);
+                stm.setDouble(2, financiado);
+                stm.setInt(3, prm_IDPrestamo);
+            }    
+        
+            SQL_STATUS = stm.executeUpdate();
+            if(SQL_STATUS > 0){
+                JOptionPane.showMessageDialog(this, "Extra Financiamiento Aplicado!");
+                form_pago_cliente frm_pago = new form_pago_cliente();
+                frm_pago.invalidate();
+                frm_pago.validate();
+                frm_pago.repaint();
+                this.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento, intente de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btn_procesarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,10 +332,10 @@ public class form_financiar_restante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_procesar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chk_cuotas;
     private javax.swing.JCheckBox chk_plazo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -593,9 +593,10 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
     private void btn_financiar_restanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_financiar_restanteActionPerformed
         // TODO add your handling code here:
-        form_financiar_restante financiarRestante = new form_financiar_restante(env_CuotaFinal, env_Plazo, env_ID);
+        form_financiar_restante financiarRestante = new form_financiar_restante(env_CuotaFinal, env_Plazo, env_ID );
         financiarRestante.setVisible(true);
         financiarRestante.setLocationRelativeTo(this);
+        this.hide();
     }//GEN-LAST:event_btn_financiar_restanteActionPerformed
 
     public void actualizar() {
