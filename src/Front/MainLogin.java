@@ -54,6 +54,7 @@ public class MainLogin extends javax.swing.JFrame {
         txt_contraseña = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -94,7 +95,7 @@ public class MainLogin extends javax.swing.JFrame {
         txt_user.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_user.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(txt_user);
-        txt_user.setBounds(400, 170, 160, 40);
+        txt_user.setBounds(400, 180, 160, 40);
 
         txt_contraseña.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txt_contraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -113,7 +114,7 @@ public class MainLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(410, 340, 150, 50);
+        jButton1.setBounds(410, 360, 150, 50);
 
         jButton2.setBackground(new java.awt.Color(51, 51, 255));
         jButton2.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -126,6 +127,20 @@ public class MainLogin extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2);
         jButton2.setBounds(580, 0, 50, 40);
+
+        jButton3.setForeground(new java.awt.Color(0, 102, 255));
+        jButton3.setText("Recuperar contraseña");
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(400, 310, 160, 15);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white_back_login.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -148,7 +163,6 @@ public class MainLogin extends javax.swing.JFrame {
                         "WHERE UPPER(usuario) = UPPER(?)\n" +
                         "AND contraseña = ?";
         String txt = new String(txt_contraseña.getPassword());
-        JOptionPane.showMessageDialog(null,txt );
         try {
             
             PreparedStatement st = cnx.getConnection().prepareStatement(qry);
@@ -176,6 +190,15 @@ public class MainLogin extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        //pmazariegos -- llama form para recuperacion de contraseña
+        form_Recuperar_Contraseña frm_restore = new form_Recuperar_Contraseña();
+        frm_restore.setVisible(true);
+        frm_restore.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +239,7 @@ public class MainLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
