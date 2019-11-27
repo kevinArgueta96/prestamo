@@ -130,15 +130,15 @@ public class form_principal extends javax.swing.JFrame {
         btn_pagocliente1.setBounds(70, 350, 210, 100);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Pagos Pendientes:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(80, 500, 185, 28);
+        jLabel1.setBounds(60, 500, 185, 28);
 
         lbl_pagos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        lbl_pagos.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_pagos.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(lbl_pagos);
-        lbl_pagos.setBounds(270, 500, 37, 28);
+        lbl_pagos.setBounds(250, 500, 37, 28);
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consult.png"))); // NOI18N
@@ -206,7 +206,7 @@ public class form_principal extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("MENÚ PRINCIPAL");
         jPanel2.add(jLabel2);
 
@@ -216,12 +216,12 @@ public class form_principal extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
         jPanel1.setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/thought-catalog-I0TDRP0fj6Y-unsplash.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/main.jpg"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 800, 550);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 810, 560);
+        jPanel1.setBounds(0, 0, 810, 550);
 
         pack();
         setLocationRelativeTo(null);

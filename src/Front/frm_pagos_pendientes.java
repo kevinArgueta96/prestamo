@@ -105,6 +105,7 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pagos Pendientes");
         setMaximumSize(new java.awt.Dimension(1019, 450));
         setMinimumSize(new java.awt.Dimension(1019, 450));
         setPreferredSize(new java.awt.Dimension(1019, 450));
@@ -130,18 +131,18 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel1.setText("Pagos Pendientes");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(460, 41, 264, 42);
+        jLabel1.setBounds(430, 30, 264, 42);
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
-        jButton2.setText("Regresar");
+        jButton2.setText("REGRESAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(440, 350, 120, 44);
+        jButton2.setBounds(440, 350, 130, 44);
 
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2);
@@ -190,7 +191,7 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 90, 1010, 190);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pago_pendiente.jpg"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white1.jpg"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(1020, 500));
         jLabel4.setPreferredSize(new java.awt.Dimension(1020, 500));
         getContentPane().add(jLabel4);

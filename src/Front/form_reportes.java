@@ -9,6 +9,8 @@ package Front;
  *
  * @author Kevin
  */
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -36,6 +38,9 @@ public class form_reportes extends javax.swing.JFrame {
     String fecha = dformat.format(date);
     public form_reportes() {
         initComponents();
+        setResizable(false);
+        cerrar();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -61,16 +66,35 @@ public class form_reportes extends javax.swing.JFrame {
         btn_cancelar3 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btn_cancelar4 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporteria");
+        setMaximumSize(new java.awt.Dimension(524, 524));
+        setMinimumSize(new java.awt.Dimension(524, 524));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("REPORTES");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(218, 35, 128, 28);
 
-        btn_cancelar.setText("Cancelar");
+        btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
+        btn_cancelar.setText("CANCELAR");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_cancelar);
+        btn_cancelar.setBounds(149, 438, 122, 41);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione Mes:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(175, 102, 86, 14);
 
         cmb_mes.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
@@ -79,9 +103,13 @@ public class form_reportes extends javax.swing.JFrame {
                 cmb_mesActionPerformed(evt);
             }
         });
+        getContentPane().add(cmb_mes);
+        cmb_mes.setBounds(279, 97, 91, 24);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Ingrese Año:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(194, 132, 67, 14);
 
         txt_año.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_año.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -89,131 +117,79 @@ public class form_reportes extends javax.swing.JFrame {
                 txt_añoKeyTyped(evt);
             }
         });
+        getContentPane().add(txt_año);
+        txt_año.setBounds(279, 128, 91, 22);
 
-        btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/monthly report.png"))); // NOI18N
+        btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report4.png"))); // NOI18N
         btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelar1ActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cancelar1);
+        btn_cancelar1.setBounds(46, 207, 73, 74);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("PAGOS MENSUALES");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(20, 168, 118, 24);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("GENERADO MENSUALMENTE");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(155, 173, 170, 14);
 
-        btn_cancelar2.setText("Generar");
+        btn_cancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report1.png"))); // NOI18N
         btn_cancelar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelar2ActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cancelar2);
+        btn_cancelar2.setBounds(220, 210, 73, 74);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel8.setText("GENERADO POR EL SOCIO");
+        jLabel8.setText("GENERADO POR SOCIO");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(343, 168, 139, 24);
 
-        btn_cancelar3.setText("Generar");
+        btn_cancelar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report3.png"))); // NOI18N
         btn_cancelar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelar3ActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cancelar3);
+        btn_cancelar3.setBounds(380, 210, 73, 74);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel9.setText("GANANCIA COMISION POR MES");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(155, 306, 189, 14);
 
-        btn_cancelar4.setText("Generar");
+        btn_cancelar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report5.png"))); // NOI18N
         btn_cancelar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelar4ActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cancelar4);
+        btn_cancelar4.setBounds(220, 332, 73, 74);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(254, 254, 254))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmb_mes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(228, 228, 228))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(38, 38, 38))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(68, 68, 68)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jLabel7))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(39, 39, 39)
-                                        .addComponent(btn_cancelar2)))))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel8))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(btn_cancelar3)))
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_cancelar)
-                            .addComponent(btn_cancelar4))
-                        .addGap(282, 282, 282))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmb_mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_año, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_cancelar2)
-                        .addComponent(btn_cancelar3))
-                    .addComponent(btn_cancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(btn_cancelar4)
-                .addGap(58, 58, 58)
-                .addComponent(btn_cancelar)
-                .addGap(61, 61, 61))
-        );
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(283, 436, 130, 44);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report6.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 520, 520);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -506,6 +482,42 @@ public class form_reportes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_añoKeyTyped
 
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+         confirmarSalida();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+        form_principal frm = new form_principal();
+        frm.setVisible(true);
+        this.dispose();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+      public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -548,8 +560,10 @@ public class form_reportes extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancelar3;
     private javax.swing.JButton btn_cancelar4;
     private javax.swing.JComboBox<String> cmb_mes;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

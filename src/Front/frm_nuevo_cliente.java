@@ -39,7 +39,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_direccion = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        cmb_sexo = new javax.swing.JComboBox<>();
+        cmb_sexo = new javax.swing.JComboBox<String>();
         btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         txt_dpi = new javax.swing.JTextField();
@@ -66,7 +66,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_nombre);
-        txt_nombre.setBounds(157, 82, 353, 20);
+        txt_nombre.setBounds(157, 82, 353, 22);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Nombres");
@@ -85,10 +85,10 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_apellido);
-        txt_apellido.setBounds(157, 111, 353, 20);
+        txt_apellido.setBounds(157, 111, 353, 22);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("Sexo");
+        jLabel4.setText("Género");
         getContentPane().add(jLabel4);
         jLabel4.setBounds(75, 232, 54, 24);
 
@@ -109,7 +109,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_telefono);
-        txt_telefono.setBounds(378, 141, 132, 20);
+        txt_telefono.setBounds(378, 141, 132, 22);
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("Dpi");
@@ -131,36 +131,36 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel7.setBounds(75, 176, 54, 24);
 
         cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "Masculino", "Femenino" }));
+        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Género", "Masculino", "Femenino" }));
         cmb_sexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_sexoActionPerformed(evt);
             }
         });
         getContentPane().add(cmb_sexo);
-        cmb_sexo.setBounds(157, 232, 80, 20);
+        cmb_sexo.setBounds(157, 232, 85, 24);
 
         btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
-        btn_guardar.setText("Guardar");
+        btn_guardar.setText("GUARDAR");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_guardar);
-        btn_guardar.setBounds(210, 300, 111, 39);
+        btn_guardar.setBounds(210, 300, 121, 40);
 
         btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
-        btn_cancelar.setText("Regresar");
+        btn_cancelar.setText("REGRESAR");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_cancelar);
-        btn_cancelar.setBounds(320, 300, 120, 44);
+        btn_cancelar.setBounds(340, 300, 130, 40);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -169,7 +169,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_dpi);
-        txt_dpi.setBounds(157, 141, 162, 20);
+        txt_dpi.setBounds(157, 141, 162, 22);
 
         jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
         jPanel2.setLayout(null);
@@ -234,7 +234,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Ingrese Telefono");
                 } else {
                     if(seleccion==0){
-                        JOptionPane.showMessageDialog(null, "Seleccione un sexo");
+                        JOptionPane.showMessageDialog(null, "Seleccione un genero");
                     }else{
                     String sexo="";
                     switch (seleccion) {
