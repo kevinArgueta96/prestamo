@@ -45,14 +45,12 @@ public class form_newcobrador extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
         txt_dpi = new javax.swing.JTextField();
         txt_telefono = new javax.swing.JTextField();
         txt_apellido = new javax.swing.JTextField();
         txt_direccion = new javax.swing.JTextField();
         cmb_sexo = new javax.swing.JComboBox();
-        cmb_vehiculo = new javax.swing.JComboBox<String>();
         jButton1 = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -97,14 +95,9 @@ public class form_newcobrador extends javax.swing.JFrame {
         jLabel6.setBounds(50, 300, 54, 14);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel7.setText("Sexo");
+        jLabel7.setText("Género");
         getContentPane().add(jLabel7);
         jLabel7.setBounds(50, 340, 54, 14);
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel8.setText("Vehiculo");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(50, 380, 54, 14);
 
         txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.setMinimumSize(new java.awt.Dimension(16, 22));
@@ -147,17 +140,13 @@ public class form_newcobrador extends javax.swing.JFrame {
         txt_direccion.setBounds(120, 230, 317, 41);
 
         cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un sexo", "Masculino", "Femenino" }));
+        cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione un Género", "Masculino", "Femenino" }));
         getContentPane().add(cmb_sexo);
-        cmb_sexo.setBounds(120, 340, 130, 24);
+        cmb_sexo.setBounds(120, 340, 146, 24);
 
-        cmb_vehiculo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_vehiculo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Vehiculo", "Si", "No", " " }));
-        getContentPane().add(cmb_vehiculo);
-        cmb_vehiculo.setBounds(120, 380, 77, 24);
-
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
-        jButton1.setText("Regresar");
+        jButton1.setText("REGRESAR");
         jButton1.setMaximumSize(new java.awt.Dimension(117, 46));
         jButton1.setMinimumSize(new java.awt.Dimension(115, 46));
         jButton1.setPreferredSize(new java.awt.Dimension(117, 46));
@@ -167,10 +156,11 @@ public class form_newcobrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(250, 420, 117, 40);
+        jButton1.setBounds(250, 420, 130, 40);
 
+        btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
-        btn_guardar.setText("  Guardar");
+        btn_guardar.setText("GUARDAR");
         btn_guardar.setPreferredSize(new java.awt.Dimension(117, 46));
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +168,7 @@ public class form_newcobrador extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_guardar);
-        btn_guardar.setBounds(120, 420, 120, 40);
+        btn_guardar.setBounds(110, 420, 130, 40);
 
         jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
 
@@ -190,13 +180,13 @@ public class form_newcobrador extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(40, 90, 410, 320);
+        jPanel1.setBounds(40, 90, 410, 300);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/harley-davidson.jpg"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/wall3.jpg"))); // NOI18N
         jLabel9.setPreferredSize(new java.awt.Dimension(492, 495));
         getContentPane().add(jLabel9);
         jLabel9.setBounds(0, 0, 492, 480);
@@ -222,7 +212,6 @@ public class form_newcobrador extends javax.swing.JFrame {
         long dpi;
         int telefono = 0;
         int seleccion = cmb_sexo.getSelectedIndex();
-        int vehiculo = cmb_vehiculo.getSelectedIndex();
         String direc = "";
         conexcion con = new conexcion();
         try {
@@ -234,9 +223,7 @@ public class form_newcobrador extends javax.swing.JFrame {
                 } else {
                     if (txt_telefono.getText().isEmpty()||txt_telefono.getText().length()<8){
                         JOptionPane.showMessageDialog(null, "Ingrese Telefono");
-                    } else {
-                        if (vehiculo == 0) {
-                            JOptionPane.showMessageDialog(null, "Seleccione si tiene Vehiculo");
+    
                         } else {
                             if (seleccion == 0) {
                                 JOptionPane.showMessageDialog(null, "Seleccione un sexo");
@@ -268,7 +255,7 @@ public class form_newcobrador extends javax.swing.JFrame {
                                     str.setString(5, sexo);
                                     str.setString(6, direc);
                                     str.setInt(7, telefono);
-                                    str.setInt(8, vehiculo);
+                                  
 
                                     int res = str.executeUpdate();
                                     if (res > 0) {
@@ -279,7 +266,7 @@ public class form_newcobrador extends javax.swing.JFrame {
                                         txt_dpi.setText(null);
                                         txt_telefono.setText(null);
                                         cmb_sexo.setSelectedIndex(0);
-                                        cmb_vehiculo.setSelectedIndex(0);
+                                        
                                         
                                         
                                     } else {
@@ -294,10 +281,10 @@ public class form_newcobrador extends javax.swing.JFrame {
                         }
                     }
                 }
-            }
+            
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, ex);
-        }
+}
         
     }//GEN-LAST:event_btn_guardarActionPerformed
 
@@ -394,7 +381,6 @@ public class form_newcobrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
     private javax.swing.JComboBox cmb_sexo;
-    private javax.swing.JComboBox<String> cmb_vehiculo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -403,7 +389,6 @@ public class form_newcobrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txt_apellido;
