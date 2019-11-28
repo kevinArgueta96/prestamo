@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +28,9 @@ public class form_consulta_pago extends javax.swing.JFrame {
 
     public form_consulta_pago() {
         initComponents();
+        cerrar();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
         DefaultTableModel tbl = new DefaultTableModel();
         DefaultTableModel tbl2 = new DefaultTableModel();
         tbl.addColumn("ID");
@@ -87,12 +92,22 @@ public class form_consulta_pago extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txt_dpi = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Consulta de Pagos");
+        setMaximumSize(new java.awt.Dimension(998, 490));
+        setMinimumSize(new java.awt.Dimension(998, 490));
+        setPreferredSize(new java.awt.Dimension(998, 490));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("CONSULTA DE PAGOS");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(411, 12, 286, 36);
 
+        tbl_prestamo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -111,6 +126,10 @@ public class form_consulta_pago extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_prestamo);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(125, 54, 786, 162);
+
+        tbl_detalle.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_detalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
@@ -124,113 +143,90 @@ public class form_consulta_pago extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tbl_detalle);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jButton1.setText("Revisar");
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(29, 292, 945, 97);
+
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/check.png"))); // NOI18N
+        jButton1.setText("REVISAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(380, 410, 120, 51);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("ID ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(170, 240, 16, 14);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Monto del prestamo");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(440, 240, 104, 14);
 
+        txt_monto.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_monto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_montoActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_monto);
+        txt_monto.setBounds(550, 230, 139, 30);
 
+        txt_id.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_id);
+        txt_id.setBounds(190, 230, 39, 30);
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Nombre");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(250, 240, 42, 14);
 
+        txt_nombre.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(300, 230, 125, 30);
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("DPI");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(700, 240, 20, 14);
 
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_dpi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_dpiActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(730, 230, 125, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(405, 405, 405))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(31, 31, 31)
-                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(345, 345, 345))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(31, 31, 31)
-                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3)
-                        .addGap(31, 31, 31)
-                        .addComponent(txt_monto, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(146, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(24, 24, 24))
-        );
+        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton2.setText("REGRESAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(510, 410, 125, 50);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/background consulta.jpg"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 1000, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -316,6 +312,39 @@ public class form_consulta_pago extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbl_prestamoMouseClicked
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            frm_consults frm = new frm_consults();
+            frm.setVisible(true);
+            this.dispose();
+        }  
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -353,11 +382,13 @@ public class form_consulta_pago extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbl_detalle;

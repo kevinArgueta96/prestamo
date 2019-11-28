@@ -244,7 +244,7 @@ public class form_newcobrador extends javax.swing.JFrame {
                                 //vehiculo=txt_vehiculo.getText();
                                 telefono = Integer.parseInt(txt_telefono.getText());
                                 direc = txt_direccion.getText();
-                                String query = "INSERT INTO tbl_cobrador (id_cobrador,nombre,apellido,dpi,sexo,direccion,telefono,vehiculo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                                String query = "INSERT INTO tbl_cobrador (id_cobrador,nombre,apellido,dpi,sexo,direccion,telefono) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                                 try {
                                     PreparedStatement str = con.getConnection().prepareStatement(query);

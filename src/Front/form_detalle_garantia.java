@@ -87,25 +87,26 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         jButton4.setText("jButton4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Detalle Garantía");
         setMaximumSize(new java.awt.Dimension(700, 600));
         setMinimumSize(new java.awt.Dimension(700, 600));
         setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("DETALLE GARANTÍA");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(240, 50, 193, 22);
+        jLabel1.setBounds(250, 20, 200, 30);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("PROPIEDADES Y NEGOCIOS");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(320, 90, 164, 20);
+        jLabel3.setBounds(320, 80, 170, 30);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("VEHICULOS");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(180, 90, 70, 20);
+        jLabel2.setBounds(180, 80, 69, 30);
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/check.png"))); // NOI18N
@@ -464,7 +465,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         // TODO add your handling code here:
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
-            form_principal frm = new form_principal();
+            frm_consults frm = new frm_consults();
             frm.setVisible(true);
             this.dispose();
         }

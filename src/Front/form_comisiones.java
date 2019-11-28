@@ -101,7 +101,6 @@ public class form_comisiones extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         btn_regresar = new javax.swing.JButton();
         txt_pagocomision = new javax.swing.JTextField();
-        txt_id_pre = new javax.swing.JTextField();
         txt_desc = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -114,76 +113,78 @@ public class form_comisiones extends javax.swing.JFrame {
         txt_nombres = new javax.swing.JTextField();
         txt_dpi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txt_id_pre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingreso Comisiones");
-        setMinimumSize(new java.awt.Dimension(645, 647));
-        setPreferredSize(new java.awt.Dimension(645, 647));
+        setMaximumSize(new java.awt.Dimension(727, 635));
+        setMinimumSize(new java.awt.Dimension(727, 635));
+        setPreferredSize(new java.awt.Dimension(727, 635));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel1.setText("INGRESO COMISIÓN");
+        jLabel1.setText("INGRESO  COMISIÓN");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(259, 6, 172, 41);
+        jLabel1.setBounds(310, 0, 180, 41);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel9.setText("Ganancia");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(44, 474, 44, 22);
+        jLabel9.setBounds(80, 420, 44, 22);
 
         txt_monto.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_monto);
-        txt_monto.setBounds(106, 474, 62, 20);
+        txt_monto.setBounds(140, 420, 62, 22);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel12.setText("Comisión Q");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(180, 478, 58, 14);
+        jLabel12.setBounds(210, 420, 58, 20);
 
         txt_comision.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_comision);
-        txt_comision.setBounds(244, 474, 62, 20);
+        txt_comision.setBounds(280, 420, 62, 22);
 
         btn_guardar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        btn_guardar.setText("Guardar");
+        btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
+        btn_guardar.setText("GUARDAR");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_guardar);
-        btn_guardar.setBounds(234, 570, 85, 45);
+        btn_guardar.setBounds(250, 520, 130, 50);
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel13.setText("Fecha Pago comisión");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(335, 478, 100, 14);
+        jLabel13.setBounds(360, 420, 100, 20);
 
         btn_regresar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        btn_regresar.setText("Regresar");
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        btn_regresar.setText("REGRESAR");
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_regresarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_regresar);
-        btn_regresar.setBounds(331, 568, 79, 49);
+        btn_regresar.setBounds(390, 520, 130, 50);
 
         txt_pagocomision.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_pagocomision);
-        txt_pagocomision.setBounds(453, 474, 87, 20);
-        getContentPane().add(txt_id_pre);
-        txt_id_pre.setBounds(609, 65, 20, 14);
+        txt_pagocomision.setBounds(470, 420, 87, 22);
 
         txt_desc.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         getContentPane().add(txt_desc);
-        txt_desc.setBounds(276, 514, 264, 36);
+        txt_desc.setBounds(270, 460, 290, 40);
 
         jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel15.setText("Descripcion");
+        jLabel15.setText("Descripción");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(200, 525, 58, 14);
+        jLabel15.setBounds(200, 460, 58, 30);
 
         jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
 
@@ -206,8 +207,8 @@ public class form_comisiones extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_prestamo);
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("Datos del Prestamo");
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel4.setText("Datos del Préstamo");
 
         txt_apellidos.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_apellidos.addActionListener(new java.awt.event.ActionListener() {
@@ -253,23 +254,28 @@ public class form_comisiones extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(130, 130, 130)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_nombres, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_apellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(184, 184, 184)
+                                .addComponent(txt_id_pre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 618, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_id_pre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,15 +290,15 @@ public class form_comisiones extends javax.swing.JFrame {
                     .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 60, 660, 500);
+        jPanel2.setBounds(20, 60, 680, 520);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Commision background.jpg"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white 5.jpg"))); // NOI18N
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 710, 640);
+        jLabel6.setBounds(0, 0, 720, 630);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
