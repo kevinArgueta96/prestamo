@@ -9,6 +9,8 @@ package Front;
  *
  * @author Kevin
  */
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +31,9 @@ public class form_detalle_comision extends javax.swing.JFrame {
 
     public form_detalle_comision() {
         initComponents();
+        cerrar();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID COBRADOR");
         tbl.addColumn("Nombres del Cobrador");
@@ -90,12 +95,22 @@ public class form_detalle_comision extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Detalle Comisión");
+        setMaximumSize(new java.awt.Dimension(919, 410));
+        setMinimumSize(new java.awt.Dimension(919, 410));
+        setPreferredSize(new java.awt.Dimension(919, 410));
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("CONSULTA DE COMISIONES");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(310, 20, 331, 36);
 
+        txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
@@ -106,7 +121,10 @@ public class form_detalle_comision extends javax.swing.JFrame {
                 txt_nombreKeyReleased(evt);
             }
         });
+        getContentPane().add(txt_nombre);
+        txt_nombre.setBounds(390, 275, 176, 22);
 
+        tbl_prestamo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -125,9 +143,15 @@ public class form_detalle_comision extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbl_prestamo);
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jLabel5.setText("DPI");
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(6, 73, 890, 182);
 
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jLabel5.setText("DPI");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(596, 277, 20, 14);
+
+        txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_dpi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_dpiActionPerformed(evt);
@@ -138,61 +162,40 @@ public class form_detalle_comision extends javax.swing.JFrame {
                 txt_dpiKeyReleased(evt);
             }
         });
+        getContentPane().add(txt_dpi);
+        txt_dpi.setBounds(634, 273, 125, 22);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("ID ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(155, 280, 15, 13);
 
         txt_id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_idActionPerformed(evt);
             }
         });
+        getContentPane().add(txt_id);
+        txt_id.setBounds(188, 273, 39, 24);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jLabel4.setText("Nombre y Apeliidos");
+        jLabel4.setText("NOMBRE Y APELLIDOS");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(244, 280, 128, 13);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(335, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(243, 243, 243))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel5)
-                .addGap(28, 28, 28)
-                .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txt_dpi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)
-                        .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34))
-        );
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
+        jButton1.setText("REGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(380, 320, 130, 44);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white4.jpg"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 920, 390);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -233,6 +236,39 @@ public class form_detalle_comision extends javax.swing.JFrame {
         filtro(txt_nombre.getText().toUpperCase(), tbl_prestamo);
     }//GEN-LAST:event_txt_dpiKeyReleased
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            frm_consults frm = new frm_consults();
+            frm.setVisible(true);
+            this.dispose();
+        }  
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -269,8 +305,10 @@ public class form_detalle_comision extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;

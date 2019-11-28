@@ -186,7 +186,7 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         // TODO add your handling code here:
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
-        form_principal frm = new form_principal();
+        frm_consultas frm = new frm_consultas();
         frm.setVisible(true);
         this.dispose();
         }

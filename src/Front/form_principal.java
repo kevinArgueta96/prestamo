@@ -90,44 +90,49 @@ public class form_principal extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(null);
 
-        btn_ingclient.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btn_ingclient.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_ingclient.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new_user.png"))); // NOI18N
-        btn_ingclient.setText("Ingreso Cliente");
+        btn_ingclient.setText("INGRESOS");
         btn_ingclient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ingclientActionPerformed(evt);
             }
         });
         getContentPane().add(btn_ingclient);
-        btn_ingclient.setBounds(70, 90, 210, 100);
+        btn_ingclient.setBounds(70, 90, 220, 100);
 
         btn_ingprestamo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btn_ingprestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton_personales.png"))); // NOI18N
-        btn_ingprestamo.setText("Pagos Pendientes");
+        btn_ingprestamo.setText("PAGOS PENDIENTES");
         btn_ingprestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ingprestamoActionPerformed(evt);
             }
         });
         getContentPane().add(btn_ingprestamo);
-        btn_ingprestamo.setBounds(70, 220, 210, 100);
+        btn_ingprestamo.setBounds(70, 220, 220, 100);
 
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
-        jButton4.setText("Modificar");
+        jButton4.setText("MODIFICAR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(530, 350, 210, 100);
+        jButton4.setBounds(540, 350, 220, 100);
 
-        btn_pagocliente1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btn_pagocliente1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btn_pagocliente1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/equipment.png"))); // NOI18N
-        btn_pagocliente1.setText("         Reportes");
+        btn_pagocliente1.setText("    REPORTES");
+        btn_pagocliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pagocliente1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_pagocliente1);
-        btn_pagocliente1.setBounds(70, 350, 210, 100);
+        btn_pagocliente1.setBounds(70, 350, 220, 100);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -140,42 +145,42 @@ public class form_principal extends javax.swing.JFrame {
         getContentPane().add(lbl_pagos);
         lbl_pagos.setBounds(250, 500, 37, 28);
 
-        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consult.png"))); // NOI18N
-        jButton5.setText("Consultas");
+        jButton5.setText("CONSULTAS");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(300, 350, 210, 100);
+        jButton5.setBounds(300, 350, 230, 100);
 
-        jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/newprestamo.png"))); // NOI18N
-        jButton2.setText("Nuevo Prestamo");
+        jButton2.setText("NUEVO PRESTAMO");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(300, 90, 210, 100);
+        jButton2.setBounds(300, 90, 227, 100);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/pagos.png"))); // NOI18N
-        jButton1.setText("     Pagos");
+        jButton1.setText("     PAGOS");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(530, 90, 210, 100);
+        jButton1.setBounds(530, 90, 230, 100);
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/motorcycle.png"))); // NOI18N
-        jButton3.setText("       Cobradores");
+        jButton3.setText("COBRADORES");
         jButton3.setMaximumSize(new java.awt.Dimension(145, 76));
         jButton3.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton3.setPreferredSize(new java.awt.Dimension(145, 76));
@@ -185,11 +190,11 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(300, 220, 210, 100);
+        jButton3.setBounds(300, 220, 230, 100);
 
         jButton6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/coins.png"))); // NOI18N
-        jButton6.setText("Comisiones");
+        jButton6.setText("COMISIONES");
         jButton6.setMaximumSize(new java.awt.Dimension(145, 76));
         jButton6.setMinimumSize(new java.awt.Dimension(145, 76));
         jButton6.setPreferredSize(new java.awt.Dimension(145, 76));
@@ -199,7 +204,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton6);
-        jButton6.setBounds(530, 220, 210, 100);
+        jButton6.setBounds(530, 220, 230, 100);
 
         jPanel2.setBackground(new java.awt.Color(187, 187, 187,80));
         jPanel2.setForeground(new java.awt.Color(204, 204, 204,80));
@@ -211,7 +216,7 @@ public class form_principal extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(60, 50, 690, 410);
+        jPanel2.setBounds(60, 50, 710, 410);
 
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
         jPanel1.setLayout(null);
@@ -235,17 +240,23 @@ public class form_principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_ingprestamoActionPerformed
 
     private void btn_ingclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingclientActionPerformed
-        frm_nuevo_cliente client = new frm_nuevo_cliente();
+        frm_consultas client = new frm_consultas();
         client.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btn_ingclientActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        form_Modificar client = new form_Modificar();
+        client.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        frm_consults client = new frm_consults();
+        client.setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -275,6 +286,13 @@ public class form_principal extends javax.swing.JFrame {
         comision.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btn_pagocliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pagocliente1ActionPerformed
+        // TODO add your handling code here:
+         form_reportes reportes = new form_reportes();
+        reportes.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btn_pagocliente1ActionPerformed
 
     /**
      * @param args the command line arguments
