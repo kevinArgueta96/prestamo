@@ -11,6 +11,7 @@ package Front;
  */
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -38,6 +39,15 @@ public class form_reportes extends javax.swing.JFrame {
     String fecha = dformat.format(date);
     public form_reportes() {
         initComponents();
+        File repo = new File("C:\\Diseño Reporte");
+        File dise = new File("C:\\Reportes");
+        if (repo.exists()&&dise.exists()) {
+        } else {
+       
+                repo.mkdir();
+                dise.mkdir();
+            
+        }
         setResizable(false);
         cerrar();
         this.setLocationRelativeTo(null);
@@ -55,7 +65,7 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        cmb_mes = new javax.swing.JComboBox<String>();
+        cmb_mes = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txt_año = new javax.swing.JTextField();
         btn_cancelar1 = new javax.swing.JButton();
@@ -89,7 +99,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cancelar);
-        btn_cancelar.setBounds(149, 438, 122, 41);
+        btn_cancelar.setBounds(149, 438, 125, 33);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione Mes:");
@@ -97,14 +107,14 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel2.setBounds(175, 102, 86, 14);
 
         cmb_mes.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cmb_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_mesActionPerformed(evt);
             }
         });
         getContentPane().add(cmb_mes);
-        cmb_mes.setBounds(279, 97, 91, 24);
+        cmb_mes.setBounds(279, 97, 86, 20);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Ingrese Año:");
@@ -118,7 +128,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_año);
-        txt_año.setBounds(279, 128, 91, 22);
+        txt_año.setBounds(279, 128, 91, 20);
 
         btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report4.png"))); // NOI18N
         btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +195,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(283, 436, 130, 44);
+        jButton1.setBounds(283, 436, 130, 37);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report6.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -246,18 +256,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
+                    "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\"+fecha+"Pagos_del_Mes.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Pagos_del_Mes.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\mes_reporte.jasper", parametros,
+                    "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -313,18 +323,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\reporte_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\"+fecha+"Detalle_Inversion.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Detalle_Inversion.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\reporte_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -380,18 +390,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\"+fecha+"Detalle_socio.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Detalle_socio.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
@@ -447,18 +457,18 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\Comisiones_mes.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte"+fecha+"Detalle_comision.pdf"));
+            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Detalle_comision.pdf"));
             SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
             exp.setConfiguration(conf);
             exp.exportReport();
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Users\\Franklyn Escobar\\Documents\\GitHub\\prestamo\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\Comisiones_mes.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
