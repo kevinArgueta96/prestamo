@@ -37,7 +37,14 @@ public class form_financiar_restante extends javax.swing.JFrame {
         chk_plazo.setSelected(true);
         txt_saldo_actual.setText(""+prm_Restante);
         
-        txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
+        if(prm_Restante <= 0){
+            JOptionPane.showMessageDialog(this, "Saldo incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+            txt_cuota_final.setText("0");
+        }else{
+            txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
+        }
+        
+        
     }
 
     /**
@@ -92,7 +99,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         chk_plazo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         chk_plazo.setText("Financiamiento con x cuotas");
         getContentPane().add(chk_plazo);
-        chk_plazo.setBounds(125, 157, 381, 24);
+        chk_plazo.setBounds(125, 157, 381, 25);
 
         buttonGroup1.add(chk_cuotas);
         chk_cuotas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -108,15 +115,15 @@ public class form_financiar_restante extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chk_cuotas);
-        chk_cuotas.setBounds(125, 193, 381, 24);
+        chk_cuotas.setBounds(125, 193, 381, 25);
 
         txt_cuotas.setText("1");
         txt_cuotas.setEnabled(false);
         txt_cuotas.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txt_cuotasInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txt_cuotas.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +143,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_cuotas);
-        txt_cuotas.setBounds(313, 229, 30, 24);
+        txt_cuotas.setBounds(313, 229, 30, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Cuotas");
@@ -259,37 +266,42 @@ public class form_financiar_restante extends javax.swing.JFrame {
         }
         
         financiado = Double.parseDouble(txt_cuota_final.getText()); 
-        try {
-            if(cuotas > prm_Plazo){
-                query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ?,  cuotas = ? WHERE id_prestamo = ?";   
-                stm= cnx.getConnection().prepareStatement(query);
-                stm.setInt(1, cuotas);
-                stm.setDouble(2, financiado);
-                stm.setDouble(3, cuotas);
-                stm.setInt(4, prm_IDPrestamo);
-                
-            }else{
-                query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ? WHERE id_prestamo = ?";
-                stm = cnx.getConnection().prepareStatement(query);
-                stm.setInt(1, cuotas);
-                stm.setDouble(2, financiado);
-                stm.setInt(3, prm_IDPrestamo);
-            }    
-        
-            SQL_STATUS = stm.executeUpdate();
-            if(SQL_STATUS > 0){
-                JOptionPane.showMessageDialog(this, "Extra Financiamiento Aplicado!");
-                form_pago_cliente frm_pago = new form_pago_cliente();
-                frm_pago.invalidate();
-                frm_pago.validate();
-                frm_pago.repaint();
-                this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento, intente de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+        if(financiado > 0){
+            try {
+                if(cuotas > prm_Plazo){
+                    query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ?,  cuotas = ? WHERE id_prestamo = ?";   
+                    stm= cnx.getConnection().prepareStatement(query);
+                    stm.setInt(1, cuotas);
+                    stm.setDouble(2, financiado);
+                    stm.setDouble(3, cuotas);
+                    stm.setInt(4, prm_IDPrestamo);
+
+                }else{
+                    query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ? WHERE id_prestamo = ?";
+                    stm = cnx.getConnection().prepareStatement(query);
+                    stm.setInt(1, cuotas);
+                    stm.setDouble(2, financiado);
+                    stm.setInt(3, prm_IDPrestamo);
+                }    
+
+                SQL_STATUS = stm.executeUpdate();
+                if(SQL_STATUS > 0){
+                    JOptionPane.showMessageDialog(this, "Extra Financiamiento Aplicado!");
+                    form_pago_cliente frm_pago = new form_pago_cliente();
+                    frm_pago.invalidate();
+                    frm_pago.validate();
+                    frm_pago.repaint();
+                    this.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento, intente de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento en base de datos, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Error en cuota cuota final, saldo incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
         
     }//GEN-LAST:event_btn_procesarActionPerformed
 
