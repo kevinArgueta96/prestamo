@@ -182,7 +182,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(260, 550, 130, 46);
+        jButton1.setBounds(260, 550, 130, 39);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -193,7 +193,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(400, 550, 130, 44);
+        jButton2.setBounds(400, 550, 130, 37);
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -215,7 +215,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_id);
-        txt_id.setBounds(320, 10, 100, 24);
+        txt_id.setBounds(320, 10, 100, 20);
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel9.setText("ID");
@@ -233,7 +233,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_nombre);
-        txt_nombre.setBounds(320, 40, 341, 24);
+        txt_nombre.setBounds(320, 40, 341, 20);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel2.setText("Nombres");
@@ -251,7 +251,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_dpi);
-        txt_dpi.setBounds(320, 70, 341, 24);
+        txt_dpi.setBounds(320, 70, 341, 20);
 
         txt_monto_prestamo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +259,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_monto_prestamo);
-        txt_monto_prestamo.setBounds(320, 100, 100, 24);
+        txt_monto_prestamo.setBounds(320, 100, 100, 20);
 
         txt_Faltante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +267,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_Faltante);
-        txt_Faltante.setBounds(320, 130, 98, 24);
+        txt_Faltante.setBounds(320, 130, 98, 20);
 
         txt_Faltante_cuota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,7 +275,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_Faltante_cuota);
-        txt_Faltante_cuota.setBounds(320, 170, 98, 24);
+        txt_Faltante_cuota.setBounds(320, 170, 98, 20);
 
         txt_pago_estipulado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +283,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_pago_estipulado);
-        txt_pago_estipulado.setBounds(320, 200, 98, 24);
+        txt_pago_estipulado.setBounds(320, 200, 98, 20);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel3.setText("DPI");
@@ -523,7 +523,9 @@ public class form_pago_cliente extends javax.swing.JFrame {
                                                 cambio[0] = result_cambio.getInt(1);
                                                 cambio[1] = result_cambio.getInt(2);
                                             }
-                                            if (cambio[0] == 0 && cambio[1] == 0) {
+                                            //pmazariegos -- - validar unicamente saldo restante = 0 para cambiar el estado
+                                            //                  del prestamo, esto para evitar que existan prestamos activos con saldo restante = 0
+                                            if (cambio[0] == 0) {
 
                                                 bandera_estado = true;
                                             } else {
