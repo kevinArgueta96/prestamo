@@ -6,6 +6,8 @@
 package Front;
 
 import com.sun.corba.se.spi.activation._ActivatorImplBase;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -30,6 +32,9 @@ public class form_financiar_restante extends javax.swing.JFrame {
         prm_Plazo = _Plazo;
         prm_IDPrestamo = _IDPrestamo;
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         setResizable(false);
         this.setLocationRelativeTo(null);
          cerrar();

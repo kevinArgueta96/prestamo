@@ -1,5 +1,7 @@
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -16,6 +18,9 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
      */
     public frm_nuevo_cliente() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         cerrar();
     }
 
@@ -30,21 +35,21 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txt_nombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         txt_apellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txt_telefono = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         txt_direccion = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         cmb_sexo = new javax.swing.JComboBox<String>();
         btn_guardar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         txt_dpi = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,17 +71,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_nombre);
-        txt_nombre.setBounds(157, 82, 353, 22);
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel2.setText("Nombres");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(75, 86, 47, 14);
-
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel3.setText("Apellidos");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(75, 110, 49, 24);
+        txt_nombre.setBounds(157, 74, 353, 30);
 
         txt_apellido.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_apellido.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +88,7 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jLabel4.setBounds(75, 232, 54, 24);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel5.setText("Telefono");
+        jLabel5.setText("Teléfono");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(325, 140, 47, 24);
 
@@ -111,11 +106,6 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         getContentPane().add(txt_telefono);
         txt_telefono.setBounds(378, 141, 132, 22);
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel6.setText("Dpi");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(75, 140, 32, 24);
-
         txt_direccion.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,11 +114,6 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         });
         getContentPane().add(txt_direccion);
         txt_direccion.setBounds(157, 177, 353, 43);
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel7.setText("Direccion");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(75, 176, 54, 24);
 
         cmb_sexo.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Género", "Masculino", "Femenino" }));
@@ -188,8 +173,28 @@ public class frm_nuevo_cliente extends javax.swing.JFrame {
         jPanel2.add(jButton1);
         jButton1.setBounds(330, 160, 110, 40);
 
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel2.setText("Nombres");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(10, 20, 60, 20);
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel3.setText("Apellidos");
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(10, 50, 49, 24);
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel6.setText("Dpi");
+        jPanel2.add(jLabel6);
+        jLabel6.setBounds(10, 80, 32, 24);
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setText("Direccion");
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(10, 130, 54, 24);
+
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(70, 70, 450, 200);
+        jPanel2.setBounds(70, 60, 450, 210);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientelogo.jpg"))); // NOI18N
         getContentPane().add(jLabel8);

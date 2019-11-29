@@ -9,6 +9,8 @@ package Front;
  *
  * @author Kevin
  */
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -31,6 +33,9 @@ public class form_detalle_comision extends javax.swing.JFrame {
 
     public form_detalle_comision() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         cerrar();
         setResizable(false);
         this.setLocationRelativeTo(null);
@@ -100,9 +105,9 @@ public class form_detalle_comision extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle Comisión");
-        setMaximumSize(new java.awt.Dimension(919, 410));
-        setMinimumSize(new java.awt.Dimension(919, 410));
-        setPreferredSize(new java.awt.Dimension(919, 410));
+        setMaximumSize(new java.awt.Dimension(900, 400));
+        setMinimumSize(new java.awt.Dimension(900, 400));
+        setPreferredSize(new java.awt.Dimension(900, 400));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -122,7 +127,7 @@ public class form_detalle_comision extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_nombre);
-        txt_nombre.setBounds(390, 275, 176, 22);
+        txt_nombre.setBounds(390, 267, 176, 30);
 
         tbl_prestamo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_prestamo.setModel(new javax.swing.table.DefaultTableModel(
@@ -163,7 +168,7 @@ public class form_detalle_comision extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_dpi);
-        txt_dpi.setBounds(634, 273, 125, 22);
+        txt_dpi.setBounds(634, 265, 125, 30);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel2.setText("ID ");
@@ -194,6 +199,9 @@ public class form_detalle_comision extends javax.swing.JFrame {
         jButton1.setBounds(380, 320, 130, 44);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white4.jpg"))); // NOI18N
+        jLabel3.setMaximumSize(new java.awt.Dimension(890, 400));
+        jLabel3.setMinimumSize(new java.awt.Dimension(890, 400));
+        jLabel3.setPreferredSize(new java.awt.Dimension(890, 400));
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 920, 390);
 

@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -34,6 +36,9 @@ public class form_Modificar extends javax.swing.JFrame {
 
     public form_Modificar() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         setResizable(false);
         this.setLocationRelativeTo(null);
         cerrar();
@@ -89,9 +94,7 @@ public class form_Modificar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar");
-        setMaximumSize(new java.awt.Dimension(800, 750));
         setMinimumSize(new java.awt.Dimension(800, 750));
-        setPreferredSize(new java.awt.Dimension(800, 750));
         getContentPane().setLayout(null);
 
         btn_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new_user.png"))); // NOI18N
@@ -142,6 +145,11 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel6.setBounds(60, 50, 60, 20);
 
         txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyReleased(evt);
+            }
+        });
         panel_clien.add(txt_nombre);
         txt_nombre.setBounds(160, 40, 261, 30);
 
@@ -160,6 +168,14 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel8.setBounds(440, 50, 40, 20);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyTyped(evt);
+            }
+        });
         panel_clien.add(txt_dpi);
         txt_dpi.setBounds(500, 40, 240, 30);
 
@@ -169,6 +185,14 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel9.setBounds(440, 80, 50, 14);
 
         txt_telefono.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
         panel_clien.add(txt_telefono);
         txt_telefono.setBounds(500, 70, 240, 30);
 
@@ -188,7 +212,7 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel10.setText("Dirección");
         panel_clien.add(jLabel10);
-        jLabel10.setBounds(230, 130, 60, 20);
+        jLabel10.setBounds(240, 120, 50, 30);
 
         getContentPane().add(panel_clien);
         panel_clien.setBounds(51, 303, 785, 169);
@@ -237,6 +261,11 @@ public class form_Modificar extends javax.swing.JFrame {
         txt_nombre_socio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombre_socioActionPerformed(evt);
+            }
+        });
+        txt_nombre_socio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombre_socioKeyReleased(evt);
             }
         });
 
@@ -700,6 +729,59 @@ public class form_Modificar extends javax.swing.JFrame {
         this.dispose();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_telefonoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyPressed
+        // TODO add your handling code here:
+   
+    }//GEN-LAST:event_txt_telefonoKeyPressed
+
+    private void txt_dpiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyTyped
+        // TODO add your handling code here:
+         char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_dpi.getText().length() == 13) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 13 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_dpiKeyTyped
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        // TODO add your handling code here:
+         char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }else {
+            if (txt_telefono.getText().length() == 8) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 8 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_telefonoKeyTyped
+
+    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
+        // TODO add your handling code here:
+         filtro(txt_nombre.getText(), tbl_datos);
+    }//GEN-LAST:event_txt_nombreKeyReleased
+
+    private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
+        // TODO add your handling code here:
+        filtro(txt_dpi.getText(), tbl_datos);
+    }//GEN-LAST:event_txt_dpiKeyReleased
+
+    private void txt_nombre_socioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_socioKeyReleased
+        // TODO add your handling code here:
+        filtro(txt_nombre_socio.getText(), tbl_datos);
+    }//GEN-LAST:event_txt_nombre_socioKeyReleased
 
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();

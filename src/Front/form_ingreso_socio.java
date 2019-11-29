@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -24,6 +26,9 @@ public class form_ingreso_socio extends javax.swing.JFrame {
 
     public form_ingreso_socio() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         cerrar();
         setResizable(false);
         this.setLocationRelativeTo(null);
@@ -169,6 +174,9 @@ public class form_ingreso_socio extends javax.swing.JFrame {
                         int res = str.executeUpdate();
                         if (res > 0) {
                             JOptionPane.showMessageDialog(null, "Ingreso completado");
+                            txt_nombre.setText(null);
+                            txt_dpi.setText(null);
+                            txt_apellido.setText(null);
                         } else {
                             JOptionPane.showMessageDialog(null, "Error");
                         }
