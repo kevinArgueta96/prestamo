@@ -396,7 +396,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
             if (cuotaFinal > cuotaInicial) {
                 //Variables de envio al siguiente formulario
-                env_CuotaFinal = cuotaFinal;
+                env_CuotaFinal = Double.parseDouble(txt_Faltante.getText());
                 env_ID = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
                 env_Plazo = cuotasTotales;
 

@@ -211,6 +211,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         if(chk_cuotas.isSelected() == true){
             txt_cuotas.setEnabled(true);
         }else{
+            txt_cuotas.setText("");
             txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
             txt_cuotas.setEnabled(false);
         }
@@ -256,51 +257,62 @@ public class form_financiar_restante extends javax.swing.JFrame {
         double financiado = 0;
         String query = "";
         PreparedStatement stm;
+        boolean valid = false;
         
         if(chk_plazo.isSelected() == true){
             cuotas = prm_Plazo;
         }else{
             if(chk_cuotas.isSelected() == true){
-                cuotas = Integer.parseInt(txt_cuotas.getText());
+                if(txt_cuotas.getText().equals("")||Integer.parseInt(txt_cuotas.getText())<=0){
+                    valid = false;
+                }else{
+                    valid = true;
+                    cuotas = Integer.parseInt(txt_cuotas.getText());
+                }
+                
             }
         }
-        
-        financiado = Double.parseDouble(txt_cuota_final.getText()); 
-        if(financiado > 0){
-            try {
-                if(cuotas > prm_Plazo){
-                    query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ?,  cuotas = ? WHERE id_prestamo = ?";   
-                    stm= cnx.getConnection().prepareStatement(query);
-                    stm.setInt(1, cuotas);
-                    stm.setDouble(2, financiado);
-                    stm.setDouble(3, cuotas);
-                    stm.setInt(4, prm_IDPrestamo);
+        if(valid){
+            financiado = Double.parseDouble(txt_cuota_final.getText()); 
+            if(financiado > 0){
+                try {
+                    if(cuotas > prm_Plazo){
+                        query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ?,  cuotas = ? WHERE id_prestamo = ?";   
+                        stm= cnx.getConnection().prepareStatement(query);
+                        stm.setInt(1, cuotas);
+                        stm.setDouble(2, financiado);
+                        stm.setDouble(3, cuotas);
+                        stm.setInt(4, prm_IDPrestamo);
 
-                }else{
-                    query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ? WHERE id_prestamo = ?";
-                    stm = cnx.getConnection().prepareStatement(query);
-                    stm.setInt(1, cuotas);
-                    stm.setDouble(2, financiado);
-                    stm.setInt(3, prm_IDPrestamo);
-                }    
+                    }else{
+                        query = "UPDATE tbl_prestamo SET cuota_faltante = ?, total_cuota = ? WHERE id_prestamo = ?";
+                        stm = cnx.getConnection().prepareStatement(query);
+                        stm.setInt(1, cuotas);
+                        stm.setDouble(2, financiado);
+                        stm.setInt(3, prm_IDPrestamo);
+                    }    
 
-                SQL_STATUS = stm.executeUpdate();
-                if(SQL_STATUS > 0){
-                    JOptionPane.showMessageDialog(this, "Extra Financiamiento Aplicado!");
-                    form_pago_cliente frm_pago = new form_pago_cliente();
-                    frm_pago.invalidate();
-                    frm_pago.validate();
-                    frm_pago.repaint();
-                    this.setVisible(false);
-                }else{
-                    JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento, intente de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                    SQL_STATUS = stm.executeUpdate();
+                    if(SQL_STATUS > 0){
+                        JOptionPane.showMessageDialog(this, "Extra Financiamiento Aplicado!");
+                        form_pago_cliente frm_pago = new form_pago_cliente();
+                        frm_pago.invalidate();
+                        frm_pago.validate();
+                        frm_pago.repaint();
+                        this.setVisible(false);
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento, intente de nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }catch(SQLException e){
+                    JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento en base de datos, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }catch(SQLException e){
-                JOptionPane.showMessageDialog(this, "Error al aplicar extra-financiamiento en base de datos, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "Error en cuota cuota final, saldo incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }else{
-            JOptionPane.showMessageDialog(this, "Error en cuota cuota final, saldo incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ingrese una cuota valida", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
         
         
     }//GEN-LAST:event_btn_procesarActionPerformed
