@@ -6,6 +6,8 @@
 package Front;
 
 import com.sun.corba.se.spi.activation._ActivatorImplBase;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -30,6 +32,9 @@ public class form_financiar_restante extends javax.swing.JFrame {
         prm_Plazo = _Plazo;
         prm_IDPrestamo = _IDPrestamo;
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         setResizable(false);
         this.setLocationRelativeTo(null);
          cerrar();
@@ -88,7 +93,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Saldo Restante Actual");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(125, 93, 132, 17);
+        jLabel2.setBounds(125, 93, 151, 17);
 
         txt_saldo_actual.setEditable(false);
         txt_saldo_actual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -99,7 +104,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         chk_plazo.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         chk_plazo.setText("Financiamiento con x cuotas");
         getContentPane().add(chk_plazo);
-        chk_plazo.setBounds(125, 157, 381, 25);
+        chk_plazo.setBounds(125, 157, 381, 24);
 
         buttonGroup1.add(chk_cuotas);
         chk_cuotas.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -115,15 +120,15 @@ public class form_financiar_restante extends javax.swing.JFrame {
             }
         });
         getContentPane().add(chk_cuotas);
-        chk_cuotas.setBounds(125, 193, 381, 25);
+        chk_cuotas.setBounds(125, 193, 381, 24);
 
         txt_cuotas.setText("1");
         txt_cuotas.setEnabled(false);
         txt_cuotas.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txt_cuotasInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         txt_cuotas.addActionListener(new java.awt.event.ActionListener() {
@@ -143,12 +148,12 @@ public class form_financiar_restante extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_cuotas);
-        txt_cuotas.setBounds(313, 229, 30, 20);
+        txt_cuotas.setBounds(313, 229, 30, 24);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel3.setText("Cuotas");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(256, 233, 39, 16);
+        jLabel3.setBounds(256, 233, 45, 16);
 
         txt_cuota_final.setEditable(false);
         txt_cuota_final.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -158,7 +163,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("CUOTA FINAL");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(180, 310, 83, 17);
+        jLabel4.setBounds(180, 310, 98, 17);
         getContentPane().add(jSeparator1);
         jSeparator1.setBounds(54, 284, 571, 10);
         getContentPane().add(jSeparator2);

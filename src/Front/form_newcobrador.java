@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -23,6 +25,9 @@ public class form_newcobrador extends javax.swing.JFrame {
      */
     public form_newcobrador() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         cerrar();
         setResizable(false);
         this.setLocationRelativeTo(null);

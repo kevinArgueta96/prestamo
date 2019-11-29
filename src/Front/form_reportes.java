@@ -9,6 +9,8 @@ package Front;
  *
  * @author Kevin
  */
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -39,6 +41,9 @@ public class form_reportes extends javax.swing.JFrame {
     String fecha = dformat.format(date);
     public form_reportes() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         File repo = new File("C:\\Diseño Reporte");
         File dise = new File("C:\\Reportes");
         if (repo.exists()&&dise.exists()) {
@@ -65,7 +70,7 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        cmb_mes = new javax.swing.JComboBox<>();
+        cmb_mes = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
         txt_año = new javax.swing.JTextField();
         btn_cancelar1 = new javax.swing.JButton();
@@ -99,7 +104,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cancelar);
-        btn_cancelar.setBounds(149, 438, 125, 33);
+        btn_cancelar.setBounds(149, 438, 122, 41);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione Mes:");
@@ -107,14 +112,14 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel2.setBounds(175, 102, 86, 14);
 
         cmb_mes.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cmb_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_mesActionPerformed(evt);
             }
         });
         getContentPane().add(cmb_mes);
-        cmb_mes.setBounds(279, 97, 86, 20);
+        cmb_mes.setBounds(279, 97, 91, 24);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Ingrese Año:");
@@ -128,7 +133,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_año);
-        txt_año.setBounds(279, 128, 91, 20);
+        txt_año.setBounds(279, 128, 91, 22);
 
         btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report4.png"))); // NOI18N
         btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -195,11 +200,11 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(283, 436, 130, 37);
+        jButton1.setBounds(283, 436, 130, 44);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report6.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 520, 520);
+        jLabel3.setBounds(0, 0, 350, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

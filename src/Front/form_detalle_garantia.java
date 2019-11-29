@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
@@ -33,6 +35,9 @@ public class form_detalle_garantia extends javax.swing.JFrame {
     
     public form_detalle_garantia() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         cerrar();
         setResizable(false);
         this.setLocationRelativeTo(null);

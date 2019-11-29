@@ -224,7 +224,6 @@
                                   <Component id="jLabel4" min="-2" pref="170" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
                                   <Component id="txt_id_pre" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

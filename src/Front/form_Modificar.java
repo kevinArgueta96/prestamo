@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -34,6 +36,10 @@ public class form_Modificar extends javax.swing.JFrame {
 
     public form_Modificar() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
+        txt_id.setVisible(false);
         setResizable(false);
         this.setLocationRelativeTo(null);
         cerrar();
@@ -169,6 +175,11 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel9.setBounds(440, 80, 50, 14);
 
         txt_telefono.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_telefonoKeyTyped(evt);
+            }
+        });
         panel_clien.add(txt_telefono);
         txt_telefono.setBounds(500, 70, 240, 30);
 
@@ -318,7 +329,7 @@ public class form_Modificar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(440, 640, 124, 46);
+        jButton3.setBounds(440, 640, 130, 46);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modified.jpg"))); // NOI18N
         getContentPane().add(jLabel5);
@@ -700,6 +711,23 @@ public class form_Modificar extends javax.swing.JFrame {
         this.dispose();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
+        // TODO add your handling code here:
+        char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }else {
+            if (txt_telefono.getText().length() == 8) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 8 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_telefonoKeyTyped
 
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();

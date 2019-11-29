@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -20,6 +22,9 @@ public class frm_consultas extends javax.swing.JFrame {
      */
     public frm_consultas() {
         initComponents();
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         setResizable(false);
         cerrar();
         this.setLocationRelativeTo(null);

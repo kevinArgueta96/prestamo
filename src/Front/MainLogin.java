@@ -29,7 +29,7 @@ public class MainLogin extends javax.swing.JFrame {
     public MainLogin() {
         initComponents();
         
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/Logo.png"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
         setVisible(true);
     
@@ -140,11 +140,11 @@ public class MainLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(400, 310, 160, 15);
+        jButton3.setBounds(400, 310, 160, 16);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white_back_login.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(170, 10, 340, 450);
+        jLabel3.setBounds(300, 0, 340, 450);
 
         setSize(new java.awt.Dimension(633, 439));
         setLocationRelativeTo(null);
@@ -177,7 +177,9 @@ public class MainLogin extends javax.swing.JFrame {
                 this.setVisible(false);
              }else{
                  JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "ERROR", JOptionPane.ERROR_MESSAGE);
-             }
+                 txt_user.setText(null);
+                 txt_contraseña.setText(null);
+            }
         
            
             //String result = st.executeQuery().toString();
