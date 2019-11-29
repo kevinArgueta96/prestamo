@@ -81,7 +81,6 @@ public class form_reportes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporteria");
-        setMaximumSize(new java.awt.Dimension(524, 524));
         setMinimumSize(new java.awt.Dimension(524, 524));
         getContentPane().setLayout(null);
 
@@ -457,7 +456,7 @@ public class form_reportes extends javax.swing.JFrame {
         parametros.put("idfecha", new String(fecha_u));
         try {
             JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    "C:\\Diseño Reporte\\comision_detalle.jasper", parametros,
                     con.getConnection());
             JRPdfExporter exp = new JRPdfExporter();
             exp.setExporterInput(new SimpleExporterInput(jasperPrint));
@@ -468,13 +467,14 @@ public class form_reportes extends javax.swing.JFrame {
 
             // se muestra en una ventana aparte para su descarga
             JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\Comisiones_mes.jasper", parametros,
+                    "C:\\Diseño reporte\\comision_detalle.jasper", parametros,
                     con.getConnection());
             JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
             jasperViewer.setVisible(true);
         } catch (JRException ex) {
 
         }
+                          
     }//GEN-LAST:event_btn_cancelar4ActionPerformed
 
     private void txt_añoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_añoKeyTyped
