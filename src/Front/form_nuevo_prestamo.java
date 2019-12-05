@@ -32,7 +32,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     DefaultTableModel dm;
     private JComboBox combo;
     int estado_prestamo_nuevo = 0;
-    String saldo_falta = "", couta_falta = "";
+    String saldo_falta = "", couta_falta = "",ganancia_falta="";
 
     public form_nuevo_prestamo() {
         initComponents();
@@ -591,9 +591,9 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         String query = "INSERT INTO tbl_prestamo (id_prestamo,monto,interes,fecha_creacion,fecha_finalizacion,monto_interes,ganancia,estado_garantia,"
                 + "cuotas,total_cuota"
                 + ",id_cliente,id_plazo,estado,saldo_faltante,cuota_faltante,id_socio,estado_comision,id_cobrador,porcentaje_cobra,pago_comision) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)";
-        String query2 = "SELECT id_prestamo,id_cliente,estado,saldo_faltante,cuota_faltante FROM tbl_prestamo";
+        String query2 = "SELECT id_prestamo,id_cliente,estado,saldo_faltante,cuota_faltante,ganancia FROM tbl_prestamo";
 
-        String[] dato = new String[6];
+        String[] dato = new String[7];
         Statement str1;
 
         try {
@@ -607,11 +607,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                 dato[2] = result.getString(3);
                 dato[3] = result.getString(4);
                 dato[4] = result.getString(5);
+                dato[5] = result.getString(6);
 
                 if (txt_id.getText().equals(dato[1]) && dato[2].equals("1")) {
                     saldo_falta = dato[3];
                     prestamo_cambio = dato[0];
                     couta_falta = dato[4];
+                    ganancia_falta=dato[5];
                     estadod = 1;
                 } else {
                 }
@@ -620,25 +622,24 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         }
         double nuevo_saldo, aux, nueva_suma;
-        double a, b, c, d;
+        double a, b, c, d,el;
         String aux_monto;
         String query_prestamo_pen = "UPDATE `dbprestamo`.`tbl_prestamo` SET `saldo_faltante` = '0', `cuota_faltante` = '0',`estado` = '0' WHERE (`id_prestamo` = '" + prestamo_cambio + "')";
+        
         if (estadod == 1) {
-            JOptionPane.showMessageDialog(null, "El cliente tiene un prestamo activo con un saldo faltante de: " + saldo_falta + "\nCuotas faltantes: " + couta_falta);
+            JOptionPane.showMessageDialog(null, "El cliente tiene un prestamo activo con un saldo faltante de: " + saldo_falta + "\nCuotas faltantes: " + couta_falta+"\nGanancia Anterior de:"+ganancia_falta);
             int pres_nue = JOptionPane.showConfirmDialog(null, "Desea realizar un nuevo prestamo al cliente", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (pres_nue == 0) {
-                nuevo_saldo = Double.parseDouble(saldo_falta);
-                aux = Double.parseDouble(txt_monto_s.getText());
-                nueva_suma = nuevo_saldo + aux;
-                txt_monto_s.setText(dc.format(nueva_suma));
-                nuevo_saldo = 0;
-                aux = 0;
-                nuevo_saldo = (Double.parseDouble(txt_interes.getText())) / 100;
-                aux = nueva_suma * nuevo_saldo;
-                a = aux + nueva_suma;
-                b = a - nueva_suma;
-                txt_monto_a.setText(dc.format(b));
-                txt_ganan.setText(dc.format(a));
+                aux=Double.parseDouble(txt_ganan.getText());
+                a=Double.parseDouble(txt_monto_a.getText());
+                b=Double.parseDouble(ganancia_falta);
+                nuevo_saldo=Double.parseDouble(saldo_falta);
+                nueva_suma=nuevo_saldo+aux;
+                txt_ganan.setText(dc.format(nueva_suma));
+                c=a+b;
+                //d=Double.parseDouble(txt_pago_porce.getText());
+                //el=c-d;
+                txt_monto_a.setText(dc.format(c));
                 if (cmb_plazo.getSelectedIndex() == 1) {
                     c = Double.parseDouble(txt_ganan.getText());
                     d = c / 23;
@@ -654,15 +655,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     d = c / 1;
                     txt_cuota_pagar.setText(dc.format(d));
                 }
-                aux = 0;
-                nueva_suma = 0;
-                nuevo_saldo = 0;
-                a = 0;
-                b = 0;
-                a = Double.parseDouble(txt_monto_s.getText());
-                nuevo_saldo = (Double.parseDouble(txt_porcentaje.getText())) / 100;
-                aux = nuevo_saldo * a;
-                txt_pago_porce.setText(dc.format(aux));
+                
                 int pres_seguro = JOptionPane.showConfirmDialog(null, "Esta seguro del nuevo prestamo", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (pres_seguro == 0) {
                     
@@ -1012,7 +1005,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         double monto;
         double interes;
         double total;
-        double ganancia;
+        double ganancia,aux,resta;
         String gana, tot;
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
@@ -1028,10 +1021,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     interes = Double.parseDouble(txt_porcentaje.getText());
                     interes = interes / 100;
                     total = monto * interes;
+                    //aux=Double.parseDouble(txt_monto_a.getText());
+                    //resta=aux-total;
                     //tot = String.valueOf(total);
                     //gana = String.valueOf(ganancia);
                     //txt_monto_a.setText(dc.format(total));
                     txt_pago_porce.setText(dc.format(total));
+                    //txt_monto_a.setText(dc.format(resta));
                 }
             }
         } catch (NumberFormatException ex) {
