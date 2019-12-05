@@ -58,8 +58,9 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingreso Nuevo Socio");
         setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(428, 280));
-        setPreferredSize(new java.awt.Dimension(428, 280));
+        setMaximumSize(new java.awt.Dimension(428, 290));
+        setMinimumSize(new java.awt.Dimension(428, 290));
+        setPreferredSize(new java.awt.Dimension(428, 290));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
@@ -138,8 +139,9 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         jPanel1.setBounds(90, 70, 290, 130);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nuevo socio background.jpg"))); // NOI18N
-        jLabel5.setMaximumSize(new java.awt.Dimension(495, 280));
-        jLabel5.setMinimumSize(new java.awt.Dimension(495, 280));
+        jLabel5.setMaximumSize(new java.awt.Dimension(495, 290));
+        jLabel5.setMinimumSize(new java.awt.Dimension(495, 290));
+        jLabel5.setName(""); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(495, 280));
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, -10, 430, 290);

@@ -752,7 +752,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                                 txt_pago_porce.setText(null);
                                                                 txt_porcentaje.setText(null);
                                                                 date_cre.setDate(null);
-                                                            } else {
+                                                                date_cre.setCalendar(null);                                                                                                                      } else {
                                                                 JOptionPane.showMessageDialog(null, "Error");
                                                             }
                                                             str.close();
