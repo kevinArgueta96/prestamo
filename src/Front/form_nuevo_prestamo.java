@@ -279,11 +279,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         cmb_cobrador.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_cobrador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cobrador" }));
-        cmb_cobrador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                cmb_cobradorMouseReleased(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel17.setText("Cobrador");
@@ -1004,12 +999,26 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_dpiKeyTyped
 
     private void txt_porcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyTyped
+        DecimalFormatSymbols punto = new DecimalFormatSymbols();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         char valida = evt.getKeyChar();
         if (Character.isLetter(valida) || Character.isWhitespace(valida)) {
             getToolkit().beep();
             evt.consume();
 
             JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+              
+         try{
+            if (txt_pago_porce.getText().isEmpty()){
+            }else{
+                comision_cobra = Double.parseDouble(txt_pago_porce.getText());
+                ganancia_neta = ganancia - comision_cobra;
+                txt_monto_a.setText(dc.format(ganancia_neta));         
+            }
+            } catch (NumberFormatException ex) {
+
         }
     }//GEN-LAST:event_txt_porcentajeKeyTyped
 
@@ -1087,24 +1096,6 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private void txt_monto_sKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_monto_sKeyPressed
 
     }//GEN-LAST:event_txt_monto_sKeyPressed
-
-    private void cmb_cobradorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_cobradorMouseReleased
-        // TODO add your handling code here:
-        DecimalFormatSymbols punto = new DecimalFormatSymbols();
-        punto.setDecimalSeparator('.');
-        DecimalFormat dc = new DecimalFormat("0.00", punto);
-         try{
-            if (txt_pago_porce.getText().isEmpty()){
-            }else{
-                comision_cobra = Double.parseDouble(txt_pago_porce.getText());
-                ganancia_neta = ganancia - comision_cobra;
-                txt_monto_a.setText(dc.format(ganancia_neta));         
-            }
-            } catch (NumberFormatException ex) {
-
-        }
-       
-    }//GEN-LAST:event_cmb_cobradorMouseReleased
 
     private void cmb_socioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_socioMouseReleased
         // TODO add your handling code here:
