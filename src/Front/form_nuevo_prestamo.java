@@ -293,6 +293,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         cmb_socio.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_socio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Socio" }));
+        cmb_socio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmb_socioMouseReleased(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel11.setText("Porcentaje");
@@ -636,8 +641,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         String query_prestamo_pen = "UPDATE `dbprestamo`.`tbl_prestamo` SET `saldo_faltante` = '0', `cuota_faltante` = '0',`estado` = '0' WHERE (`id_prestamo` = '" + prestamo_cambio + "')";
         
         if (estadod == 1) {
-            JOptionPane.showMessageDialog(null, "El cliente tiene un prestamo activo con un saldo faltante de: " + saldo_falta + "\nCuotas faltantes: " + couta_falta+"\nGanancia Anterior de:"+ganancia_falta);
-            int pres_nue = JOptionPane.showConfirmDialog(null, "Desea realizar un nuevo prestamo al cliente", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "EL CLIENTE TIENE UN PRESTAMO ACTIVO CON UN SALDO FALTANTE DE: " + saldo_falta + "\nCUOTAS FALTANTES: " + couta_falta+"\nGANANCIA ANTERIOR:"+ganancia_falta);
+            int pres_nue = JOptionPane.showConfirmDialog(null, "DESEA REALIZAR UN NUEVO PRESTAMO AL CLIENTE", "CONFIRMAR PRESTAMO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (pres_nue == 0) {
                 aux=Double.parseDouble(txt_ganan.getText());
                 a=Double.parseDouble(txt_monto_a.getText());
@@ -1098,7 +1103,25 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             } catch (NumberFormatException ex) {
 
         }
+       
     }//GEN-LAST:event_cmb_cobradorMouseReleased
+
+    private void cmb_socioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_socioMouseReleased
+        // TODO add your handling code here:
+        DecimalFormatSymbols punto = new DecimalFormatSymbols();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
+         try{
+            if (txt_pago_porce.getText().isEmpty()){
+            }else{
+                comision_cobra = Double.parseDouble(txt_pago_porce.getText());
+                ganancia_neta = ganancia - comision_cobra;
+                txt_monto_a.setText(dc.format(ganancia_neta));         
+            }
+            } catch (NumberFormatException ex) {
+
+        }
+    }//GEN-LAST:event_cmb_socioMouseReleased
 
     /**
      * @param args the command line arguments
