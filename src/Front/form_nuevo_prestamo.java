@@ -33,6 +33,10 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private JComboBox combo;
     int estado_prestamo_nuevo = 0;
     String saldo_falta = "", couta_falta = "",ganancia_falta="";
+     double monto;
+        double interes;
+        double total;
+        double ganancia, comision_cobra, ganancia_neta;
 
     public form_nuevo_prestamo() {
         initComponents();
@@ -275,6 +279,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         cmb_cobrador.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         cmb_cobrador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cobrador" }));
+        cmb_cobrador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmb_cobradorMouseReleased(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel17.setText("Cobrador");
@@ -906,10 +915,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_dpiKeyReleased
 
     private void txt_interesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_interesKeyReleased
-        double monto;
-        double interes;
-        double total;
-        double ganancia;
+    
         String gana, tot;
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
@@ -919,18 +925,19 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             if (txt_monto_s.getText().isEmpty()) {
                 //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero");
             } else {
-                if (txt_interes.getText().isEmpty()) {
-                    //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero");
+               if (txt_interes.getText().isEmpty()) {
+                    //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero")
                 } else {
                     monto = Double.parseDouble(txt_monto_s.getText());
                     interes = Double.parseDouble(txt_interes.getText());
                     interes = interes / 100;
                     total = monto * interes;
                     ganancia = total + monto;
-                    //tot = String.valueOf(total);
-                    //gana = String.valueOf(ganancia);
+                    //ganancia_neta = ganancia - comision_cobra;
+                    
                     txt_monto_a.setText(dc.format(total));
                     txt_ganan.setText(dc.format(ganancia));
+                   // txt_monto_a.setText(dc.format(ganancia_neta));
                 }
             }
         } catch (NumberFormatException ex) {
@@ -1037,6 +1044,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void txt_monto_sInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txt_monto_sInputMethodTextChanged
 
+        double comision_cobra, ganancia_neta;
 
     }//GEN-LAST:event_txt_monto_sInputMethodTextChanged
 
@@ -1074,6 +1082,23 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private void txt_monto_sKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_monto_sKeyPressed
 
     }//GEN-LAST:event_txt_monto_sKeyPressed
+
+    private void cmb_cobradorMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_cobradorMouseReleased
+        // TODO add your handling code here:
+        DecimalFormatSymbols punto = new DecimalFormatSymbols();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
+         try{
+            if (txt_pago_porce.getText().isEmpty()){
+            }else{
+                comision_cobra = Double.parseDouble(txt_pago_porce.getText());
+                ganancia_neta = ganancia - comision_cobra;
+                txt_monto_a.setText(dc.format(ganancia_neta));         
+            }
+            } catch (NumberFormatException ex) {
+
+        }
+    }//GEN-LAST:event_cmb_cobradorMouseReleased
 
     /**
      * @param args the command line arguments
