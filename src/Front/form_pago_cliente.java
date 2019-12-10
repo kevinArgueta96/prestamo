@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
@@ -33,9 +35,13 @@ public class form_pago_cliente extends javax.swing.JFrame {
     double env_CuotaFinal;
     int env_Plazo, env_ID;
     DefaultTableModel dm;
+    
+    DecimalFormatSymbols punto = new DecimalFormatSymbols();
+    
 
     // pmazariegos -- Rutina para recalcular el pago estipulado -- 19/11/2019
     public double RecalcularPagoEstipulado() {
+        
         /* 
         pmazariegos -- 19/11/2019
         NOTA:
@@ -431,6 +437,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
         int cuota = 0, modifica = 0, id, dato = 0;
         int valor;
         LocalDate date = LocalDate.now();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
 
         if (txt_dpi.getText().isEmpty() && txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
@@ -449,13 +457,13 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 //PAGO MENOR AL ESTIPULADO
                 if (pago < pago_estipulado_actual) {
                     valor = JOptionPane.showConfirmDialog(this,
-                            "¿Esta Seguro que desea Realizar el Pago MENOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + RecalcularPagoEstipulado(),
+                            "¿Esta Seguro que desea Realizar el Pago MENOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + dc.format(RecalcularPagoEstipulado()),
                             "Advertencia", JOptionPane.YES_NO_OPTION);
                 } else {
                     //PAGO MAYOR AL ESTIPULADO
                     if (pago > pago_estipulado_actual) {
                         valor = JOptionPane.showConfirmDialog(this,
-                                "¿Esta Seguro que desea Realizar el Pago MAYOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + RecalcularPagoEstipulado(),
+                                "¿Esta Seguro que desea Realizar el Pago MAYOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + dc.format(RecalcularPagoEstipulado()),
                                 "Advertencia", JOptionPane.YES_NO_OPTION);
                     } else {
                         valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Realizar el Pago?", "Advertencia", JOptionPane.YES_NO_OPTION);

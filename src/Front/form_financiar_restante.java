@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +22,14 @@ public class form_financiar_restante extends javax.swing.JFrame {
     public static double prm_Restante;
     public static int prm_Plazo, prm_IDPrestamo;
     conexcion cnx = new conexcion();
+    DecimalFormatSymbols punto = new DecimalFormatSymbols();
+    
     /**
      * Creates new form form_financiar_restante
      */
     public form_financiar_restante(double _Restante, int _Plazo, int _IDPrestamo) {
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         prm_Restante = _Restante;
         prm_Plazo = _Plazo;
         prm_IDPrestamo = _IDPrestamo;
@@ -32,7 +38,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         chk_plazo.setSelected(true);
         txt_saldo_actual.setText(""+prm_Restante);
         
-        txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
+        txt_cuota_final.setText(""+dc.format((prm_Restante / prm_Plazo)));
     }
 
     /**
@@ -204,10 +210,12 @@ public class form_financiar_restante extends javax.swing.JFrame {
 
     private void chk_cuotasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_chk_cuotasStateChanged
         // TODO add your handling code here:
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         if(chk_cuotas.isSelected() == true){
             txt_cuotas.setEnabled(true);
         }else{
-            txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
+            txt_cuota_final.setText(""+dc.format((prm_Restante / prm_Plazo)));
             txt_cuotas.setEnabled(false);
         }
     }//GEN-LAST:event_chk_cuotasStateChanged
@@ -233,6 +241,8 @@ public class form_financiar_restante extends javax.swing.JFrame {
 
     private void txt_cuotasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cuotasKeyReleased
         // TODO add your handling code here:
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         if(!txt_cuotas.getText().equals("")){
             System.out.println(txt_cuotas.getText());
             double cuotas = Integer.parseInt(txt_cuotas.getText());
@@ -240,7 +250,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
                 cuotas = 1;
             }
             System.out.println(prm_Restante / cuotas);
-            txt_cuota_final.setText(""+(prm_Restante / cuotas));
+            txt_cuota_final.setText(""+dc.format((prm_Restante / cuotas)));
         }
         
     }//GEN-LAST:event_txt_cuotasKeyReleased
