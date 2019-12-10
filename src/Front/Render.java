@@ -20,22 +20,24 @@ public class Render extends DefaultTableCellRenderer {
         JLabel cell = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         if (value instanceof String) {
             String valor = (String) value;
+            // --- pmazariegos | Rangos para colores en pagos pendientes | 09/12/2019 ---
             if (column == 7) {
                 cambio = Integer.parseInt(valor);
-                if (cambio <= 6) {
+                
+                if (cambio <= 1) {
                     cell.setBackground(Color.RED);
                     cell.setForeground(Color.BLACK);
+                    
                 }else{
-                if (cambio <= 14) {
-                    cell.setBackground(Color.YELLOW);
-                    cell.setForeground(Color.BLACK);
+                    if (cambio <= 5) {
+                        cell.setBackground(Color.YELLOW);
+                        cell.setForeground(Color.BLACK);
 
-                }else{
-                if (cambio > 20) {
-                    cell.setBackground(Color.GREEN);
-                    cell.setForeground(Color.BLACK);
-                }
-                }
+                    }else{                            
+                        cell.setBackground(Color.GREEN);
+                        cell.setForeground(Color.BLACK);                   
+                        
+                    }
                 }
 
             } else {
