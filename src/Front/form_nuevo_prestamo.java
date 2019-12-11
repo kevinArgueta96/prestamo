@@ -499,16 +499,19 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                 if (txt_monto_s.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Ingrese interes");
                 } else {
-                    txt_couta.setEditable(false);
-                    switch (seleccion) {
+                    // --- pmazariegos | Habilitar cuotas personalizadas con cualquier plazo | 10/12/2019
+                    txt_couta.setEditable(true);
+                    txt_couta.setText("");
+                    txt_cuota_pagar.setText("");
+                    txt_couta.requestFocus();
+                    
+                    /*switch (seleccion) {
                         case 1:
-                            txt_couta.setText("23");
                             monto = Double.parseDouble(txt_ganan.getText());
                             total = monto / 23;
                             txt_cuota_pagar.setText(dc.format(total));
                             break;
                         case 2:
-                            txt_couta.setText("4");
                             monto = Double.parseDouble(txt_ganan.getText());
                             total = monto / 4;
                             txt_cuota_pagar.setText(dc.format(total));
@@ -527,7 +530,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                             txt_couta.requestFocus();
                             break;
 
-                    }
+                    }*/
                 }
             }
         } catch (NumberFormatException ex) {
