@@ -39,6 +39,7 @@ public class form_reportes extends javax.swing.JFrame {
     LocalDate local = LocalDate.now();
     Date date = java.sql.Date.valueOf(local);
     String fecha = dformat.format(date);
+
     public form_reportes() {
         initComponents();
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
@@ -46,12 +47,12 @@ public class form_reportes extends javax.swing.JFrame {
         setVisible(true);
         File repo = new File("C:\\Diseño Reporte");
         File dise = new File("C:\\Reportes");
-        if (repo.exists()&&dise.exists()) {
+        if (repo.exists() && dise.exists()) {
         } else {
-       
-                repo.mkdir();
-                dise.mkdir();
-            
+
+            repo.mkdir();
+            dise.mkdir();
+
         }
         setResizable(false);
         cerrar();
@@ -213,273 +214,285 @@ public class form_reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_mesActionPerformed
 
     private void btn_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar1ActionPerformed
+        if (cmb_mes.getSelectedIndex() == 0 || txt_año.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un mes y escribir un año");
+        } else {
+            int seleccion = cmb_mes.getSelectedIndex();
+            String mes = " ", año, fecha_u = "";
+            switch (seleccion) {
+                case 1:
+                    mes = "01";
+                    break;
+                case 2:
+                    mes = "02";
+                    break;
+                case 3:
+                    mes = "03";
+                    break;
+                case 4:
+                    mes = "04";
+                    break;
+                case 5:
+                    mes = "05";
+                    break;
+                case 6:
+                    mes = "06";
+                    break;
+                case 7:
+                    mes = "07";
+                    break;
+                case 8:
+                    mes = "08";
+                    break;
+                case 9:
+                    mes = "09";
+                    break;
+                case 10:
+                    mes = "10";
+                    break;
+                case 11:
+                    mes = "11";
+                    break;
+                case 12:
+                    mes = "12";
+                    break;
+            }
+            año = txt_año.getText();
+            fecha_u = mes + "-" + año;
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("idfecha", new String(fecha_u));
+            try {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
+                        con.getConnection());
+                JRPdfExporter exp = new JRPdfExporter();
+                exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Pagos_del_Mes.pdf"));
+                SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+                exp.setConfiguration(conf);
+                exp.exportReport();
 
-        int seleccion = cmb_mes.getSelectedIndex();
-        String mes = " ", año, fecha_u = "";
-        switch (seleccion) {
-            case 1:
-                mes = "01";
-                break;
-            case 2:
-                mes = "02";
-                break;
-            case 3:
-                mes = "03";
-                break;
-            case 4:
-                mes = "04";
-                break;
-            case 5:
-                mes = "05";
-                break;
-            case 6:
-                mes = "06";
-                break;
-            case 7:
-                mes = "07";
-                break;
-            case 8:
-                mes = "08";
-                break;
-            case 9:
-                mes = "09";
-                break;
-            case 10:
-                mes = "10";
-                break;
-            case 11:
-                mes = "11";
-                break;
-            case 12:
-                mes = "12";
-                break;
-        }
-        año = txt_año.getText();
-        fecha_u = mes + "-" + año;
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("idfecha", new String(fecha_u));
-        try {
-            JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
-                    con.getConnection());
-            JRPdfExporter exp = new JRPdfExporter();
-            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Pagos_del_Mes.pdf"));
-            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
-            exp.setConfiguration(conf);
-            exp.exportReport();
+                // se muestra en una ventana aparte para su descarga
+                JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
+                        con.getConnection());
+                JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+                jasperViewer.setVisible(true);
 
-            // se muestra en una ventana aparte para su descarga
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
-                    con.getConnection());
-            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
-            jasperViewer.setVisible(true);
-        } catch (JRException ex) {
-
+            } catch (JRException ex) {
+            }
         }
     }//GEN-LAST:event_btn_cancelar1ActionPerformed
 
     private void btn_cancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar2ActionPerformed
-        int seleccion = cmb_mes.getSelectedIndex();
-        String mes = " ", año, fecha_u = "";
-        switch (seleccion) {
-            case 1:
-                mes = "01";
-                break;
-            case 2:
-                mes = "02";
-                break;
-            case 3:
-                mes = "03";
-                break;
-            case 4:
-                mes = "04";
-                break;
-            case 5:
-                mes = "05";
-                break;
-            case 6:
-                mes = "06";
-                break;
-            case 7:
-                mes = "07";
-                break;
-            case 8:
-                mes = "08";
-                break;
-            case 9:
-                mes = "09";
-                break;
-            case 10:
-                mes = "10";
-                break;
-            case 11:
-                mes = "11";
-                break;
-            case 12:
-                mes = "12";
-                break;
-        }
-        año = txt_año.getText();
-        fecha_u = mes + "-" + año;
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("idfecha", new String(fecha_u));
-        try {
-            JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
-                    con.getConnection());
-            JRPdfExporter exp = new JRPdfExporter();
-            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Detalle_Inversion.pdf"));
-            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
-            exp.setConfiguration(conf);
-            exp.exportReport();
+        if (cmb_mes.getSelectedIndex() == 0 || txt_año.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un mes y escribir un año");
+        } else {
+            int seleccion = cmb_mes.getSelectedIndex();
+            String mes = " ", año, fecha_u = "";
+            switch (seleccion) {
+                case 1:
+                    mes = "01";
+                    break;
+                case 2:
+                    mes = "02";
+                    break;
+                case 3:
+                    mes = "03";
+                    break;
+                case 4:
+                    mes = "04";
+                    break;
+                case 5:
+                    mes = "05";
+                    break;
+                case 6:
+                    mes = "06";
+                    break;
+                case 7:
+                    mes = "07";
+                    break;
+                case 8:
+                    mes = "08";
+                    break;
+                case 9:
+                    mes = "09";
+                    break;
+                case 10:
+                    mes = "10";
+                    break;
+                case 11:
+                    mes = "11";
+                    break;
+                case 12:
+                    mes = "12";
+                    break;
+            }
+            año = txt_año.getText();
+            fecha_u = mes + "-" + año;
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("idfecha", new String(fecha_u));
+            try {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
+                        con.getConnection());
+                JRPdfExporter exp = new JRPdfExporter();
+                exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_Inversion.pdf"));
+                SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+                exp.setConfiguration(conf);
+                exp.exportReport();
 
-            // se muestra en una ventana aparte para su descarga
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
-                    con.getConnection());
-            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
-            jasperViewer.setVisible(true);
-        } catch (JRException ex) {
-
+                // se muestra en una ventana aparte para su descarga
+                JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
+                        con.getConnection());
+                JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+                jasperViewer.setVisible(true);
+            } catch (JRException ex) {
+            }
         }
     }//GEN-LAST:event_btn_cancelar2ActionPerformed
 
     private void btn_cancelar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar3ActionPerformed
-        int seleccion = cmb_mes.getSelectedIndex();
-        String mes = " ", año, fecha_u = "";
-        switch (seleccion) {
-            case 1:
-                mes = "01";
-                break;
-            case 2:
-                mes = "02";
-                break;
-            case 3:
-                mes = "03";
-                break;
-            case 4:
-                mes = "04";
-                break;
-            case 5:
-                mes = "05";
-                break;
-            case 6:
-                mes = "06";
-                break;
-            case 7:
-                mes = "07";
-                break;
-            case 8:
-                mes = "08";
-                break;
-            case 9:
-                mes = "09";
-                break;
-            case 10:
-                mes = "10";
-                break;
-            case 11:
-                mes = "11";
-                break;
-            case 12:
-                mes = "12";
-                break;
-        }
-        año = txt_año.getText();
-        fecha_u = mes + "-" + año;
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("idfecha", new String(fecha_u));
-        try {
-            JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
-                    con.getConnection());
-            JRPdfExporter exp = new JRPdfExporter();
-            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Detalle_socio.pdf"));
-            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
-            exp.setConfiguration(conf);
-            exp.exportReport();
+        if (cmb_mes.getSelectedIndex() == 0 || txt_año.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un mes y escribir un año");
+        } else {
+            int seleccion = cmb_mes.getSelectedIndex();
+            String mes = " ", año, fecha_u = "";
+            switch (seleccion) {
+                case 1:
+                    mes = "01";
+                    break;
+                case 2:
+                    mes = "02";
+                    break;
+                case 3:
+                    mes = "03";
+                    break;
+                case 4:
+                    mes = "04";
+                    break;
+                case 5:
+                    mes = "05";
+                    break;
+                case 6:
+                    mes = "06";
+                    break;
+                case 7:
+                    mes = "07";
+                    break;
+                case 8:
+                    mes = "08";
+                    break;
+                case 9:
+                    mes = "09";
+                    break;
+                case 10:
+                    mes = "10";
+                    break;
+                case 11:
+                    mes = "11";
+                    break;
+                case 12:
+                    mes = "12";
+                    break;
+            }
+            año = txt_año.getText();
+            fecha_u = mes + "-" + año;
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("idfecha", new String(fecha_u));
+            try {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                        con.getConnection());
+                JRPdfExporter exp = new JRPdfExporter();
+                exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_socio.pdf"));
+                SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+                exp.setConfiguration(conf);
+                exp.exportReport();
 
-            // se muestra en una ventana aparte para su descarga
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
-                    con.getConnection());
-            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
-            jasperViewer.setVisible(true);
-        } catch (JRException ex) {
-
+                // se muestra en una ventana aparte para su descarga
+                JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                        con.getConnection());
+                JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+                jasperViewer.setVisible(true);
+            } catch (JRException ex) {
+            }
         }
     }//GEN-LAST:event_btn_cancelar3ActionPerformed
 
     private void btn_cancelar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar4ActionPerformed
-        int seleccion = cmb_mes.getSelectedIndex();
-        String mes = " ", año, fecha_u = "";
-        switch (seleccion) {
-            case 1:
-                mes = "01";
-                break;
-            case 2:
-                mes = "02";
-                break;
-            case 3:
-                mes = "03";
-                break;
-            case 4:
-                mes = "04";
-                break;
-            case 5:
-                mes = "05";
-                break;
-            case 6:
-                mes = "06";
-                break;
-            case 7:
-                mes = "07";
-                break;
-            case 8:
-                mes = "08";
-                break;
-            case 9:
-                mes = "09";
-                break;
-            case 10:
-                mes = "10";
-                break;
-            case 11:
-                mes = "11";
-                break;
-            case 12:
-                mes = "12";
-                break;
-        }
-        año = txt_año.getText();
-        fecha_u = mes + "-" + año;
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("idfecha", new String(fecha_u));
-        try {
-            JasperPrint jasperPrint = JasperFillManager.fillReport(
-                    "C:\\Diseño Reporte\\comision_detalle.jasper", parametros,
-                    con.getConnection());
-            JRPdfExporter exp = new JRPdfExporter();
-            exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-            exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\"+fecha+"Detalle_comision.pdf"));
-            SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
-            exp.setConfiguration(conf);
-            exp.exportReport();
+        if (cmb_mes.getSelectedIndex() == 0 || txt_año.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un mes y escribir un año");
+        } else {
+            int seleccion = cmb_mes.getSelectedIndex();
+            String mes = " ", año, fecha_u = "";
+            switch (seleccion) {
+                case 1:
+                    mes = "01";
+                    break;
+                case 2:
+                    mes = "02";
+                    break;
+                case 3:
+                    mes = "03";
+                    break;
+                case 4:
+                    mes = "04";
+                    break;
+                case 5:
+                    mes = "05";
+                    break;
+                case 6:
+                    mes = "06";
+                    break;
+                case 7:
+                    mes = "07";
+                    break;
+                case 8:
+                    mes = "08";
+                    break;
+                case 9:
+                    mes = "09";
+                    break;
+                case 10:
+                    mes = "10";
+                    break;
+                case 11:
+                    mes = "11";
+                    break;
+                case 12:
+                    mes = "12";
+                    break;
+            }
+            año = txt_año.getText();
+            fecha_u = mes + "-" + año;
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("idfecha", new String(fecha_u));
+            try {
+                JasperPrint jasperPrint = JasperFillManager.fillReport(
+                        "C:\\Diseño Reporte\\comision_detalle.jasper", parametros,
+                        con.getConnection());
+                JRPdfExporter exp = new JRPdfExporter();
+                exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_comision.pdf"));
+                SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
+                exp.setConfiguration(conf);
+                exp.exportReport();
 
-            // se muestra en una ventana aparte para su descarga
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                    "C:\\Diseño reporte\\comision_detalle.jasper", parametros,
-                    con.getConnection());
-            JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow);
-            jasperViewer.setVisible(true);
-        } catch (JRException ex) {
+                // se muestra en una ventana aparte para su descarga
+                JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
+                        "C:\\Diseño reporte\\comision_detalle.jasper", parametros,
+                        con.getConnection());
+                JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
+                jasperViewer.setVisible(true);
+            } catch (JRException ex) {
 
+            }
         }
-                          
     }//GEN-LAST:event_btn_cancelar4ActionPerformed
 
     private void txt_añoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_añoKeyTyped
@@ -498,19 +511,19 @@ public class form_reportes extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_añoKeyTyped
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-         confirmarSalida();
+        confirmarSalida();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea regresar?", "Advertencia", JOptionPane.YES_NO_OPTION);
         if (valor == JOptionPane.YES_OPTION) {
-        form_principal frm = new form_principal();
-        frm.setVisible(true);
-        this.dispose();
+            form_principal frm = new form_principal();
+            frm.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-      public void cerrar() {
+    public void cerrar() {
         try {
             this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
             addWindowListener(new WindowAdapter() {
@@ -533,6 +546,7 @@ public class form_reportes extends javax.swing.JFrame {
 
         }
     }
+
     /**
      * @param args the command line arguments
      */
