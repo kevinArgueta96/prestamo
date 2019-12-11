@@ -15,7 +15,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -27,6 +30,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
      * Creates new form form_consulta_pago
      */
     conexcion con = new conexcion();
+    DefaultTableModel dm;
 
     public form_consulta_pago() {
         initComponents();
@@ -39,7 +43,8 @@ public class form_consulta_pago extends javax.swing.JFrame {
         DefaultTableModel tbl = new DefaultTableModel();
         DefaultTableModel tbl2 = new DefaultTableModel();
         tbl.addColumn("ID");
-        tbl.addColumn("Nombre");
+        tbl.addColumn("Nombres");
+        tbl.addColumn("Apellidos");
         tbl.addColumn("DPI");
         tbl.addColumn("Monto del prestamo");
         tbl.addColumn("FECHA INICIO");
@@ -47,10 +52,10 @@ public class form_consulta_pago extends javax.swing.JFrame {
 
         tbl_prestamo.setModel(tbl);
 
-        String query = "select id_prestamo,nombre_cliente,dpi, monto_interes,fecha_creacion,fecha_finalizacion from tbl_prestamo\n"
+        String query = "select id_prestamo,nombre_cliente, apellido_cliente, dpi, monto_interes,fecha_creacion,fecha_finalizacion from tbl_prestamo\n"
                 + "inner join tbl_cliente \n"
                 + "on tbl_prestamo.id_cliente=tbl_cliente.id_cliente";
-        String[] dato = new String[6];
+        String[] dato = new String[7];
         Statement str;
 
         try {
@@ -65,6 +70,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
                 dato[3] = result.getString(4);
                 dato[4] = result.getString(5);
                 dato[5] = result.getString(6);
+                
 
                 tbl.addRow(dato);
             }
@@ -90,6 +96,8 @@ public class form_consulta_pago extends javax.swing.JFrame {
         tbl_detalle = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        txt_apellidos = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txt_monto = new javax.swing.JTextField();
         txt_id = new javax.swing.JTextField();
@@ -102,9 +110,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de Pagos");
-        setMaximumSize(new java.awt.Dimension(998, 490));
         setMinimumSize(new java.awt.Dimension(998, 490));
-        setPreferredSize(new java.awt.Dimension(998, 490));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -132,7 +138,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_prestamo);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(125, 54, 786, 162);
+        jScrollPane1.setBounds(125, 54, 810, 162);
 
         tbl_detalle.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         tbl_detalle.setModel(new javax.swing.table.DefaultTableModel(
@@ -165,12 +171,21 @@ public class form_consulta_pago extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("ID ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(170, 240, 16, 14);
+        jLabel2.setBounds(120, 240, 16, 14);
+
+        txt_apellidos.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        getContentPane().add(txt_apellidos);
+        txt_apellidos.setBounds(440, 230, 110, 30);
+
+        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel7.setText("Apellidos");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(380, 240, 49, 14);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Monto del prestamo");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(440, 240, 104, 14);
+        jLabel3.setBounds(560, 240, 104, 14);
 
         txt_monto.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_monto.addActionListener(new java.awt.event.ActionListener() {
@@ -179,7 +194,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_monto);
-        txt_monto.setBounds(550, 230, 139, 30);
+        txt_monto.setBounds(670, 230, 100, 30);
 
         txt_id.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_id.addActionListener(new java.awt.event.ActionListener() {
@@ -187,13 +202,18 @@ public class form_consulta_pago extends javax.swing.JFrame {
                 txt_idActionPerformed(evt);
             }
         });
+        txt_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_idKeyReleased(evt);
+            }
+        });
         getContentPane().add(txt_id);
-        txt_id.setBounds(190, 230, 39, 30);
+        txt_id.setBounds(140, 230, 39, 30);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("Nombre");
+        jLabel4.setText("Nombres");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(250, 240, 42, 14);
+        jLabel4.setBounds(190, 240, 60, 14);
 
         txt_nombre.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
@@ -201,13 +221,18 @@ public class form_consulta_pago extends javax.swing.JFrame {
                 txt_nombreActionPerformed(evt);
             }
         });
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyReleased(evt);
+            }
+        });
         getContentPane().add(txt_nombre);
-        txt_nombre.setBounds(300, 230, 125, 30);
+        txt_nombre.setBounds(250, 230, 125, 30);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel5.setText("DPI");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(700, 240, 20, 14);
+        jLabel5.setBounds(780, 240, 20, 14);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txt_dpi.addActionListener(new java.awt.event.ActionListener() {
@@ -215,8 +240,13 @@ public class form_consulta_pago extends javax.swing.JFrame {
                 txt_dpiActionPerformed(evt);
             }
         });
+        txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_dpiKeyReleased(evt);
+            }
+        });
         getContentPane().add(txt_dpi);
-        txt_dpi.setBounds(730, 230, 125, 30);
+        txt_dpi.setBounds(810, 230, 125, 30);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -239,14 +269,14 @@ public class form_consulta_pago extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int id;
         DefaultTableModel tbl = new DefaultTableModel();
-        String[] dat = new String[9];
+        String[] dat = new String[11];
         String sSubCadena ;
         
         if (txt_id.getText().isEmpty() || txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
         } else {
             id = Integer.parseInt(txt_id.getText());
-            String query = "select  tbl_detalle_pago.id_prestamo,tbl_cliente.nombre_cliente,tbl_cliente.dpi,tbl_prestamo.monto_interes,\n"
+            String query = "select  tbl_detalle_pago.id_prestamo,tbl_cliente.nombre_cliente,tbl_cliente.apellido_cliente,tbl_cliente.dpi,tbl_prestamo.monto_interes,\n"
                     + "tbl_abonos.pago_cliente,tbl_abonos.saldo_faltante,\n"
                     + "tbl_abonos.no_cuota ,tbl_abonos.fecha_pago from tbl_detalle_pago\n"
                     + "inner join tbl_prestamo\n"
@@ -258,7 +288,8 @@ public class form_consulta_pago extends javax.swing.JFrame {
                     + "where tbl_detalle_pago.id_prestamo=" + id;
             Statement str;
             tbl.addColumn("ID");
-            tbl.addColumn("Nombre");
+            tbl.addColumn("Nombres");
+            tbl.addColumn("Apellidos");
             tbl.addColumn("DPI");
             tbl.addColumn("Monto del prestamo");
             tbl.addColumn("Pago Cliente");
@@ -280,8 +311,9 @@ public class form_consulta_pago extends javax.swing.JFrame {
                     dat[4] = result.getString(5);
                     dat[5] = result.getString(6);
                     dat[6] = result.getString(7);
-                    sSubCadena= result.getString(8).substring(0,10);
-                    dat[7] = sSubCadena;
+                    dat[7] = result.getString(8);
+                    sSubCadena= result.getString(9).substring(0,10);
+                    dat[8] = sSubCadena;
 
                     tbl.addRow(dat);
                 }
@@ -308,12 +340,19 @@ public class form_consulta_pago extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_dpiActionPerformed
 
+      private void filtro(String consulta, JTable jtableBuscar) {
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
+        jtableBuscar.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(consulta));
+      }
     private void tbl_prestamoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_prestamoMouseClicked
         int seleccion = tbl_prestamo.rowAtPoint(evt.getPoint());
         txt_id.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
         txt_nombre.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 1)));
-        txt_dpi.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
-        txt_monto.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 3)));
+        txt_apellidos.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
+        txt_dpi.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 3)));
+        txt_monto.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 4)));
 
     }//GEN-LAST:event_tbl_prestamoMouseClicked
 
@@ -326,6 +365,21 @@ public class form_consulta_pago extends javax.swing.JFrame {
             this.dispose();
         }  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
+        // TODO add your handling code here:
+        filtro(txt_nombre.getText(), tbl_prestamo);
+    }//GEN-LAST:event_txt_nombreKeyReleased
+
+    private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
+        // TODO add your handling code here:
+         filtro(txt_dpi.getText().toUpperCase(), tbl_prestamo);
+    }//GEN-LAST:event_txt_dpiKeyReleased
+
+    private void txt_idKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txt_idKeyReleased
 
     public void cerrar() {
         try {
@@ -394,10 +448,12 @@ public class form_consulta_pago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbl_detalle;
     private javax.swing.JTable tbl_prestamo;
+    private javax.swing.JTextField txt_apellidos;
     private javax.swing.JTextField txt_dpi;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_monto;
