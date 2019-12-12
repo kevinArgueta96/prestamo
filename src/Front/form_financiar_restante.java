@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,10 +26,14 @@ public class form_financiar_restante extends javax.swing.JFrame {
     public static double prm_Restante;
     public static int prm_Plazo, prm_IDPrestamo;
     conexcion cnx = new conexcion();
+    DecimalFormatSymbols punto = new DecimalFormatSymbols();
+    
     /**
      * Creates new form form_financiar_restante
      */
     public form_financiar_restante(double _Restante, int _Plazo, int _IDPrestamo) {
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         prm_Restante = _Restante;
         prm_Plazo = _Plazo;
         prm_IDPrestamo = _IDPrestamo;
@@ -46,7 +52,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Saldo incorrecto", "Error", JOptionPane.ERROR_MESSAGE);
             txt_cuota_final.setText("0");
         }else{
-            txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
+            txt_cuota_final.setText(""+dc.format((prm_Restante / prm_Plazo)));
         }
         
         
@@ -74,6 +80,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         btn_procesar = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -179,6 +186,84 @@ public class form_financiar_restante extends javax.swing.JFrame {
         getContentPane().add(btn_procesar);
         btn_procesar.setBounds(220, 370, 47, 43);
 
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_cuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(chk_plazo, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txt_saldo_actual, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(chk_cuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(txt_cuota_final, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(59, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_saldo_actual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(chk_plazo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chk_cuotas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txt_cuotas, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txt_cuota_final, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
+        );
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back1.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -213,11 +298,13 @@ public class form_financiar_restante extends javax.swing.JFrame {
 
     private void chk_cuotasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_chk_cuotasStateChanged
         // TODO add your handling code here:
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         if(chk_cuotas.isSelected() == true){
             txt_cuotas.setEnabled(true);
         }else{
             txt_cuotas.setText("");
-            txt_cuota_final.setText(""+(prm_Restante / prm_Plazo));
+            txt_cuota_final.setText(""+dc.format((prm_Restante / prm_Plazo)));
             txt_cuotas.setEnabled(false);
         }
     }//GEN-LAST:event_chk_cuotasStateChanged
@@ -243,6 +330,8 @@ public class form_financiar_restante extends javax.swing.JFrame {
 
     private void txt_cuotasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cuotasKeyReleased
         // TODO add your handling code here:
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
         if(!txt_cuotas.getText().equals("")){
             System.out.println(txt_cuotas.getText());
             double cuotas = Integer.parseInt(txt_cuotas.getText());
@@ -250,7 +339,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
                 cuotas = 1;
             }
             System.out.println(prm_Restante / cuotas);
-            txt_cuota_final.setText(""+(prm_Restante / cuotas));
+            txt_cuota_final.setText(""+dc.format((prm_Restante / cuotas)));
         }
         
     }//GEN-LAST:event_txt_cuotasKeyReleased
@@ -355,6 +444,15 @@ public class form_financiar_restante extends javax.swing.JFrame {
 
         }
     }
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        // TODO add your handling code here:
+        form_pago_cliente frm_pago = new form_pago_cliente();
+        frm_pago.invalidate();
+        frm_pago.validate();
+        frm_pago.repaint();
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_cancelarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -391,6 +489,7 @@ public class form_financiar_restante extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_procesar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox chk_cuotas;

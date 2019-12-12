@@ -13,7 +13,9 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -42,6 +44,9 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         LocalDate fecha = LocalDate.now();
         int dia_m = fecha.getDayOfYear(), restante, dia_n;
+        
+        LocalDate hoy = LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ISO_LOCAL_DATE);
+        
         DefaultTableModel tbl = new DefaultTableModel();
         tbl.addColumn("ID");
         tbl.addColumn("Nombre");
@@ -74,10 +79,15 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
                 dato[4] = result.getString(5);
                 dato[5] = result.getString(6);
                 dato[6] = result.getString(7);
-                LocalDate localDate = LocalDate.parse(result.getString(7));
-                dia_n = localDate.getDayOfYear();
-                restante = dia_n - dia_m;
-                dato[7] = Integer.toString(restante);
+                
+                // --- pmazariegos | Calculo de días restantes para fecha de pago | 09/12/2019 ---
+                LocalDate FechaLimite = LocalDate.parse(result.getString(7), DateTimeFormatter.ISO_LOCAL_DATE); //Obtener fecha de pago
+                Duration RestaFechas = Duration.between(hoy.atStartOfDay(), FechaLimite.atStartOfDay());        //Obtener Diff de fechas (hoy - fecha de pago)
+                Long DiffDias = RestaFechas.toDays();   //Convierte el Diff a dias
+                
+                int DíasRestantes = Integer.parseInt(DiffDias.toString());
+                
+                dato[7] = Integer.toString(DíasRestantes);
                 tbl.addRow(dato);
                 //*tbl_prestamo.setDefaultRenderer(Object.class, new Render());
             }
@@ -151,11 +161,11 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(240, 300, 45, 16);
+        jLabel2.setBounds(240, 300, 37, 14);
 
         jLabel3.setText("DPI");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(540, 300, 30, 16);
+        jLabel3.setBounds(540, 300, 30, 14);
 
         txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {

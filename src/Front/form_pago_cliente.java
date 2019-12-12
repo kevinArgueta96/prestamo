@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.time.LocalDate;
@@ -32,12 +34,16 @@ public class form_pago_cliente extends javax.swing.JFrame {
     conexcion con = new conexcion();
     double monto_restante, pago_estipulado_actual;
     int cuota_res;
-    double env_CuotaFinal;
-    int env_Plazo, env_ID;
+    double env_CuotaFinal, env_saldoPagar;
+    int env_Plazo, env_ID, env_cuotaAcutal;
     DefaultTableModel dm;
+    
+    DecimalFormatSymbols punto = new DecimalFormatSymbols();
+    
 
     // pmazariegos -- Rutina para recalcular el pago estipulado -- 19/11/2019
     public double RecalcularPagoEstipulado() {
+        
         /* 
         pmazariegos -- 19/11/2019
         NOTA:
@@ -60,6 +66,9 @@ public class form_pago_cliente extends javax.swing.JFrame {
         setVisible(true);
         //pmazariegos -- ocultar boton de financiar saldo restante al inicio del form -- 19/11/2019        
         btn_financiar_restante.setVisible(false);
+        
+        //--- pmazariegos | ocultar boton de modificar saldo restante al inicio del form -- 11/12/2019        
+        btn_modificarRestante.setVisible(false);
 
         setResizable(false);
         this.setLocationRelativeTo(null);
@@ -147,6 +156,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txt_apellidos = new javax.swing.JTextField();
+        btn_modificarRestante = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -353,6 +363,15 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jPanel1.add(txt_apellidos);
         txt_apellidos.setBounds(300, 50, 190, 30);
 
+        btn_modificarRestante.setText("Modificar");
+        btn_modificarRestante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarRestanteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_modificarRestante);
+        btn_modificarRestante.setBounds(430, 130, 120, 20);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 230, 830, 330);
 
@@ -392,17 +411,24 @@ public class form_pago_cliente extends javax.swing.JFrame {
         int seleccion = tbl_prestamo.rowAtPoint(evt.getPoint());
         txt_id.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
         txt_nombre.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 1)));
-       txt_apellidos.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
+        txt_apellidos.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
         txt_dpi.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 3)));
         txt_monto_prestamo.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 4)));
         txt_Faltante.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
         txt_Faltante_cuota.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
-        int cuotasTotales = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion,7)));
+        int cuotasTotales = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 7)));
         txt_pago_estipulado.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
         txt_saldo_pagar.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
-
-        // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
+        
+         // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
         int noCuotaActual = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
+        
+        //--- pmazariegos | modificar saldo restante -- 11/12/2019        
+        env_saldoPagar = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
+        env_cuotaAcutal = noCuotaActual;
+        btn_modificarRestante.setVisible(true);
+        
+       
         //pmazariegos -- habilitacion de boton para financiar restante en cualquier cuota, no solo cuando falte 1 -- 25/11/2019
         //if (noCuotaActual == 1) { 
             double saldoTotalPrestamo = Double.parseDouble(txt_monto_prestamo.getText());
@@ -452,6 +478,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
         int cuota = 0, modifica = 0, id, dato = 0;
         int valor;
         LocalDate date = LocalDate.now();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
 
         if (txt_dpi.getText().isEmpty() && txt_nombre.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un prestamo");
@@ -470,13 +498,13 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 //PAGO MENOR AL ESTIPULADO
                 if (pago < pago_estipulado_actual) {
                     valor = JOptionPane.showConfirmDialog(this,
-                            "¿Esta Seguro que desea Realizar el Pago MENOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + RecalcularPagoEstipulado(),
+                            "¿Esta Seguro que desea Realizar el Pago MENOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + dc.format(RecalcularPagoEstipulado()),
                             "Advertencia", JOptionPane.YES_NO_OPTION);
                 } else {
                     //PAGO MAYOR AL ESTIPULADO
                     if (pago > pago_estipulado_actual) {
                         valor = JOptionPane.showConfirmDialog(this,
-                                "¿Esta Seguro que desea Realizar el Pago MAYOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + RecalcularPagoEstipulado(),
+                                "¿Esta Seguro que desea Realizar el Pago MAYOR a la cuota estipulada?\n La siguiente cuota seria de: Q." + dc.format(RecalcularPagoEstipulado()),
                                 "Advertencia", JOptionPane.YES_NO_OPTION);
                     } else {
                         valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Realizar el Pago?", "Advertencia", JOptionPane.YES_NO_OPTION);
@@ -627,6 +655,14 @@ public class form_pago_cliente extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_btn_financiar_restanteActionPerformed
 
+    private void btn_modificarRestanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarRestanteActionPerformed
+        // --- pmazariegos | abrir formulario para poder modificar el saldo restante | 11/12/2019
+        frm_modificar_restante frm = new frm_modificar_restante(env_saldoPagar, env_cuotaAcutal, env_ID);
+        frm.setVisible(true);
+        frm.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_modificarRestanteActionPerformed
+
     public void actualizar() {
         DefaultTableModel tbl = new DefaultTableModel();    
         tbl.addColumn("ID");
@@ -734,6 +770,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_financiar_restante;
+    private javax.swing.JButton btn_modificarRestante;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

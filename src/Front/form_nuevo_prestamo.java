@@ -55,6 +55,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_monto_a.setEditable(false);
         txt_ganan.setEditable(false);
         txt_id.setEditable(false);
+        
         txt_couta.setEditable(false);
         txt_cuota_pagar.setEditable(false);
         txt_pago_porce.setEditable(false);
@@ -213,14 +214,31 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         getContentPane().add(jLabel8);
         jLabel8.setBounds(71, 342, 101, 26);
 
-        cmb_plazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plazo", "Diario", "Semanal", "Mensual" }));
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel9.setText("Interés");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(313, 342, 45, 26);
+
+        txt_interes.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_interes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_interesKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_interesKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txt_interes);
+        txt_interes.setBounds(364, 340, 49, 28);
+
+        cmb_plazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Plazo", "Diario", "Semanal", "Mensual", "Personalizado" }));
         cmb_plazo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_plazoActionPerformed(evt);
             }
         });
         getContentPane().add(cmb_plazo);
-        cmb_plazo.setBounds(255, 392, 90, 26);
+        cmb_plazo.setBounds(255, 392, 91, 20);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel10.setText("Forma de pago");
@@ -260,6 +278,23 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(71, 199, 812, 123);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        jLabel2.setText("Cuotas");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(551, 399, 37, 14);
+
+        txt_couta.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_couta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_coutaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_coutaKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txt_couta);
+        txt_couta.setBounds(600, 393, 79, 20);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel3.setText("Cuota a pagar");
@@ -534,15 +569,19 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                 if (txt_monto_s.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Ingrese interes");
                 } else {
-                    switch (seleccion) {
+                    // --- pmazariegos | Habilitar cuotas personalizadas con cualquier plazo | 10/12/2019
+                    txt_couta.setEditable(true);
+                    txt_couta.setText("");
+                    txt_cuota_pagar.setText("");
+                    txt_couta.requestFocus();
+                    
+                    /*switch (seleccion) {
                         case 1:
-                            txt_couta.setText("23");
                             monto = Double.parseDouble(txt_ganan.getText());
                             total = monto / 23;
                             txt_cuota_pagar.setText(dc.format(total));
                             break;
                         case 2:
-                            txt_couta.setText("4");
                             monto = Double.parseDouble(txt_ganan.getText());
                             total = monto / 4;
                             txt_cuota_pagar.setText(dc.format(total));
@@ -553,8 +592,15 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                             total = monto / 1;
                             txt_cuota_pagar.setText(dc.format(total));
                             break;
+                        // --- pmazariegos Habilitar cuotas personalizadas 08/12/2019 --
+                        case 4:
+                            txt_couta.setEditable(true);
+                            txt_couta.setText("");
+                            txt_cuota_pagar.setText("");
+                            txt_couta.requestFocus();
+                            break;
 
-                    }
+                    }*/
                 }
             }
         } catch (NumberFormatException ex) {
@@ -1082,6 +1128,49 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private void txt_monto_sKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_monto_sKeyPressed
 
     }//GEN-LAST:event_txt_monto_sKeyPressed
+
+    private void txt_coutaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_coutaKeyTyped
+        
+     
+    }//GEN-LAST:event_txt_coutaKeyTyped
+
+    private void txt_coutaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_coutaKeyReleased
+        // --- pmazariegos | Calculo de total a pagar con cuotas personalizadas | 08/12/2019
+        DecimalFormatSymbols punto = new DecimalFormatSymbols();
+        punto.setDecimalSeparator('.');
+        DecimalFormat dc = new DecimalFormat("0.00", punto);
+        
+        // identificar solo numeros
+        if((evt.getKeyCode()>= 96 && evt.getKeyCode()<= 105) || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== com.sun.glass.events.KeyEvent.VK_BACKSPACE){
+            if(txt_couta.getText().isEmpty() == false){
+                int cuotasperso = Integer.parseInt(txt_couta.getText());
+                
+                //controlando excepcion por division con ceros
+                if(cuotasperso <= 0){ 
+                    JOptionPane.showMessageDialog(this, "Cuota Invalida", "Error", JOptionPane.ERROR_MESSAGE); 
+                    txt_couta.setText("");
+                }else{
+                    try{
+                        Double monto = Double.parseDouble(txt_ganan.getText());
+                        Double total = monto / cuotasperso;
+                        txt_cuota_pagar.setText(dc.format(total));
+
+                    }catch(ArithmeticException zeroEx){
+                        JOptionPane.showMessageDialog(this, "Error en el calculo de cuota, ingrese un número de cutoas válido", "Error", JOptionPane.ERROR_MESSAGE);
+                        System.out.println(zeroEx.getMessage());
+                        txt_couta.setText("");
+                        txt_cuota_pagar.setText("");
+                    }
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(this,"Ingrese solo numeros", "Error", JOptionPane.ERROR_MESSAGE);
+            txt_couta.setText("");
+        }
+
+        
+    }//GEN-LAST:event_txt_coutaKeyReleased
 
     private void cmb_socioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_socioMouseReleased
         // TODO add your handling code here:
