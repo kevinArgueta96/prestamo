@@ -54,6 +54,7 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Intereses Generados");
 
         txt_modify_saldoRestante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
