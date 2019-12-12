@@ -917,6 +917,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private void txt_interesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_interesKeyReleased
     
         String gana, tot;
+        String aux;
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
         DecimalFormat dc = new DecimalFormat("0.00", punto);
@@ -933,6 +934,9 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     interes = interes / 100;
                     total = monto * interes;
                     ganancia = total + monto;
+                    
+                    
+                    
                     //ganancia_neta = ganancia - comision_cobra;
                     
                     txt_monto_a.setText(dc.format(total));
@@ -999,27 +1003,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_dpiKeyTyped
 
     private void txt_porcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyTyped
-        DecimalFormatSymbols punto = new DecimalFormatSymbols();
-        punto.setDecimalSeparator('.');
-        DecimalFormat dc = new DecimalFormat("0.00", punto);
-        char valida = evt.getKeyChar();
-        if (Character.isLetter(valida) || Character.isWhitespace(valida)) {
-            getToolkit().beep();
-            evt.consume();
-
-            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
-        }
-              
-         try{
-            if (txt_pago_porce.getText().isEmpty()){
-            }else{
-                comision_cobra = Double.parseDouble(txt_pago_porce.getText());
-                ganancia_neta = ganancia - comision_cobra;
-                txt_monto_a.setText(dc.format(ganancia_neta));         
-            }
-            } catch (NumberFormatException ex) {
-
-        }
+   
     }//GEN-LAST:event_txt_porcentajeKeyTyped
 
     private void txt_porcentajeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyReleased
@@ -1099,6 +1083,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void cmb_socioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_socioMouseReleased
         // TODO add your handling code here:
+        
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
         DecimalFormat dc = new DecimalFormat("0.00", punto);
@@ -1106,7 +1091,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             if (txt_pago_porce.getText().isEmpty()){
             }else{
                 comision_cobra = Double.parseDouble(txt_pago_porce.getText());
-                ganancia_neta = ganancia - comision_cobra;
+                ganancia_neta = ganancia - monto - comision_cobra;
                 txt_monto_a.setText(dc.format(ganancia_neta));         
             }
             } catch (NumberFormatException ex) {
