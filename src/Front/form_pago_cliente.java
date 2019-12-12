@@ -82,7 +82,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         tbl.addColumn("Pago estupilado");
         tbl_prestamo.setModel(tbl);
 
-        String query = "select id_prestamo,nombre_cliente, apellido_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante, cuotas,total_cuota from tbl_prestamo\n"
+        String query = "select id_prestamo,nombre_cliente,apellido_cliente,dpi, monto_interes,saldo_faltante,cuota_faltante, cuotas,total_cuota from tbl_prestamo\n"
                 + "inner join tbl_cliente \n"
                 + "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n"
                 + "where estado=1";
@@ -392,17 +392,17 @@ public class form_pago_cliente extends javax.swing.JFrame {
         int seleccion = tbl_prestamo.rowAtPoint(evt.getPoint());
         txt_id.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
         txt_nombre.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 1)));
-        txt_apellidos.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
+       txt_apellidos.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 2)));
         txt_dpi.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 3)));
         txt_monto_prestamo.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 4)));
         txt_Faltante.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
         txt_Faltante_cuota.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
-        int cuotasTotales = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 7)));
+        int cuotasTotales = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion,7)));
         txt_pago_estipulado.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
         txt_saldo_pagar.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
 
         // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
-        int noCuotaActual = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
+        int noCuotaActual = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
         //pmazariegos -- habilitacion de boton para financiar restante en cualquier cuota, no solo cuando falte 1 -- 25/11/2019
         //if (noCuotaActual == 1) { 
             double saldoTotalPrestamo = Double.parseDouble(txt_monto_prestamo.getText());
@@ -410,7 +410,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             // cuota inicial
             double cuotaInicial = saldoTotalPrestamo / cuotasTotales;
             //cuota final
-            double cuotaFinal = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 7)));
+            double cuotaFinal = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
 
             if (cuotaFinal > cuotaInicial) {
                 //Variables de envio al siguiente formulario
@@ -447,6 +447,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         double pago = 0, saldo_fal = 0;
         int cuota = 0, modifica = 0, id, dato = 0;
         int valor;
@@ -589,6 +590,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             txt_id.setText("");
             txt_monto_prestamo.setText("");
             txt_nombre.setText("");
+            txt_apellidos.setText("");
             txt_pago_estipulado.setText("");
             txt_saldo_pagar.setText("");
         }
@@ -629,6 +631,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         DefaultTableModel tbl = new DefaultTableModel();    
         tbl.addColumn("ID");
         tbl.addColumn("Nombre");
+        tbl.addColumn("Apellidos");
         tbl.addColumn("DPI");
         tbl.addColumn("Prestamo");
         tbl.addColumn("Saldo a pagar");
@@ -639,11 +642,11 @@ public class form_pago_cliente extends javax.swing.JFrame {
         
         tbl_prestamo.setModel(tbl);
 
-        String query = "select id_prestamo,nombre_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante, cuotas,total_cuota from tbl_prestamo\n"
+        String query = "select id_prestamo,nombre_cliente,apellido_cliente, dpi, monto_interes,saldo_faltante,cuota_faltante, cuotas,total_cuota from tbl_prestamo\n"
                 + "inner join tbl_cliente \n"
                 + "on tbl_prestamo.id_cliente= tbl_cliente.id_cliente \n"
                 + "where estado=1";
-        String[] dato = new String[8];
+        String[] dato = new String[9];
         Statement str;
 
         try {
@@ -660,6 +663,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                 dato[5] = result.getString(6);
                 dato[6] = result.getString(7);
                 dato[7] = result.getString(8);
+                dato[8] = result.getString(9);
                 tbl.addRow(dato);
             }
             str.close();
