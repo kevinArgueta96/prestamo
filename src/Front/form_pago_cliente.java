@@ -32,8 +32,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
     conexcion con = new conexcion();
     double monto_restante, pago_estipulado_actual;
     int cuota_res;
-    double env_CuotaFinal;
-    int env_Plazo, env_ID;
+    double env_CuotaFinal, env_saldoPagar;
+    int env_Plazo, env_ID, env_cuotaAcutal;
     DefaultTableModel dm;
     
     DecimalFormatSymbols punto = new DecimalFormatSymbols();
@@ -61,6 +61,9 @@ public class form_pago_cliente extends javax.swing.JFrame {
         initComponents();
         //pmazariegos -- ocultar boton de financiar saldo restante al inicio del form -- 19/11/2019        
         btn_financiar_restante.setVisible(false);
+        
+        //--- pmazariegos | ocultar boton de modificar saldo restante al inicio del form -- 11/12/2019        
+        btn_modificarRestante.setVisible(false);
 
         setResizable(false);
         this.setLocationRelativeTo(null);
@@ -144,6 +147,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         txt_saldo_pagar = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btn_financiar_restante = new javax.swing.JButton();
+        btn_modificarRestante = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -340,6 +344,15 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jPanel1.add(btn_financiar_restante);
         btn_financiar_restante.setBounds(580, 250, 170, 30);
 
+        btn_modificarRestante.setText("Modificar");
+        btn_modificarRestante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_modificarRestanteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_modificarRestante);
+        btn_modificarRestante.setBounds(430, 130, 120, 20);
+
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 240, 830, 310);
 
@@ -386,9 +399,16 @@ public class form_pago_cliente extends javax.swing.JFrame {
         int cuotasTotales = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
         txt_pago_estipulado.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 7)));
         txt_saldo_pagar.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 7)));
-
-        // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
+        
+         // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
         int noCuotaActual = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
+        
+        //--- pmazariegos | modificar saldo restante -- 11/12/2019        
+        env_saldoPagar = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 4)));
+        env_cuotaAcutal = noCuotaActual;
+        btn_modificarRestante.setVisible(true);
+        
+       
         //pmazariegos -- habilitacion de boton para financiar restante en cualquier cuota, no solo cuando falte 1 -- 25/11/2019
         //if (noCuotaActual == 1) { 
             double saldoTotalPrestamo = Double.parseDouble(txt_monto_prestamo.getText());
@@ -611,6 +631,14 @@ public class form_pago_cliente extends javax.swing.JFrame {
         this.hide();
     }//GEN-LAST:event_btn_financiar_restanteActionPerformed
 
+    private void btn_modificarRestanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarRestanteActionPerformed
+        // --- pmazariegos | abrir formulario para poder modificar el saldo restante | 11/12/2019
+        frm_modificar_restante frm = new frm_modificar_restante(env_saldoPagar, env_cuotaAcutal, env_ID);
+        frm.setVisible(true);
+        frm.setLocationRelativeTo(this);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_modificarRestanteActionPerformed
+
     public void actualizar() {
         DefaultTableModel tbl = new DefaultTableModel();    
         tbl.addColumn("ID");
@@ -716,6 +744,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_financiar_restante;
+    private javax.swing.JButton btn_modificarRestante;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
