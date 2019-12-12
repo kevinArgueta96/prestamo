@@ -5,6 +5,8 @@
  */
 package Front;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -27,6 +29,8 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         prm_idprestamo  = _IDPrestamo;
         prm_cuota       = _Cuotas;
         initComponents();
+        cerrar();
+        this.setResizable(false);
         
         txt_saldo_actual.setText(""+prm_Restante);
     }
@@ -59,7 +63,8 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("MODIFICAR SALDO RESTANTE");
 
-        btn_procesar.setText("Procesar");
+        btn_procesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/check.png"))); // NOI18N
+        btn_procesar.setText("  Procesar");
         btn_procesar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_procesarActionPerformed(evt);
@@ -72,7 +77,8 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         txt_saldo_actual.setEditable(false);
         txt_saldo_actual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        btn_cancelar.setText("Cancelar");
+        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
+        btn_cancelar.setText("  Cancelar");
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
@@ -104,8 +110,9 @@ public class frm_modificar_restante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -127,11 +134,11 @@ public class frm_modificar_restante extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_modify_saldoRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,6 +189,29 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
+     public void cerrar() {
+        try {
+            this.setDefaultCloseOperation(form_newcobrador.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e) {
+                    confirmarSalida();
+                }
+            }
+            );
+            this.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void confirmarSalida() {
+        int valor = JOptionPane.showConfirmDialog(this, "¿Esta Seguro que desea Salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+        if (valor == JOptionPane.YES_OPTION) {
+            System.exit(0);
+
+        }
+    }
     /**
      * @param args the command line arguments
      */

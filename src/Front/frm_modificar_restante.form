@@ -51,8 +51,9 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="btn_cancelar" min="-2" pref="143" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btn_procesar" min="-2" pref="143" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -81,12 +82,12 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_modify_saldoRestante" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_procesar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="btn_cancelar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="btn_cancelar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btn_procesar" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -119,7 +120,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_procesar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Procesar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/check.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="  Procesar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_procesarActionPerformed"/>
@@ -143,7 +147,10 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_cancelar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/exit.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="  Cancelar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelarActionPerformed"/>

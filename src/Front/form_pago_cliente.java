@@ -69,6 +69,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         
         //--- pmazariegos | ocultar boton de modificar saldo restante al inicio del form -- 11/12/2019        
         btn_modificarRestante.setVisible(false);
+        lbl_interes.setVisible(false);
 
         setResizable(false);
         this.setLocationRelativeTo(null);
@@ -157,6 +158,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txt_apellidos = new javax.swing.JTextField();
         btn_modificarRestante = new javax.swing.JButton();
+        lbl_interes = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -363,14 +365,19 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jPanel1.add(txt_apellidos);
         txt_apellidos.setBounds(300, 50, 190, 30);
 
-        btn_modificarRestante.setText("Modificar");
+        btn_modificarRestante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modify.png"))); // NOI18N
         btn_modificarRestante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_modificarRestanteActionPerformed(evt);
             }
         });
         jPanel1.add(btn_modificarRestante);
-        btn_modificarRestante.setBounds(430, 130, 120, 20);
+        btn_modificarRestante.setBounds(740, 30, 60, 60);
+
+        lbl_interes.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
+        lbl_interes.setText("Intereses Generados");
+        jPanel1.add(lbl_interes);
+        lbl_interes.setBounds(720, 0, 110, 30);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 230, 830, 330);
@@ -427,6 +434,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         env_saldoPagar = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
         env_cuotaAcutal = noCuotaActual;
         btn_modificarRestante.setVisible(true);
+        lbl_interes.setVisible(true);
         
        
         //pmazariegos -- habilitacion de boton para financiar restante en cualquier cuota, no solo cuando falte 1 -- 25/11/2019
@@ -787,6 +795,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbl_interes;
     private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_Faltante;
     private javax.swing.JTextField txt_Faltante_cuota;
