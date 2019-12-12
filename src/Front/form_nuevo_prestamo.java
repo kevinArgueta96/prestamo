@@ -873,8 +873,10 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                 txt_interes.setText(null);
                                                 txt_monto_a.setText(null);
                                                 txt_monto_s.setText(null);
+                                                date_cre.setDate(null);
                                                 cmb_plazo.setSelectedIndex(0);
                                                 cmb_socio.setSelectedIndex(0);
+                                                cmb_cobrador.setSelectedIndex(0);
                                                 chk_gara.setAction(null);
                                                 txt_pago_porce.setText(null);
                                                 txt_porcentaje.setText(null);
