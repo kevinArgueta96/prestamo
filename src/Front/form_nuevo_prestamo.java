@@ -47,7 +47,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_id.setVisible(false);
         setResizable(false);
         SimpleDateFormat dformat = new SimpleDateFormat("dd-MM-yyyy");
-        txt_fecha_creacion.setEditable(false);
+        txt_fecha_creacion.setEditable(true);
         LocalDate local = LocalDate.now();
         Date date = java.sql.Date.valueOf(local);
         String fecha = dformat.format(date);
@@ -796,7 +796,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                                 cmb_plazo.setSelectedIndex(0);
                                                                 cmb_socio.setSelectedIndex(0);
                                                                 cmb_cobrador.setSelectedIndex(0);
-                                                                chk_gara.setAction(null);
+                                                                chk_gara.setContentAreaFilled(false);
                                                                 txt_pago_porce.setText(null);
                                                                 txt_porcentaje.setText(null);
                                                                 date_cre.setDate(null);
@@ -825,6 +825,25 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     /* 
                      */
                 } else {
+                    /*txt_nombre.setText(null);
+                    txt_dpi.setText(null);
+                    txt_couta.setText(null);
+                    txt_cuota_pagar.setText(null);
+                    txt_ganan.setText(null);
+                    txt_id.setText(null);
+                    txt_interes.setText(null);
+                    txt_monto_a.setText(null);
+                    txt_monto_s.setText(null);
+                    cmb_plazo.setSelectedIndex(0);
+                    cmb_socio.setSelectedIndex(0);
+                    cmb_cobrador.setSelectedIndex(0);
+                   // chk_gara.setAction(null);
+                    date_cre.setDate(null);
+                    txt_pago_porce.setText(null);
+                    txt_porcentaje.setText(null);*/
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Prestamo No Registrado, Seleccione otro Cliente");
                     txt_nombre.setText(null);
                     txt_dpi.setText(null);
                     txt_couta.setText(null);
@@ -836,16 +855,16 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     txt_monto_s.setText(null);
                     cmb_plazo.setSelectedIndex(0);
                     cmb_socio.setSelectedIndex(0);
-                    chk_gara.setAction(null);
+                    cmb_cobrador.setSelectedIndex(0);
+                    chk_gara.setContentAreaFilled(false);
+                    date_cre.setDate(null);
                     txt_pago_porce.setText(null);
                     txt_porcentaje.setText(null);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Seleccione otro cliente");
+                    txt_nombre.setCursor(null);
             }
         } else {
 
-            if (chk_gara.isSelected() == true) {
+          if (chk_gara.isSelected() == true) {
                 garantia = 1;
             }
             if (txt_id.getText().isEmpty()) {
@@ -922,8 +941,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                 date_cre.setDate(null);
                                                 cmb_plazo.setSelectedIndex(0);
                                                 cmb_socio.setSelectedIndex(0);
-                                                cmb_cobrador.setSelectedIndex(0);
-                                                chk_gara.setAction(null);
+                                                cmb_cobrador.setSelectedIndex(0);    
+                                                chk_gara.setContentAreaFilled(false);
                                                 txt_pago_porce.setText(null);
                                                 txt_porcentaje.setText(null);
                                             } else {

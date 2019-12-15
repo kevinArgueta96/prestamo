@@ -61,7 +61,7 @@ public class form_comisiones extends javax.swing.JFrame {
                 + "p.ganancia,p.porcentaje_cobra,p.pago_comision from tbl_prestamo p\n"
                 + "inner join tbl_cobrador c\n"
                 + "on p.id_cobrador=c.id_cobrador\n"
-                + "where estado_comision=1;";
+                + "where estado_comision=0;";
         String[] dato_co = new String[8];
         Statement str_co;
 
@@ -422,7 +422,7 @@ public class form_comisiones extends javax.swing.JFrame {
                 + "p.ganancia,p.porcentaje_cobra,p.pago_comision from tbl_prestamo p\n"
                 + "inner join tbl_cobrador c\n"
                 + "on p.id_cobrador=c.id_cobrador\n"
-                + "where estado_comision=1;";
+                + "where estado_comision=0;";
         String[] dato_co = new String[8];
         Statement str_co;
 
