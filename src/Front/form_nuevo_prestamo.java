@@ -1055,7 +1055,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void txt_monto_sKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_monto_sKeyTyped
         char valida = evt.getKeyChar();
-        if (Character.isLetter(valida) || Character.isWhitespace(valida)) {
+        if (Character.isLetter(valida) || Character.isWhitespace(valida)||evt.getKeyChar()==KeyEvent.VK_COMMA) {
             getToolkit().beep();
             evt.consume();
 
@@ -1066,7 +1066,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void txt_interesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_interesKeyTyped
         char valida = evt.getKeyChar();
-        if (Character.isLetter(valida) || Character.isWhitespace(valida)) {
+        if (Character.isLetter(valida) || Character.isWhitespace(valida)||evt.getKeyChar()==KeyEvent.VK_COMMA) {
             getToolkit().beep();
             evt.consume();
 
@@ -1135,7 +1135,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     //tot = String.valueOf(total);
                     //gana = String.valueOf(ganancia);
                     //txt_monto_a.setText(dc.format(total));
-                    txt_pago_porce.setText(dc.format(total)+ formatter);
+                    txt_pago_porce.setText(dc.format(total));
                     //txt_monto_a.setText(dc.format(resta));
                 }
             }
