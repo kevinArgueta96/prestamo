@@ -7,6 +7,7 @@ package Front;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,6 +50,7 @@ public class form_garantia extends javax.swing.JFrame {
         }
         //con.desconectar();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -292,7 +294,10 @@ public class form_garantia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btn_guardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardaActionPerformed
+        
         int año;
         double valor, kilometraje;
         form_principal menu = new form_principal();
@@ -323,9 +328,16 @@ public class form_garantia extends javax.swing.JFrame {
                                     kilometraje = Double.parseDouble(txt_kilometraje.getText());
                                     valor = Double.parseDouble(txt_precio_vehiculo.getText());
                                     String query = "INSERT INTO tbl_vehiculo (id_vehiculo,marca,modelo,año,kilometraje,placa,precio_vehiculo,id_prestamo) VALUES (?, ?, ?, ?, ?,? ,? ,?)";
-
-                                    try {
-                                        PreparedStatement str = con.getConnection().prepareStatement(query);
+                                    
+                                    //--- pmazariegos | Instanciando conexion a base de datos  | 12/01/2020
+                                    Connection SQLCnx = con.getConnection();
+                                    PreparedStatement str = null;
+                                    
+                                    try { 
+                                        //--- pmazariegos | Deshabilitando auto-commit  | 12/01/2020
+                                        SQLCnx.setAutoCommit(false);
+                                        
+                                        str = SQLCnx.prepareStatement(query);                                        
                                         str.setNull(1, java.sql.Types.BIGINT);
                                         str.setString(2, txt_marca.getText());
                                         str.setString(3, txt_modelo.getText());
@@ -334,17 +346,47 @@ public class form_garantia extends javax.swing.JFrame {
                                         str.setString(6, txt_placa.getText());
                                         str.setDouble(7, valor);
                                         str.setInt(8, dato);
-
-                                        int res = str.executeUpdate();
-                                        if (res > 0) {
+                                        
+                                        int SQLStatus = str.executeUpdate();    //--- Ejecutando query
+                                        
+                                        if(SQLStatus > 0 ){
+                                            SQLCnx.commit();    //--- Realizando commit       
+                                            SQLCnx.setAutoCommit(true); //--- Volver a setear auto-commit para futuras transacciones
+                                        
                                             JOptionPane.showMessageDialog(null, "Ingreso completado");
                                             this.dispose();
                                             menu.setVisible(true);
-                                        } else {
-                                            JOptionPane.showMessageDialog(null, "Error");
+                                        }else{
+                                            SQLCnx.rollback();  //--- Ejecutando rollback si falla
                                         }
+                                        
+                                      
                                     } catch (SQLException e) {
-                                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                                        try {
+                                            // pmzariegos | Aplicar rollback solo si la conexion existe | 12/01/2020
+                                            if(SQLCnx != null){
+                                                SQLCnx.rollback();
+                                            }
+                                            
+                                        } catch (SQLException rollbackEx) {
+                                            System.out.println("Error al aplicar rollback, error viaja a finally para cerrar conexion y omitir transaccion");
+                                        }
+                                        
+                                        JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");                               
+                                        
+                                    } finally {
+                                        //--- pmazariegos | Sí falla el rollback del "catch" elimina la instancia de conexion para omitir transaccion | 12/01/2020
+                                        try{
+                                            if(str != null){ str.close();}  //--- Elimina PreparedStatement
+                                            
+                                            if(SQLCnx != null){             //--- Elimina Conexion a BD
+                                                SQLCnx.setAutoCommit(true);
+                                                SQLCnx.close();     
+                                            }
+                                            
+                                        }catch(SQLException FinallyEx){
+                                            System.out.println("Transacción omitida");
+                                        }
                                     }
                                 }
                             }
@@ -370,9 +412,13 @@ public class form_garantia extends javax.swing.JFrame {
                             valor = Double.parseDouble(txt_precio_terreno.getText());
 
                             String query = "INSERT INTO tbl_propiedad (id_propiedad,ubicacion,medida_terreno,documento_legal,nombre_negocio,precio_terreno,id_prestamo) VALUES (?, ?, ?, ?, ?,? ,? )";
-
+                            
+                            //--- pmazariegos | Instanciando conexion a base de datos  | 12/01/2020
+                            Connection SQLCnx = con.getConnection();
+                            PreparedStatement str = null;
+                                    
                             try {
-                                PreparedStatement str = con.getConnection().prepareStatement(query);
+                                str = SQLCnx.prepareStatement(query);
                                 str.setNull(1, java.sql.Types.BIGINT);
                                 str.setString(2, txt_ubicacion.getText());
                                 str.setString(3, txt_medidas.getText());
@@ -381,16 +427,46 @@ public class form_garantia extends javax.swing.JFrame {
                                 str.setDouble(6, valor);
                                 str.setInt(7, dato);
 
-                                int res = str.executeUpdate();
-                                if (res > 0) {
+                               int SQLStatus = str.executeUpdate();    //--- Ejecutando query
+                                        
+                                if(SQLStatus > 0 ){
+                                    SQLCnx.commit();    //--- Realizando commit       
+                                    SQLCnx.setAutoCommit(true); //--- Volver a setear auto-commit para futuras transacciones
+                                    
                                     JOptionPane.showMessageDialog(null, "Ingreso completado");
                                     this.dispose();
                                     menu.setVisible(true);
-                                } else {
+                                }else{
+                                    SQLCnx.rollback();
                                     JOptionPane.showMessageDialog(null, "Error");
                                 }
+                                
+                               
                             } catch (SQLException e) {
+                                try {
+                                    // pmzariegos | Aplicar rollback solo si la conexion existe | 12/01/2020
+                                    if(SQLCnx != null){
+                                        SQLCnx.rollback();
+                                    }
+
+                                } catch (SQLException rollbackEx) {
+                                    System.out.println("Error al aplicar rollback, error viaja a finally para cerrar conexion y omitir transaccion");
+                                }
+
                                 JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
+                            } finally {
+                                //--- pmazariegos | Sí falla el rollback del "catch" elimina la instancia de conexion para omitir transaccion | 12/01/2020
+                                try{
+                                    if(str != null){ str.close();}  //--- Elimina PreparedStatement
+
+                                    if(SQLCnx != null){             //--- Elimina Conexion a BD
+                                        SQLCnx.setAutoCommit(true);
+                                        SQLCnx.close();     
+                                    }
+
+                                }catch(SQLException FinallyEx){
+                                    System.out.println("Transacción omitida");
+                                }
                             }
                         }
                     }
