@@ -34,13 +34,13 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     DefaultTableModel dm;
     private JComboBox combo;
     int estado_prestamo_nuevo = 0;
-    String saldo_falta = "", couta_falta = "",ganancia_falta="";
-     double monto;
-        double interes;
-        double total;
-        double ganancia, comision_cobra, ganancia_neta;
-        Locale usa = new Locale("us", "US");
-        NumberFormat formatter = NumberFormat.getCurrencyInstance(usa);
+    String saldo_falta = "", couta_falta = "", ganancia_falta = "";
+    double monto;
+    double interes;
+    double total;
+    double ganancia, comision_cobra, ganancia_neta;
+    Locale usa = new Locale("us", "US");
+    NumberFormat formatter = NumberFormat.getCurrencyInstance(usa);
 
     public form_nuevo_prestamo() {
         initComponents();
@@ -59,7 +59,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         txt_monto_a.setEditable(false);
         txt_ganan.setEditable(false);
         txt_id.setEditable(false);
-        
+
         txt_couta.setEditable(false);
         txt_cuota_pagar.setEditable(false);
         txt_pago_porce.setEditable(false);
@@ -611,7 +611,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     txt_couta.setText("");
                     txt_cuota_pagar.setText("");
                     txt_couta.requestFocus();
-                    
+
                     /*switch (seleccion) {
                         case 1:
                             monto = Double.parseDouble(txt_ganan.getText());
@@ -705,7 +705,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     saldo_falta = dato[3];
                     prestamo_cambio = dato[0];
                     couta_falta = dato[4];
-                    ganancia_falta=dato[5];
+                    ganancia_falta = dato[5];
                     estadod = 1;
                 } else {
                 }
@@ -714,43 +714,49 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
         }
         double nuevo_saldo, aux, nueva_suma;
-        double a, b, c, d,el;
+        double a, b, c, d, el;
         String aux_monto;
         String query_prestamo_pen = "UPDATE `dbprestamo`.`tbl_prestamo` SET `saldo_faltante` = '0', `cuota_faltante` = '0',`estado` = '0' WHERE (`id_prestamo` = '" + prestamo_cambio + "')";
-        
+
         if (estadod == 1) {
-            JOptionPane.showMessageDialog(null, "EL CLIENTE TIENE UN PRESTAMO ACTIVO CON UN SALDO FALTANTE DE: " + saldo_falta + "\nCUOTAS FALTANTES: " + couta_falta+"\nGANANCIA ANTERIOR:"+ganancia_falta);
+            JOptionPane.showMessageDialog(null, "EL CLIENTE TIENE UN PRESTAMO ACTIVO CON UN SALDO FALTANTE DE: " + saldo_falta + "\nCUOTAS FALTANTES: " + couta_falta + "\nGANANCIA ANTERIOR:" + ganancia_falta);
             int pres_nue = JOptionPane.showConfirmDialog(null, "DESEA REALIZAR UN NUEVO PRESTAMO AL CLIENTE", "CONFIRMAR PRESTAMO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (pres_nue == 0) {
-                aux=Double.parseDouble(txt_ganan.getText());
-                a=Double.parseDouble(txt_monto_a.getText());
-                b=Double.parseDouble(ganancia_falta);
-                nuevo_saldo=Double.parseDouble(saldo_falta);
-                nueva_suma=nuevo_saldo+aux;
-                txt_ganan.setText(dc.format(nueva_suma));
-                c=a+b;
-                //d=Double.parseDouble(txt_pago_porce.getText());
-                //el=c-d;
-                txt_monto_a.setText(dc.format(c));
-                if (cmb_plazo.getSelectedIndex() == 1) {
-                    c = Double.parseDouble(txt_ganan.getText());
-                    d = c / 23;
-                    txt_cuota_pagar.setText(dc.format(d));
+                if (cmb_cobrador.getSelectedIndex() == 0) {
+                    
+                } else {
+                    if (cmb_socio.getSelectedIndex() == 0) {
+                    } else {
+                        aux = Double.parseDouble(txt_ganan.getText());
+                        a = Double.parseDouble(txt_monto_a.getText());
+                        b = Double.parseDouble(ganancia_falta);
+                        nuevo_saldo = Double.parseDouble(saldo_falta);
+                        nueva_suma = nuevo_saldo + aux;
+                        txt_ganan.setText(dc.format(nueva_suma));
+                        c = a + b;
+                        //d=Double.parseDouble(txt_pago_porce.getText());
+                        //el=c-d;
+                        txt_monto_a.setText(dc.format(c));
+                        if (cmb_plazo.getSelectedIndex() == 1) {
+                            c = Double.parseDouble(txt_ganan.getText());
+                            d = c / 23;
+                            txt_cuota_pagar.setText(dc.format(d));
+                        }
+                        if (cmb_plazo.getSelectedIndex() == 2) {
+                            c = Double.parseDouble(txt_ganan.getText());
+                            d = c / 4;
+                            txt_cuota_pagar.setText(dc.format(d));
+                        }
+                        if (cmb_plazo.getSelectedIndex() == 3) {
+                            c = Double.parseDouble(txt_ganan.getText());
+                            d = c / 1;
+                            txt_cuota_pagar.setText(dc.format(d));
+                        }
+                    }
                 }
-                if (cmb_plazo.getSelectedIndex() == 2) {
-                    c = Double.parseDouble(txt_ganan.getText());
-                    d = c / 4;
-                    txt_cuota_pagar.setText(dc.format(d));
-                }
-                if (cmb_plazo.getSelectedIndex() == 3) {
-                    c = Double.parseDouble(txt_ganan.getText());
-                    d = c / 1;
-                    txt_cuota_pagar.setText(dc.format(d));
-                }
-                
                 int pres_seguro = JOptionPane.showConfirmDialog(null, "Esta seguro del nuevo prestamo", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (pres_seguro == 0) {
-                    
+
                     try {
                         if (chk_gara.isSelected() == true) {
                             garantia = 1;
@@ -774,7 +780,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                 JOptionPane.showMessageDialog(null, "Seleccione un Socio");
                                             } else {
                                                 if (cobrador == 0) {
-                                                    JOptionPane.showMessageDialog(null, "Seleccione un Socio");
+                                                    JOptionPane.showMessageDialog(null, "Seleccione un Cobrador");
                                                 } else {
                                                     PreparedStatement str_update = con.getConnection().prepareStatement(query_prestamo_pen);
 
@@ -789,7 +795,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                         ganancia = Double.parseDouble(txt_monto_a.getText());
                                                         monto_a_pa = Double.parseDouble(txt_ganan.getText());
                                                         fec_f = dformat.format(date_cre.getDate());
-                                                        fec_c = local.toString();
+                                                        fec_c = dformat.format(txt_fecha_creacion.getDate());
                                                         cuota = Integer.parseInt(txt_couta.getText());
                                                         cuota_tot = Double.parseDouble(txt_cuota_pagar.getText());
 
@@ -837,7 +843,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                                 txt_pago_porce.setText(null);
                                                                 txt_porcentaje.setText(null);
                                                                 date_cre.setDate(null);
-                                                                date_cre.setCalendar(null);                                                                                                                      } else {
+                                                                date_cre.setCalendar(null);
+                                                            } else {
                                                                 JOptionPane.showMessageDialog(null, "Error");
                                                             }
                                                             str.close();
@@ -856,6 +863,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                 }
                             }
                         }
+
                     } catch (SQLException e) {
                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
                     }
@@ -879,29 +887,30 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     txt_pago_porce.setText(null);
                     txt_porcentaje.setText(null);*/
                 }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Prestamo No Registrado, Seleccione otro Cliente");
-                    txt_nombre.setText(null);
-                    txt_dpi.setText(null);
-                    txt_couta.setText(null);
-                    txt_cuota_pagar.setText(null);
-                    txt_ganan.setText(null);
-                    txt_id.setText(null);
-                    txt_interes.setText(null);
-                    txt_monto_a.setText(null);
-                    txt_monto_s.setText(null);
-                    cmb_plazo.setSelectedIndex(0);
-                    cmb_socio.setSelectedIndex(0);
-                    cmb_cobrador.setSelectedIndex(0);
-                    chk_gara.setContentAreaFilled(false);
-                    date_cre.setDate(null);
-                    txt_pago_porce.setText(null);
-                    txt_porcentaje.setText(null);
-                    txt_nombre.setCursor(null);
+                txt_nombre.setText(null);
+                txt_dpi.setText(null);
+                txt_couta.setText(null);
+                txt_cuota_pagar.setText(null);
+                txt_ganan.setText(null);
+                txt_id.setText(null);
+                txt_interes.setText(null);
+                txt_monto_a.setText(null);
+                txt_monto_s.setText(null);
+                cmb_plazo.setSelectedIndex(0);
+                cmb_socio.setSelectedIndex(0);
+                cmb_cobrador.setSelectedIndex(0);
+                chk_gara.setContentAreaFilled(false);
+                date_cre.setDate(null);
+                txt_pago_porce.setText(null);
+                txt_porcentaje.setText(null);
+                txt_nombre.setCursor(null);
             }
         } else {
 
-          if (chk_gara.isSelected() == true) {
+            if (chk_gara.isSelected() == true) {
                 garantia = 1;
             }
             if (txt_id.getText().isEmpty()) {
@@ -978,7 +987,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                 date_cre.setDate(null);
                                                 cmb_plazo.setSelectedIndex(0);
                                                 cmb_socio.setSelectedIndex(0);
-                                                cmb_cobrador.setSelectedIndex(0);    
+                                                cmb_cobrador.setSelectedIndex(0);
                                                 chk_gara.setContentAreaFilled(false);
                                                 txt_pago_porce.setText(null);
                                                 txt_porcentaje.setText(null);
@@ -1019,7 +1028,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_dpiKeyReleased
 
     private void txt_interesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_interesKeyReleased
-    
+
         String gana, tot;
         String aux;
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
@@ -1030,7 +1039,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             if (txt_monto_s.getText().isEmpty()) {
                 //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero");
             } else {
-               if (txt_interes.getText().isEmpty()) {
+                if (txt_interes.getText().isEmpty()) {
                     //JOptionPane.showMessageDialog(null, "Ingrese Monto Solicitado Primero")
                 } else {
                     monto = Double.parseDouble(txt_monto_s.getText());
@@ -1038,14 +1047,11 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     interes = interes / 100;
                     total = monto * interes;
                     ganancia = total + monto;
-                    
-                    
-                    
+
                     //ganancia_neta = ganancia - comision_cobra;
-                    
                     txt_monto_a.setText(dc.format(total));
                     txt_ganan.setText(dc.format(ganancia));
-                   // txt_monto_a.setText(dc.format(ganancia_neta));
+                    // txt_monto_a.setText(dc.format(ganancia_neta));
                 }
             }
         } catch (NumberFormatException ex) {
@@ -1055,7 +1061,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void txt_monto_sKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_monto_sKeyTyped
         char valida = evt.getKeyChar();
-        if (Character.isLetter(valida) || Character.isWhitespace(valida)||evt.getKeyChar()==KeyEvent.VK_COMMA) {
+        if (Character.isLetter(valida) || Character.isWhitespace(valida) || evt.getKeyChar() == KeyEvent.VK_COMMA) {
             getToolkit().beep();
             evt.consume();
 
@@ -1066,7 +1072,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void txt_interesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_interesKeyTyped
         char valida = evt.getKeyChar();
-        if (Character.isLetter(valida) || Character.isWhitespace(valida)||evt.getKeyChar()==KeyEvent.VK_COMMA) {
+        if (Character.isLetter(valida) || Character.isWhitespace(valida) || evt.getKeyChar() == KeyEvent.VK_COMMA) {
             getToolkit().beep();
             evt.consume();
 
@@ -1107,14 +1113,14 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_dpiKeyTyped
 
     private void txt_porcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyTyped
-   
+
     }//GEN-LAST:event_txt_porcentajeKeyTyped
 
     private void txt_porcentajeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_porcentajeKeyReleased
         double monto;
         double interes;
         double total;
-        double ganancia,aux,resta;
+        double ganancia, aux, resta;
         String gana, tot;
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
@@ -1186,8 +1192,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_monto_sKeyPressed
 
     private void txt_coutaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_coutaKeyTyped
-        
-     
+
+
     }//GEN-LAST:event_txt_coutaKeyTyped
 
     private void txt_coutaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_coutaKeyReleased
@@ -1195,23 +1201,23 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
         DecimalFormat dc = new DecimalFormat("0.00", punto);
-        
+
         // identificar solo numeros
-        if((evt.getKeyCode()>= 96 && evt.getKeyCode()<= 105) || evt.getKeyCode()== KeyEvent.VK_ENTER || evt.getKeyCode()== com.sun.glass.events.KeyEvent.VK_BACKSPACE){
-            if(txt_couta.getText().isEmpty() == false){
+        if ((evt.getKeyCode() >= 96 && evt.getKeyCode() <= 105) || evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == com.sun.glass.events.KeyEvent.VK_BACKSPACE) {
+            if (txt_couta.getText().isEmpty() == false) {
                 int cuotasperso = Integer.parseInt(txt_couta.getText());
-                
+
                 //controlando excepcion por division con ceros
-                if(cuotasperso <= 0){ 
-                    JOptionPane.showMessageDialog(this, "Cuota Invalida", "Error", JOptionPane.ERROR_MESSAGE); 
+                if (cuotasperso <= 0) {
+                    JOptionPane.showMessageDialog(this, "Cuota Invalida", "Error", JOptionPane.ERROR_MESSAGE);
                     txt_couta.setText("");
-                }else{
-                    try{
+                } else {
+                    try {
                         Double monto = Double.parseDouble(txt_ganan.getText());
                         Double total = monto / cuotasperso;
                         txt_cuota_pagar.setText(dc.format(total));
 
-                    }catch(ArithmeticException zeroEx){
+                    } catch (ArithmeticException zeroEx) {
                         JOptionPane.showMessageDialog(this, "Error en el calculo de cuota, ingrese un número de cutoas válido", "Error", JOptionPane.ERROR_MESSAGE);
                         System.out.println(zeroEx.getMessage());
                         txt_couta.setText("");
@@ -1219,29 +1225,29 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     }
                 }
             }
-            
-        }else{
-            JOptionPane.showMessageDialog(this,"Ingrese solo numeros", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Ingrese solo numeros", "Error", JOptionPane.ERROR_MESSAGE);
             txt_couta.setText("");
         }
 
-        
+
     }//GEN-LAST:event_txt_coutaKeyReleased
 
     private void cmb_socioMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_socioMouseReleased
         // TODO add your handling code here:
-        
+
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
         DecimalFormat dc = new DecimalFormat("0.00", punto);
-         try{
-            if (txt_pago_porce.getText().isEmpty()){
-            }else{
+        try {
+            if (txt_pago_porce.getText().isEmpty()) {
+            } else {
                 comision_cobra = Double.parseDouble(txt_pago_porce.getText());
                 ganancia_neta = ganancia - monto - comision_cobra;
-                txt_monto_a.setText(dc.format(ganancia_neta));         
+                txt_monto_a.setText(dc.format(ganancia_neta));
             }
-            } catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
 
         }
     }//GEN-LAST:event_cmb_socioMouseReleased
