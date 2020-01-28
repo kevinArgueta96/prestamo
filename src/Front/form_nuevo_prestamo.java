@@ -723,7 +723,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
             int pres_nue = JOptionPane.showConfirmDialog(null, "DESEA REALIZAR UN NUEVO PRESTAMO AL CLIENTE", "CONFIRMAR PRESTAMO", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (pres_nue == 0) {
                 if (cmb_cobrador.getSelectedIndex() == 0) {
-                    
+
                 } else {
                     if (cmb_socio.getSelectedIndex() == 0) {
                     } else {
@@ -754,7 +754,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                         }
                     }
                 }
-                int pres_seguro = JOptionPane.showConfirmDialog(null, "Esta seguro del nuevo prestamo", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                int pres_seguro = JOptionPane.showConfirmDialog(null, "¿Esta seguro del nuevo prestamo?", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (pres_seguro == 0) {
 
                     try {
@@ -833,6 +833,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                                 txt_cuota_pagar.setText(null);
                                                                 txt_ganan.setText(null);
                                                                 txt_id.setText(null);
+                                                                txt_fecha_creacion.setDate(null);
                                                                 txt_interes.setText(null);
                                                                 txt_monto_a.setText(null);
                                                                 txt_monto_s.setText(null);
@@ -844,6 +845,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                                 txt_porcentaje.setText(null);
                                                                 date_cre.setDate(null);
                                                                 date_cre.setCalendar(null);
+                                                                txt_couta.setEditable(false);
                                                             } else {
                                                                 JOptionPane.showMessageDialog(null, "Error");
                                                             }
@@ -870,6 +872,26 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     /* 
                      */
                 } else {
+                    JOptionPane.showMessageDialog(null, "Prestamo No Registrado, Seleccione otro Cliente");
+                    txt_nombre.setText(null);
+                    txt_dpi.setText(null);
+                    txt_couta.setText(null);
+                    txt_cuota_pagar.setText(null);
+                    txt_ganan.setText(null);
+                    txt_id.setText(null);
+                    txt_interes.setText(null);
+                    txt_monto_a.setText(null);
+                    txt_monto_s.setText(null);
+                    cmb_plazo.setSelectedIndex(0);
+                    cmb_socio.setSelectedIndex(0);
+                    cmb_cobrador.setSelectedIndex(0);
+                    chk_gara.setContentAreaFilled(false);
+                    date_cre.setDate(null);
+                    txt_fecha_creacion.setDate(null);
+                    txt_couta.setEditable(false);
+                    txt_pago_porce.setText(null);
+                    txt_porcentaje.setText(null);
+                    txt_nombre.setCursor(null);
                     /*txt_nombre.setText(null);
                     txt_dpi.setText(null);
                     txt_couta.setText(null);
@@ -882,7 +904,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                     cmb_plazo.setSelectedIndex(0);
                     cmb_socio.setSelectedIndex(0);
                     cmb_cobrador.setSelectedIndex(0);
-                   // chk_gara.setAction(null);
+                    chk_gara.setAction(null);
                     date_cre.setDate(null);
                     txt_pago_porce.setText(null);
                     txt_porcentaje.setText(null);*/
@@ -905,6 +927,8 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                 chk_gara.setContentAreaFilled(false);
                 date_cre.setDate(null);
                 txt_pago_porce.setText(null);
+                txt_couta.setEditable(false);
+                txt_fecha_creacion.setDate(null);
                 txt_porcentaje.setText(null);
                 txt_nombre.setCursor(null);
             }
@@ -1198,10 +1222,15 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
 
     private void txt_coutaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_coutaKeyReleased
         // --- pmazariegos | Calculo de total a pagar con cuotas personalizadas | 08/12/2019 prueba
+        
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
         DecimalFormat dc = new DecimalFormat("0.00", punto);
-
+        if (txt_ganan.getText().isEmpty()) {
+            txt_couta.setText("");
+            
+        }
+        
         // identificar solo numeros
         if ((evt.getKeyCode() >= 96 && evt.getKeyCode() <= 105) || evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == com.sun.glass.events.KeyEvent.VK_BACKSPACE) {
             if (txt_couta.getText().isEmpty() == false) {
