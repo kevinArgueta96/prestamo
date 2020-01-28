@@ -737,7 +737,10 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                         //d=Double.parseDouble(txt_pago_porce.getText());
                         //el=c-d;
                         txt_monto_a.setText(dc.format(c));
-                        if (cmb_plazo.getSelectedIndex() == 1) {
+                        el=Double.parseDouble(txt_couta.getText());
+                        d=nueva_suma/el;
+                        txt_cuota_pagar.setText(dc.format(d));
+                       /* if (cmb_plazo.getSelectedIndex() == 1) {
                             c = Double.parseDouble(txt_ganan.getText());
                             d = c / 23;
                             txt_cuota_pagar.setText(dc.format(d));
@@ -751,7 +754,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                             c = Double.parseDouble(txt_ganan.getText());
                             d = c / 1;
                             txt_cuota_pagar.setText(dc.format(d));
-                        }
+                        }*/
                     }
                 }
                 int pres_seguro = JOptionPane.showConfirmDialog(null, "¿Esta seguro del nuevo prestamo?", "Confirmar prestamo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -956,7 +959,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null, "Seleccione un Socio");
                                 } else {
                                     if (cobrador == 0) {
-                                        JOptionPane.showMessageDialog(null, "Seleccione un Socio");
+                                        JOptionPane.showMessageDialog(null, "Seleccione un Cobrador");
                                     } else {
 
                                         monto = Double.parseDouble(txt_monto_s.getText());
@@ -967,7 +970,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                         ganancia = Double.parseDouble(txt_monto_a.getText());
                                         monto_a_pa = Double.parseDouble(txt_ganan.getText());
                                         fec_f = dformat.format(date_cre.getDate());
-                                        fec_c = local.toString();
+                                        fec_c = dformat.format(txt_fecha_creacion.getDate());
                                         cuota = Integer.parseInt(txt_couta.getText());
                                         cuota_tot = Double.parseDouble(txt_cuota_pagar.getText());
 
@@ -1226,7 +1229,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         DecimalFormatSymbols punto = new DecimalFormatSymbols();
         punto.setDecimalSeparator('.');
         DecimalFormat dc = new DecimalFormat("0.00", punto);
-        if (txt_ganan.getText().isEmpty()) {
+        if (txt_monto_s.getText().isEmpty()||txt_interes.getText().isEmpty() ) {
             txt_couta.setText("");
             
         }
