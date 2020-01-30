@@ -104,7 +104,7 @@ public class form_Modificar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cliente);
-        btn_cliente.setBounds(246, 81, 78, 73);
+        btn_cliente.setBounds(246, 81, 81, 73);
 
         btn_cobrador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/motorcycle.png"))); // NOI18N
         btn_cobrador.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class form_Modificar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_cobrador);
-        btn_cobrador.setBounds(376, 81, 90, 73);
+        btn_cobrador.setBounds(376, 81, 93, 73);
 
         tbl_datos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,7 +207,7 @@ public class form_Modificar extends javax.swing.JFrame {
 
         txt_id.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         panel_clien.add(txt_id);
-        txt_id.setBounds(500, 10, 26, 22);
+        txt_id.setBounds(500, 10, 26, 20);
 
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel10.setText("Dirección");
@@ -226,7 +226,7 @@ public class form_Modificar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(290, 640, 134, 46);
+        jButton1.setBounds(280, 640, 137, 39);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar usuario.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -317,7 +317,7 @@ public class form_Modificar extends javax.swing.JFrame {
         );
 
         getContentPane().add(panel_socio);
-        panel_socio.setBounds(250, 470, 388, 160);
+        panel_socio.setBounds(250, 470, 392, 160);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("MODIFICAR");
@@ -770,17 +770,17 @@ public class form_Modificar extends javax.swing.JFrame {
 
     private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
         // TODO add your handling code here:
-         filtro(txt_nombre.getText(), tbl_datos);
+        // filtro(txt_nombre.getText(), tbl_datos);
     }//GEN-LAST:event_txt_nombreKeyReleased
 
     private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
         // TODO add your handling code here:
-        filtro(txt_dpi.getText(), tbl_datos);
+        //filtro(txt_dpi.getText(), tbl_datos);
     }//GEN-LAST:event_txt_dpiKeyReleased
 
     private void txt_nombre_socioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre_socioKeyReleased
         // TODO add your handling code here:
-        filtro(txt_nombre_socio.getText(), tbl_datos);
+        //filtro(txt_nombre_socio.getText(), tbl_datos);
     }//GEN-LAST:event_txt_nombre_socioKeyReleased
 
     private void filtro(String consulta, JTable jtableBuscar) {
