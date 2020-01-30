@@ -442,7 +442,7 @@ public class form_Modificar extends javax.swing.JFrame {
         }
 
         if (bandera == 1) {
-            if (txt_nombre.getText().isEmpty() && txt_id.getText().isEmpty()) {
+            if (txt_id.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Seleccione un dato");
             } else {
                 id = Integer.parseInt(txt_id.getText());
@@ -469,7 +469,7 @@ public class form_Modificar extends javax.swing.JFrame {
             bandera = 0;
         }
         if (bandera == 2) {
-            if (txt_nombre.getText().isEmpty() && txt_id.getText().isEmpty()) {
+            if (txt_id.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Seleccione un dato");
             } else {
                 id = Integer.parseInt(txt_id.getText());
@@ -499,7 +499,7 @@ public class form_Modificar extends javax.swing.JFrame {
             bandera = 0;
         }
         if (bandera == 3) {
-            if (txt_nombre_socio.getText().isEmpty() && txt_id_socio.getText().isEmpty()) {
+            if (txt_id_socio.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Seleccione un dato");
             } else {
                 id = Integer.parseInt(txt_id_socio.getText());
