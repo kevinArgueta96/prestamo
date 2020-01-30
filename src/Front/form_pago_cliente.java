@@ -50,6 +50,13 @@ public class form_pago_cliente extends javax.swing.JFrame {
             Para calcular el siguiente pago estipulado aplicar la siguiente formula
             (txt_saldo a pagar - txt_Faltante) / txt_Faltante_cuota
          */
+        
+        //pmazariegos | recalcular cuando solo sea 1 cuota | 29/01/2020 
+        if(cuota_res < 1){
+            cuota_res = 1;  //setear a 1 cuando la cuota sea 0
+        }
+        
+        
         double out_PagoEstipulado = monto_restante / cuota_res;
         if(Double.isNaN(out_PagoEstipulado)) {
             out_PagoEstipulado = 0;
