@@ -436,6 +436,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         
          // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
         int noCuotaActual = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
+        env_ID = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
         
         //--- pmazariegos | modificar saldo restante -- 11/12/2019        
         env_saldoPagar = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
@@ -452,8 +453,9 @@ public class form_pago_cliente extends javax.swing.JFrame {
             double cuotaInicial = saldoTotalPrestamo / cuotasTotales;
             //cuota final
             double cuotaFinal = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
-
-            if (cuotaFinal > cuotaInicial) {
+            
+           
+            if ((cuotaFinal > cuotaInicial) || noCuotaActual == 1) {
                 //Variables de envio al siguiente formulario
                 env_CuotaFinal = Double.parseDouble(txt_Faltante.getText());
                 env_ID = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));

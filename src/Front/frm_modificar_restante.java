@@ -156,11 +156,8 @@ public class frm_modificar_restante extends javax.swing.JFrame {
             try{
                 double total_cuota = SaldoModify / prm_cuota;
                 
-                String query = "UPDATE tbl_prestamo SET saldo_faltante = ?, total_cuota = ? WHERE id_prestamo = ?";
+                String query = "UPDATE tbl_prestamo SET saldo_faltante = "+SaldoModify+", total_cuota = "+total_cuota+" WHERE (id_prestamo = "+prm_idprestamo+")";
                 stm = cnx.getConnection().prepareStatement(query);
-                stm.setDouble(1, SaldoModify);
-                stm.setDouble(2, total_cuota);
-                stm.setInt(3, prm_idprestamo);
                 int SQL_STATUS = stm.executeUpdate();
                 if(SQL_STATUS > 0){
                     JOptionPane.showMessageDialog(this, "Modificacion de saldo aplicada!");
