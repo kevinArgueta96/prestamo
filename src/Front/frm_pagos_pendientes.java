@@ -121,9 +121,7 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Pagos Pendientes");
-        setMaximumSize(new java.awt.Dimension(1019, 450));
         setMinimumSize(new java.awt.Dimension(1019, 450));
-        setPreferredSize(new java.awt.Dimension(1019, 450));
         getContentPane().setLayout(null);
 
         tbl_prestamo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
@@ -161,11 +159,11 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(240, 300, 37, 14);
+        jLabel2.setBounds(225, 300, 60, 16);
 
         jLabel3.setText("DPI");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(540, 300, 30, 14);
+        jLabel3.setBounds(540, 300, 30, 16);
 
         txt_nombre.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {

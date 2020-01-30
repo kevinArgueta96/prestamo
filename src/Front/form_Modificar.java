@@ -347,7 +347,7 @@ public class form_Modificar extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(440, 640, 124, 46);
+        jButton3.setBounds(440, 640, 140, 46);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modified.jpg"))); // NOI18N
         getContentPane().add(jLabel5);
