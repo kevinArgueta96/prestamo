@@ -82,6 +82,8 @@ public class form_pago_cliente extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cerrar();
         txt_id.setEditable(false);
+        txt_nombre.setEditable(false);
+        txt_dpi.setEditable(false);
         txt_Faltante.setEditable(false);
         txt_Faltante_cuota.setEditable(false);
         txt_pago_estipulado.setEditable(false);
@@ -211,7 +213,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(260, 570, 130, 46);
+        jButton1.setBounds(260, 570, 130, 39);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -222,7 +224,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(400, 570, 130, 44);
+        jButton2.setBounds(400, 570, 130, 37);
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -250,17 +252,6 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel9.setText("ID");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(10, 20, 20, 14);
-
-        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombreActionPerformed(evt);
-            }
-        });
-        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_nombreKeyReleased(evt);
-            }
-        });
         jPanel1.add(txt_nombre);
         txt_nombre.setBounds(300, 10, 190, 30);
 
@@ -395,10 +386,6 @@ public class form_pago_cliente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombreActionPerformed
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(dm);
@@ -655,10 +642,6 @@ public class form_pago_cliente extends javax.swing.JFrame {
         // TODO add your handling code here:
         confirmarSalida();
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void txt_nombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyReleased
-        filtro(txt_nombre.getText(), tbl_prestamo);
-    }//GEN-LAST:event_txt_nombreKeyReleased
 
     private void txt_dpiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpiKeyReleased
         filtro(txt_dpi.getText(), tbl_prestamo);
