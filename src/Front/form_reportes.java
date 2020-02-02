@@ -45,8 +45,8 @@ public class form_reportes extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
         setVisible(true);
-        File repo = new File("C:\\Diseño Reporte");
-        File dise = new File("C:\\Reportes");
+        File repo = new File("/Users/kevin/Documents/Diseño Reporte");
+        File dise = new File("/Users/kevin/Documents/Reportes");
         if (repo.exists() && dise.exists()) {
         } else {
 
@@ -263,18 +263,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
+                        "/Users/kevin/Documents/Diseño reporte/mes_reporte.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Pagos_del_Mes.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/Documents/Reportes/" + fecha + "Pagos_del_Mes.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
+                        "/Users/kevin/Documents/Diseño reporte/mes_reporte.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -345,7 +345,7 @@ public class form_reportes extends javax.swing.JFrame {
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
+                        "C:\\Diseño\\reporte_mes.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
