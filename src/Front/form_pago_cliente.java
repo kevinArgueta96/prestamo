@@ -213,7 +213,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(260, 570, 130, 39);
+        jButton1.setBounds(260, 570, 130, 42);
 
         jButton2.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -224,7 +224,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(400, 570, 130, 37);
+        jButton2.setBounds(400, 570, 130, 40);
 
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -251,7 +251,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel9.setText("ID");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(10, 20, 20, 14);
+        jLabel9.setBounds(10, 20, 20, 15);
         jPanel1.add(txt_nombre);
         txt_nombre.setBounds(300, 10, 190, 30);
 
@@ -303,27 +303,27 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel3.setText("DPI");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(210, 100, 21, 14);
+        jLabel3.setBounds(210, 100, 21, 15);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel4.setText("Monto Prestamo");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(210, 140, 80, 14);
+        jLabel4.setBounds(210, 140, 82, 15);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel5.setText("Saldo Faltante");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(210, 180, 74, 20);
+        jLabel5.setBounds(210, 180, 72, 20);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel7.setText("Cuotas Faltantes");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(210, 220, 83, 14);
+        jLabel7.setBounds(210, 220, 84, 15);
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel8.setText("Pago estipulado");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(210, 260, 80, 14);
+        jLabel8.setBounds(210, 260, 80, 15);
 
         txt_saldo_pagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,7 +336,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel6.setText("Saldo a Pagar");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(300, 300, 70, 14);
+        jLabel6.setBounds(300, 300, 70, 15);
 
         btn_financiar_restante.setBackground(new java.awt.Color(255, 255, 255));
         btn_financiar_restante.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -354,7 +354,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel11.setText("Nombres");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(210, 20, 50, 14);
+        jLabel11.setBounds(210, 20, 50, 15);
 
         jLabel12.setFont(new java.awt.Font("Times New Roman", 3, 12)); // NOI18N
         jLabel12.setText("Apellidos");

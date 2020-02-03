@@ -103,7 +103,7 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("GARANTÍA ");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(218, 6, 133, 28);
+        jLabel1.setBounds(218, 6, 135, 29);
 
         btn_guarda.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         btn_guarda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/save.png"))); // NOI18N
@@ -233,7 +233,7 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel4.setText("Placa");
         pnl_vehi.add(jLabel4);
-        jLabel4.setBounds(50, 180, 40, 14);
+        jLabel4.setBounds(50, 180, 40, 15);
 
         txt_placa.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         pnl_vehi.add(txt_placa);
@@ -242,12 +242,12 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel2.setText("Marca");
         pnl_vehi.add(jLabel2);
-        jLabel2.setBounds(50, 20, 50, 14);
+        jLabel2.setBounds(50, 20, 50, 15);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel5.setText("Modelo");
         pnl_vehi.add(jLabel5);
-        jLabel5.setBounds(50, 60, 50, 14);
+        jLabel5.setBounds(50, 60, 50, 15);
 
         txt_modelo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         pnl_vehi.add(txt_modelo);
@@ -256,7 +256,7 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel6.setText("Año");
         pnl_vehi.add(jLabel6);
-        jLabel6.setBounds(50, 100, 30, 14);
+        jLabel6.setBounds(50, 100, 30, 15);
 
         txt_año.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         pnl_vehi.add(txt_año);
@@ -265,7 +265,7 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 2, 12)); // NOI18N
         jLabel7.setText("Precio vehículo");
         pnl_vehi.add(jLabel7);
-        jLabel7.setBounds(50, 220, 90, 14);
+        jLabel7.setBounds(50, 220, 90, 15);
 
         txt_precio_vehiculo.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         pnl_vehi.add(txt_precio_vehiculo);
@@ -277,12 +277,12 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel13.setText("VEHÍCULO");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(110, 70, 73, 17);
+        jLabel13.setBounds(110, 70, 75, 17);
 
         jLabel14.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel14.setText("PROPIEDAD O NEGOCIO");
         getContentPane().add(jLabel14);
-        jLabel14.setBounds(350, 70, 165, 17);
+        jLabel14.setBounds(350, 70, 169, 17);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/warranty.jpg"))); // NOI18N
         jLabel15.setMaximumSize(new java.awt.Dimension(542, 500));
@@ -418,6 +418,8 @@ public class form_garantia extends javax.swing.JFrame {
                             PreparedStatement str = null;
                                     
                             try {
+                                SQLCnx.setAutoCommit(false);
+                                        
                                 str = SQLCnx.prepareStatement(query);
                                 str.setNull(1, java.sql.Types.BIGINT);
                                 str.setString(2, txt_ubicacion.getText());
