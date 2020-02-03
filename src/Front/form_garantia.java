@@ -418,6 +418,7 @@ public class form_garantia extends javax.swing.JFrame {
                             PreparedStatement str = null;
                                     
                             try {
+                                SQLCnx.setAutoCommit(false);
                                 str = SQLCnx.prepareStatement(query);
                                 str.setNull(1, java.sql.Types.BIGINT);
                                 str.setString(2, txt_ubicacion.getText());
