@@ -713,7 +713,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         double nuevo_saldo, aux, nueva_suma;
         double a, b, c, d, el;
         String aux_monto;
-        String query_prestamo_pen = "UPDATE `dbprestamo`.`tbl_prestamo` SET `saldo_faltante` = '0', `cuota_faltante` = '0',`estado` = '0' WHERE (`id_prestamo` = '" + prestamo_cambio + "')";
+        String query_prestamo_pen = "UPDATE `dbprestamo`.`tbl_prestamo` SET `saldo_faltante` = '0', `cuota_faltante` = '0',`estado` = '0' ,`estado_comision` = '0' WHERE (`id_prestamo` = '" + prestamo_cambio + "')";
 
         if (estadod == 1) {
             JOptionPane.showMessageDialog(null, "EL CLIENTE TIENE UN PRESTAMO ACTIVO CON UN SALDO FALTANTE DE: " + saldo_falta + "\nCUOTAS FALTANTES: " + couta_falta + "\nGANANCIA ANTERIOR:" + ganancia_falta);
@@ -817,7 +817,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                                             str.setDouble(14, monto_a_pa);
                                                             str.setInt(15, cuota);
                                                             str.setInt(16, socio);
-                                                            str.setInt(17, 0);
+                                                            str.setInt(17, 1);
                                                             str.setInt(18, cobrador);
                                                             str.setDouble(19, porcentaje);
                                                             str.setDouble(20, pago_comi);
@@ -989,7 +989,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
                                             str.setDouble(14, monto_a_pa);
                                             str.setInt(15, cuota);
                                             str.setInt(16, socio);
-                                            str.setInt(17, 0);
+                                            str.setInt(17, 1);
                                             str.setInt(18, cobrador);
                                             str.setDouble(19, porcentaje);
                                             str.setDouble(20, pago_comi);

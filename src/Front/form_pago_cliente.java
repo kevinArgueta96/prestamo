@@ -542,7 +542,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                     // pmazariegos -- Recalcular siguiente pago estipulado -- 19/11/2019
                     String query_update = "UPDATE tbl_prestamo SET  saldo_faltante = " + monto_restante + ", cuota_faltante = " + cuota_res + ", total_cuota = " + RecalcularPagoEstipulado() + " WHERE (id_prestamo = " + id + ")";
                     String query_last = "select max(id_abono) from tbl_abonos";
-                    String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + ",estado_comision= " + 1 + " WHERE (id_prestamo = " + id + ")";
+                    String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + ",estado_comision= " + 0 + " WHERE (id_prestamo = " + id + ")";
                     String query_cambio = "select saldo_faltante,cuota_faltante from tbl_prestamo WHERE (id_prestamo = " + id + ")";
                     int[] cambio = new int[3];
                     boolean bandera_estado = false;
