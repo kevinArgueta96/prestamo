@@ -45,8 +45,8 @@ public class form_reportes extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
         setVisible(true);
-        File repo = new File("C:\\Diseño Reporte");
-        File dise = new File("C:\\Reportes");
+        File repo = new File("/Users/kevin/documents/Diseño Reporte");
+        File dise = new File("/Users/kevin/documents/Reportes");
         if (repo.exists() && dise.exists()) {
         } else {
 
@@ -263,18 +263,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/mes_reporte.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Pagos_del_Mes.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Pagos_del_Mes.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\mes_reporte.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/mes_reporte.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -334,18 +334,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/reporte_mes.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_Inversion.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Detalle_Inversion.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\reporte_mes.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/reporte_mes.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -404,18 +404,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/Genero_socio_mes.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_socio.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Detalle_socio.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\Genero_socio_mes.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/Genero_socio_mes.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -474,18 +474,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "C:\\Diseño Reporte\\comision_detalle.jasper", parametros,
+                        "/Users/kevin/documents/Diseño Reporte/comision_detalle.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_comision.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Detalle_comision.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "C:\\Diseño reporte\\comision_detalle.jasper", parametros,
+                        "/Users/kevin/documents/Diseño reporte/comision_detalle.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
