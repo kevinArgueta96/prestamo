@@ -1232,7 +1232,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         }
         
         // identificar solo numeros
-        if ((evt.getKeyCode() >= 96 && evt.getKeyCode() <= 105) || evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == com.sun.glass.events.KeyEvent.VK_BACKSPACE) {
+        if ((evt.getKeyCode() >= 48 && evt.getKeyCode() <= 57)  || evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == com.sun.glass.events.KeyEvent.VK_BACKSPACE) {
             if (txt_couta.getText().isEmpty() == false) {
                 int cuotasperso = Integer.parseInt(txt_couta.getText());
 
