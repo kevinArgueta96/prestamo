@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Franklyn Escobar
+ * @author Kevin
  */
 public class frm_consults extends javax.swing.JFrame {
 

@@ -41,17 +41,17 @@ public class form_pago_cliente extends javax.swing.JFrame {
     DecimalFormatSymbols punto = new DecimalFormatSymbols();
     
 
-    // pmazariegos -- Rutina para recalcular el pago estipulado -- 19/11/2019
+    
     public double RecalcularPagoEstipulado() {
         
         /* 
-        pmazariegos -- 19/11/2019
+     
         NOTA:
             Para calcular el siguiente pago estipulado aplicar la siguiente formula
             (txt_saldo a pagar - txt_Faltante) / txt_Faltante_cuota
          */
         
-        //pmazariegos | recalcular cuando solo sea 1 cuota | 29/01/2020 
+       
         if(cuota_res < 1){
             cuota_res = 1;  //setear a 1 cuando la cuota sea 0
         }
@@ -71,10 +71,10 @@ public class form_pago_cliente extends javax.swing.JFrame {
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
         setIconImage(icon);
         setVisible(true);
-        //pmazariegos -- ocultar boton de financiar saldo restante al inicio del form -- 19/11/2019        
+       
         btn_financiar_restante.setVisible(false);
         
-        //--- pmazariegos | ocultar boton de modificar saldo restante al inicio del form -- 11/12/2019        
+         
         btn_modificarRestante.setVisible(false);
         lbl_interes.setVisible(false);
 
@@ -421,18 +421,18 @@ public class form_pago_cliente extends javax.swing.JFrame {
         txt_pago_estipulado.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
         txt_saldo_pagar.setText(String.valueOf(tbl_prestamo.getValueAt(seleccion, 8)));
         
-         // pmazariegos -- habilitacion de boton para financiar restante -- 19/11/2019
+        
         int noCuotaActual = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 6)));
         env_ID = Integer.parseInt(String.valueOf(tbl_prestamo.getValueAt(seleccion, 0)));
         
-        //--- pmazariegos | modificar saldo restante -- 11/12/2019        
+     
         env_saldoPagar = Double.parseDouble(String.valueOf(tbl_prestamo.getValueAt(seleccion, 5)));
         env_cuotaAcutal = noCuotaActual;
         btn_modificarRestante.setVisible(true);
         lbl_interes.setVisible(true);
         
        
-        //pmazariegos -- habilitacion de boton para financiar restante en cualquier cuota, no solo cuando falte 1 -- 25/11/2019
+        
         //if (noCuotaActual == 1) { 
             double saldoTotalPrestamo = Double.parseDouble(txt_monto_prestamo.getText());
 
@@ -491,7 +491,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
             if (txt_saldo_pagar.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Ingrese el monto a pagar");
             } else {
-                // pmazariegos -- Mensajes de error al pagar MENOS o MAS de cuota estipulada -- 19/11/2019
+               
                 pago = Double.parseDouble(txt_saldo_pagar.getText());
                 pago_estipulado_actual = Double.parseDouble(txt_pago_estipulado.getText());
                 cuota = Integer.parseInt(txt_Faltante_cuota.getText());
@@ -539,7 +539,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                     } catch (SQLException e) {
                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos." + e);
                     }
-                    // pmazariegos -- Recalcular siguiente pago estipulado -- 19/11/2019
+                  
                     String query_update = "UPDATE tbl_prestamo SET  saldo_faltante = " + monto_restante + ", cuota_faltante = " + cuota_res + ", total_cuota = " + RecalcularPagoEstipulado() + " WHERE (id_prestamo = " + id + ")";
                     String query_last = "select max(id_abono) from tbl_abonos";
                     String query_estado = "UPDATE tbl_prestamo SET  estado = " + 0 + ",estado_comision= " + 0 + " WHERE (id_prestamo = " + id + ")";
@@ -574,7 +574,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
                                                 cambio[0] = result_cambio.getInt(1);
                                                 cambio[1] = result_cambio.getInt(2);
                                             }
-                                            //pmazariegos -- - validar unicamente saldo restante = 0 para cambiar el estado
+                                           
                                             //                  del prestamo, esto para evitar que existan prestamos activos con saldo restante = 0
                                             if (cambio[0] == 0) {
 
@@ -656,7 +656,7 @@ public class form_pago_cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_financiar_restanteActionPerformed
 
     private void btn_modificarRestanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarRestanteActionPerformed
-        // --- pmazariegos | abrir formulario para poder modificar el saldo restante | 11/12/2019
+      
         frm_modificar_restante frm = new frm_modificar_restante(env_saldoPagar, env_cuotaAcutal, env_ID);
         frm.setVisible(true);
         frm.setLocationRelativeTo(this);

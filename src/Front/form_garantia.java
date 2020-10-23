@@ -329,12 +329,12 @@ public class form_garantia extends javax.swing.JFrame {
                                     valor = Double.parseDouble(txt_precio_vehiculo.getText());
                                     String query = "INSERT INTO tbl_vehiculo (id_vehiculo,marca,modelo,año,kilometraje,placa,precio_vehiculo,id_prestamo) VALUES (?, ?, ?, ?, ?,? ,? ,?)";
                                     
-                                    //--- pmazariegos | Instanciando conexion a base de datos  | 12/01/2020
+                                  
                                     Connection SQLCnx = con.getConnection();
                                     PreparedStatement str = null;
                                     
                                     try { 
-                                        //--- pmazariegos | Deshabilitando auto-commit  | 12/01/2020
+                                        
                                         SQLCnx.setAutoCommit(false);
                                         
                                         str = SQLCnx.prepareStatement(query);                                        
@@ -375,7 +375,7 @@ public class form_garantia extends javax.swing.JFrame {
                                         JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");                               
                                         
                                     } finally {
-                                        //--- pmazariegos | Sí falla el rollback del "catch" elimina la instancia de conexion para omitir transaccion | 12/01/2020
+                                        
                                         try{
                                             if(str != null){ str.close();}  //--- Elimina PreparedStatement
                                             
@@ -413,7 +413,7 @@ public class form_garantia extends javax.swing.JFrame {
 
                             String query = "INSERT INTO tbl_propiedad (id_propiedad,ubicacion,medida_terreno,documento_legal,nombre_negocio,precio_terreno,id_prestamo) VALUES (?, ?, ?, ?, ?,? ,? )";
                             
-                            //--- pmazariegos | Instanciando conexion a base de datos  | 12/01/2020
+                          
                             Connection SQLCnx = con.getConnection();
                             PreparedStatement str = null;
                                     
@@ -445,7 +445,7 @@ public class form_garantia extends javax.swing.JFrame {
                                
                             } catch (SQLException e) {
                                 try {
-                                    // pmzariegos | Aplicar rollback solo si la conexion existe | 12/01/2020
+                                    
                                     if(SQLCnx != null){
                                         SQLCnx.rollback();
                                     }
@@ -456,7 +456,7 @@ public class form_garantia extends javax.swing.JFrame {
 
                                 JOptionPane.showMessageDialog(null, "Error!, la llamada no pudo ser agregada a la base de datos.");
                             } finally {
-                                //--- pmazariegos | Sí falla el rollback del "catch" elimina la instancia de conexion para omitir transaccion | 12/01/2020
+                             
                                 try{
                                     if(str != null){ str.close();}  //--- Elimina PreparedStatement
 

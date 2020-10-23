@@ -7,7 +7,7 @@ package Front;
 
 /**
  *
- * @author Franklyn Escobar
+ * @author Kevin
  */
 public class validaciones {
     

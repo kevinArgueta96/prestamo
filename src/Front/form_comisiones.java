@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Franklyn Escobar
+ * @author Kevin
  */
 public class form_comisiones extends javax.swing.JFrame {
 

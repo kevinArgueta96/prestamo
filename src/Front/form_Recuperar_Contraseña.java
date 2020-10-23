@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Pablo
+ * @author Kevin
  */
 public class form_Recuperar_Contraseña extends javax.swing.JFrame {
     public conexcion cnx = new conexcion();

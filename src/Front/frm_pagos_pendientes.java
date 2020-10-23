@@ -80,7 +80,7 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
                 dato[5] = result.getString(6);
                 dato[6] = result.getString(7);
                 
-                // --- pmazariegos | Calculo de días restantes para fecha de pago | 09/12/2019 ---
+               
                 LocalDate FechaLimite = LocalDate.parse(result.getString(7), DateTimeFormatter.ISO_LOCAL_DATE); //Obtener fecha de pago
                 Duration RestaFechas = Duration.between(hoy.atStartOfDay(), FechaLimite.atStartOfDay());        //Obtener Diff de fechas (hoy - fecha de pago)
                 Long DiffDias = RestaFechas.toDays();   //Convierte el Diff a dias

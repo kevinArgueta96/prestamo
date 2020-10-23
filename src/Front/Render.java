@@ -20,7 +20,7 @@ public class Render extends DefaultTableCellRenderer {
         JLabel cell = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         if (value instanceof String) {
             String valor = (String) value;
-            // --- pmazariegos | Rangos para colores en pagos pendientes | 09/12/2019 ---
+          
             if (column == 7) {
                 cambio = Integer.parseInt(valor);
                 

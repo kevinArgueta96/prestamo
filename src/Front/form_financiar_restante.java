@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Pablo
+ * @author Kevin
  */
 public class form_financiar_restante extends javax.swing.JFrame {
     public static double prm_Restante;

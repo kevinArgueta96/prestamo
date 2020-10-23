@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 public class conexcion {
   public static Connection cnc = null;
   private static final String driver ="com.mysql.cj.jdbc.Driver";
-  private static final String user ="prueba";
-  private static final String pass ="1234";
+  private static final String user ="root";
+  private static final String pass ="kev1234";
   private static final String url ="jdbc:mysql://localhost/dbprestamo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 
     public conexcion() {

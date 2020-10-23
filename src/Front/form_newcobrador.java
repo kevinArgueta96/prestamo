@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author Franklyn Escobar
+ * @author Kevin
  */
 public class form_newcobrador extends javax.swing.JFrame {
 

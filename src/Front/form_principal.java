@@ -17,7 +17,7 @@ import java.awt.Dimension;
 
 /**
  *
- * @author Franklyn Escobar
+ * @author Kevin
  */
 public class form_principal extends javax.swing.JFrame {
 
