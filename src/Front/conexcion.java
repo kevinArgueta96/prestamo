@@ -20,6 +20,7 @@ public class conexcion {
              cnc = DriverManager.getConnection(url,user,pass);
              if(cnc!=null){
                  //JOptionPane.showMessageDialog(null, "Conexcion exitosa");
+                 
              }
         } catch (ClassNotFoundException | SQLException ex) {
             

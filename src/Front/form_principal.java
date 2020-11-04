@@ -31,7 +31,7 @@ public class form_principal extends javax.swing.JFrame {
         cerrar();
         //setLocationRelativeTo(form_principal.this);
         setSize(800, 570);
-        setResizable(false);
+        setLocationRelativeTo(null);
        
 
         Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
@@ -135,13 +135,11 @@ public class form_principal extends javax.swing.JFrame {
         btn_pagocliente1.setBounds(70, 350, 220, 100);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Pagos Pendientes:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(60, 500, 185, 28);
 
         lbl_pagos.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        lbl_pagos.setForeground(new java.awt.Color(0, 0, 0));
         getContentPane().add(lbl_pagos);
         lbl_pagos.setBounds(250, 500, 37, 28);
 
@@ -165,7 +163,7 @@ public class form_principal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(300, 90, 227, 100);
+        jButton2.setBounds(300, 90, 229, 100);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes2/pagos.png"))); // NOI18N
@@ -211,7 +209,6 @@ public class form_principal extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("MENÚ PRINCIPAL");
         jPanel2.add(jLabel2);
 
@@ -221,7 +218,7 @@ public class form_principal extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 540));
         jPanel1.setLayout(null);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/main.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 800, 550);
 

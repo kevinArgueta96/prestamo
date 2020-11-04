@@ -42,8 +42,8 @@ public class form_reportes extends javax.swing.JFrame {
 
     public form_reportes() {
         initComponents();
-        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
-        setIconImage(icon);
+        //Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/fondoo.jpg"));
+        //setIconImage(icon);
         setVisible(true);
         File repo = new File("/Users/kevin/documents/Diseño Reporte");
         File dise = new File("/Users/kevin/documents/Reportes");
@@ -71,7 +71,7 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_cancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        cmb_mes = new javax.swing.JComboBox<String>();
+        cmb_mes = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txt_año = new javax.swing.JTextField();
         btn_cancelar1 = new javax.swing.JButton();
@@ -93,18 +93,18 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("REPORTES");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(218, 35, 128, 28);
+        jLabel1.setBounds(200, 30, 128, 28);
 
         btn_cancelar.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
         btn_cancelar.setText("CANCELAR");
+        btn_cancelar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
             }
         });
         getContentPane().add(btn_cancelar);
-        btn_cancelar.setBounds(149, 438, 122, 41);
+        btn_cancelar.setBounds(130, 420, 100, 40);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("Seleccione Mes:");
@@ -112,19 +112,19 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel2.setBounds(175, 102, 86, 14);
 
         cmb_mes.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmb_mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MES", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cmb_mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmb_mesActionPerformed(evt);
             }
         });
         getContentPane().add(cmb_mes);
-        cmb_mes.setBounds(279, 97, 91, 24);
+        cmb_mes.setBounds(279, 97, 86, 20);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Ingrese Año:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 130, 67, 30);
+        jLabel4.setBounds(190, 130, 67, 30);
 
         txt_año.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         txt_año.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -192,17 +192,17 @@ public class form_reportes extends javax.swing.JFrame {
         btn_cancelar4.setBounds(220, 332, 73, 74);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
         jButton1.setText("REGRESAR");
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(283, 436, 130, 44);
+        jButton1.setBounds(280, 420, 100, 40);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report6.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 520, 520);
 
@@ -334,18 +334,20 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/reporte_mes.jasper", parametros,
+                        "/Users/Adrian/documents/Diseño reporte/reporte_mes.jasper", parametros,
                         con.getConnection());
+
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Detalle_Inversion.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput
+                ("/Users/Adriab/documents/Reportes/" + fecha + "Detalle_Inversion.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/reporte_mes.jasper", parametros,
+                        "/Users/Adrian/documents/Diseño reporte/reporte_mes.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);

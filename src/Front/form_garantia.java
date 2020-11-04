@@ -284,7 +284,7 @@ public class form_garantia extends javax.swing.JFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(350, 70, 165, 17);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/warranty.jpg"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         jLabel15.setMaximumSize(new java.awt.Dimension(542, 500));
         jLabel15.setMinimumSize(new java.awt.Dimension(542, 500));
         jLabel15.setPreferredSize(new java.awt.Dimension(542, 500));

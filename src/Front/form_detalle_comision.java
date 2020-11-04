@@ -181,7 +181,7 @@ public class form_detalle_comision extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_id);
-        txt_id.setBounds(188, 273, 39, 24);
+        txt_id.setBounds(188, 273, 39, 22);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 11)); // NOI18N
         jLabel4.setText("NOMBRE Y APELLIDOS");
@@ -196,9 +196,9 @@ public class form_detalle_comision extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(380, 320, 130, 44);
+        jButton1.setBounds(380, 320, 130, 37);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white4.jpg"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(890, 400));
         jLabel3.setMinimumSize(new java.awt.Dimension(890, 400));
         jLabel3.setPreferredSize(new java.awt.Dimension(890, 400));

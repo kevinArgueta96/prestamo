@@ -168,6 +168,11 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel8.setBounds(440, 50, 40, 20);
 
         txt_dpi.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_dpiActionPerformed(evt);
+            }
+        });
         txt_dpi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_dpiKeyReleased(evt);
@@ -253,6 +258,11 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel14.setText("DPI");
 
         txt_dpi_socio.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txt_dpi_socio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_dpi_socioKeyTyped(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel15.setText("Nombres");
@@ -317,7 +327,7 @@ public class form_Modificar extends javax.swing.JFrame {
         );
 
         getContentPane().add(panel_socio);
-        panel_socio.setBounds(250, 470, 392, 160);
+        panel_socio.setBounds(250, 470, 394, 160);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("MODIFICAR");
@@ -349,7 +359,7 @@ public class form_Modificar extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(440, 640, 140, 46);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/modified.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 850, 740);
 
@@ -782,6 +792,25 @@ public class form_Modificar extends javax.swing.JFrame {
         // TODO add your handling code here:
         //filtro(txt_nombre_socio.getText(), tbl_datos);
     }//GEN-LAST:event_txt_nombre_socioKeyReleased
+
+    private void txt_dpiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dpiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_dpiActionPerformed
+
+    private void txt_dpi_socioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_dpi_socioKeyTyped
+         char valida = evt.getKeyChar();
+        if (Character.isLetter(valida)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        } else {
+            if (txt_dpi_socio.getText().length() == 13) {
+                getToolkit().beep();
+                evt.consume();
+                JOptionPane.showMessageDialog(null, "No mas de 13 digitos");
+            }
+        }
+    }//GEN-LAST:event_txt_dpi_socioKeyTyped
 
     private void filtro(String consulta, JTable jtableBuscar) {
         dm = (DefaultTableModel) jtableBuscar.getModel();

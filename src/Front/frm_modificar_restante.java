@@ -5,6 +5,7 @@
  */
 package Front;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.PreparedStatement;
@@ -29,6 +30,7 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         prm_idprestamo  = _IDPrestamo;
         prm_cuota       = _Cuotas;
         initComponents();
+        setResizable(false);
         cerrar();
         this.setResizable(false);
         
@@ -52,17 +54,33 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_saldo_actual = new javax.swing.JTextField();
         btn_cancelar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Intereses Generados");
+        setMinimumSize(new java.awt.Dimension(640, 341));
+        getContentPane().setLayout(null);
 
         txt_modify_saldoRestante.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_modify_saldoRestante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_modify_saldoRestanteKeyTyped(evt);
+            }
+        });
+        getContentPane().add(txt_modify_saldoRestante);
+        txt_modify_saldoRestante.setBounds(273, 184, 231, 29);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Saldo Restante Final");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(134, 190, 121, 17);
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(54, 134, 571, 10);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("MODIFICAR SALDO RESTANTE");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(175, 25, 262, 22);
 
         btn_procesar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/check.png"))); // NOI18N
         btn_procesar.setText("  Procesar");
@@ -71,12 +89,18 @@ public class frm_modificar_restante extends javax.swing.JFrame {
                 btn_procesarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_procesar);
+        btn_procesar.setBounds(339, 253, 143, 42);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Saldo Restante Actual");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(125, 93, 132, 17);
 
         txt_saldo_actual.setEditable(false);
         txt_saldo_actual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        getContentPane().add(txt_saldo_actual);
+        txt_saldo_actual.setBounds(275, 87, 231, 29);
 
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
         btn_cancelar.setText("  Cancelar");
@@ -85,62 +109,13 @@ public class frm_modificar_restante extends javax.swing.JFrame {
                 btn_cancelarActionPerformed(evt);
             }
         });
+        getContentPane().add(btn_cancelar);
+        btn_cancelar.setBounds(178, 253, 143, 42);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txt_saldo_actual, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(69, 69, 69))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_modify_saldoRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(133, 133, 133))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txt_saldo_actual, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txt_modify_saldoRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_procesar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(1, -5, 640, 330);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,6 +161,16 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         frm_pago.repaint();
         this.setVisible(false);
     }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void txt_modify_saldoRestanteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_modify_saldoRestanteKeyTyped
+       char valida = evt.getKeyChar();
+        if (Character.isLetter(valida) || Character.isWhitespace(valida) || evt.getKeyChar() == KeyEvent.VK_COMMA) {
+            getToolkit().beep();
+            evt.consume();
+
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+    }//GEN-LAST:event_txt_modify_saldoRestanteKeyTyped
 
      public void cerrar() {
         try {
@@ -250,6 +235,7 @@ public class frm_modificar_restante extends javax.swing.JFrame {
     private javax.swing.JButton btn_procesar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField txt_modify_saldoRestante;

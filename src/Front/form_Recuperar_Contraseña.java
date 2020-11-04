@@ -26,7 +26,7 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
      */
     public form_Recuperar_Contraseña() {
         initComponents();
-        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Icon-user.png"));
         setIconImage(icon);
         setVisible(true);
         cerrar();
@@ -43,50 +43,68 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txt_user = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txt_user = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txt_contraseña = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         txt_confirmacion = new javax.swing.JPasswordField();
         btn_recuperar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Recuperar Contraseña");
-        setMaximumSize(new java.awt.Dimension(650, 385));
         setMinimumSize(new java.awt.Dimension(650, 385));
-        setPreferredSize(new java.awt.Dimension(650, 385));
         getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(102, 105, 103,80));
+        jPanel1.setLayout(null);
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("RECUPERACIÓN DE CONTRASEÑA");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(116, 31, 404, 28);
-        getContentPane().add(txt_user);
-        txt_user.setBounds(267, 116, 253, 28);
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(12, 13, 404, 28);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuario:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(113, 121, 84, 17);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(12, 64, 84, 17);
+
+        txt_user.setBackground(new java.awt.Color(102, 105, 103,80));
+        txt_user.setForeground(new java.awt.Color(70, 70, 91));
+        txt_user.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txt_user);
+        txt_user.setBounds(166, 59, 253, 28);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña Nueva:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(113, 171, 132, 17);
-        getContentPane().add(txt_contraseña);
-        txt_contraseña.setBounds(267, 166, 253, 29);
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(12, 114, 132, 17);
+
+        txt_contraseña.setBackground(new java.awt.Color(102, 105, 103,80));
+        txt_contraseña.setForeground(new java.awt.Color(255, 255, 255));
+        txt_contraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txt_contraseña);
+        txt_contraseña.setBounds(166, 109, 253, 29);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Confirme Contraseña:");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(113, 218, 144, 17);
-        getContentPane().add(txt_confirmacion);
-        txt_confirmacion.setBounds(267, 213, 253, 29);
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(12, 161, 144, 17);
+
+        txt_confirmacion.setBackground(new java.awt.Color(102, 105, 103,80));
+        txt_confirmacion.setForeground(new java.awt.Color(255, 255, 255));
+        txt_confirmacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(txt_confirmacion);
+        txt_confirmacion.setBounds(166, 156, 253, 29);
 
         btn_recuperar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/password.png"))); // NOI18N
         btn_recuperar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,17 +112,20 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
                 btn_recuperarActionPerformed(evt);
             }
         });
-        getContentPane().add(btn_recuperar);
-        btn_recuperar.setBounds(313, 283, 59, 61);
+        jPanel1.add(btn_recuperar);
+        btn_recuperar.setBounds(200, 240, 59, 61);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("RECUPERAR");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(301, 260, 87, 17);
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(190, 220, 87, 17);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/password recover.jpg"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 650, 350);
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(120, 20, 430, 300);
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(-230, -40, 1070, 540);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -235,7 +256,8 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txt_confirmacion;
     private javax.swing.JPasswordField txt_contraseña;
     private javax.swing.JTextField txt_user;
