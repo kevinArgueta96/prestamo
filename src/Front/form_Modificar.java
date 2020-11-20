@@ -91,6 +91,7 @@ public class form_Modificar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modificar");
@@ -358,10 +359,13 @@ public class form_Modificar extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3);
         jButton3.setBounds(440, 640, 140, 46);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 850, 740);
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel16.setText("jLabel16");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(0, 0, 850, 740);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -890,6 +894,7 @@ public class form_Modificar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

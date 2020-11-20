@@ -74,7 +74,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_datos = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,9 +93,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle Garantía");
-        setMaximumSize(new java.awt.Dimension(700, 600));
         setMinimumSize(new java.awt.Dimension(700, 600));
-        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -122,7 +120,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(220, 510, 120, 43);
+        jButton3.setBounds(220, 510, 123, 43);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/vehicle.png"))); // NOI18N
@@ -210,7 +208,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnl_tabla);
-        pnl_tabla.setBounds(40, 230, 621, 158);
+        pnl_tabla.setBounds(40, 230, 627, 158);
 
         pnl_datos.setBackground(new java.awt.Color(187, 187, 187,80));
 
@@ -250,7 +248,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
         );
 
         getContentPane().add(pnl_datos);
-        pnl_datos.setBounds(40, 390, 620, 115);
+        pnl_datos.setBounds(40, 390, 626, 122);
 
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/back.png"))); // NOI18N
@@ -261,11 +259,12 @@ public class form_detalle_garantia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(370, 510, 125, 44);
+        jButton5.setBounds(370, 510, 127, 37);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white2.jpg"))); // NOI18N
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(0, 0, 690, 590);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 670, 560);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -563,7 +562,7 @@ public class form_detalle_garantia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

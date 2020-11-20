@@ -171,7 +171,7 @@ public class MainLogin extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(70, 30, 480, 380);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 640, 460);

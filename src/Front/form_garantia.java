@@ -92,11 +92,12 @@ public class form_garantia extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Garantía");
         setMaximumSize(new java.awt.Dimension(545, 480));
-        setMinimumSize(new java.awt.Dimension(545, 480));
+        setMinimumSize(new java.awt.Dimension(545, 600));
         setPreferredSize(new java.awt.Dimension(545, 480));
         getContentPane().setLayout(null);
 
@@ -114,7 +115,7 @@ public class form_garantia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_guarda);
-        btn_guarda.setBounds(330, 370, 130, 50);
+        btn_guarda.setBounds(240, 450, 130, 50);
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/vehicle.png"))); // NOI18N
@@ -284,12 +285,16 @@ public class form_garantia extends javax.swing.JFrame {
         getContentPane().add(jLabel14);
         jLabel14.setBounds(350, 70, 165, 17);
 
-        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         jLabel15.setMaximumSize(new java.awt.Dimension(542, 500));
         jLabel15.setMinimumSize(new java.awt.Dimension(542, 500));
         jLabel15.setPreferredSize(new java.awt.Dimension(542, 500));
         getContentPane().add(jLabel15);
         jLabel15.setBounds(0, 0, 600, 450);
+
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel16.setText("jLabel16");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(-2, -14, 730, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -558,6 +563,7 @@ public class form_garantia extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

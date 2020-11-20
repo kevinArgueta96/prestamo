@@ -204,7 +204,7 @@ public class frm_pagos_pendientes extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(10, 90, 1010, 190);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(1020, 500));
         jLabel4.setPreferredSize(new java.awt.Dimension(1020, 500));
         getContentPane().add(jLabel4);

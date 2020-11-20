@@ -49,9 +49,9 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     public form_nuevo_prestamo() {
         initComponents();
 
-        //Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/fondoo.jpg"));
-        //setIconImage(icon);
-        //setVisible(true);
+        Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/icon.jpg"));
+        setIconImage(icon);
+        setVisible(true);
         cerrar();
         txt_id.setVisible(false);
         setResizable(false);
@@ -176,7 +176,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         txt_monto_a = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Solicitud de Nuevo Préstamo");
@@ -189,7 +189,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("SOLICITUD NUEVO PRÉSTAMO");
         getContentPane().add(jLabel19);
-        jLabel19.setBounds(330, 20, 440, 26);
+        jLabel19.setBounds(310, 20, 440, 26);
 
         jPanel1.setBackground(new java.awt.Color(187, 187, 187,80));
         jPanel1.setMinimumSize(new java.awt.Dimension(1000, 700));
@@ -609,10 +609,10 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(60, 60, 900, 570);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(1, 0, 1090, 660);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 1090, 660);
 
         pack();
         setLocationRelativeTo(null);
@@ -1401,7 +1401,7 @@ public class form_nuevo_prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -112,10 +112,10 @@ public class frm_modificar_restante extends javax.swing.JFrame {
         getContentPane().add(btn_cancelar);
         btn_cancelar.setBounds(178, 253, 143, 42);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(1, -5, 640, 330);
+        jLabel3.setBounds(1, -5, 630, 330);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

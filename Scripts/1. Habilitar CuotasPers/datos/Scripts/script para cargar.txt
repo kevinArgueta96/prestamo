@@ -1,0 +1,5 @@
+
+INSERT INTO `dbprestamo`.`tbl_plazo` (`id_plazo`, `forma_pago`) VALUES ('1', 'Diario');
+INSERT INTO `dbprestamo`.`tbl_plazo` (`id_plazo`, `forma_pago`) VALUES ('2', 'Semanal');
+INSERT INTO `dbprestamo`.`tbl_plazo` (`id_plazo`, `forma_pago`) VALUES ('3', 'Mensual');
+INSERT INTO `dbprestamo`.`tbl_plazo` (`id_plazo`, `forma_pago`) VALUES ('4', 'Persona');

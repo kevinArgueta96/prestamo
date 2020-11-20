@@ -380,9 +380,9 @@ public class form_pago_cliente extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(20, 230, 830, 330);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(0, 0, 940, 630);
+        jLabel10.setBounds(-20, -10, 940, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

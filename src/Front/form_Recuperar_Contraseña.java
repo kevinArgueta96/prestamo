@@ -54,6 +54,7 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
         btn_recuperar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Recuperar Contraseña");
@@ -122,10 +123,13 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(120, 20, 430, 300);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         getContentPane().add(jLabel8);
         jLabel8.setBounds(-230, -40, 1070, 540);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(-9, -4, 790, 530);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -256,6 +260,7 @@ public class form_Recuperar_Contraseña extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txt_confirmacion;

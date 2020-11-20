@@ -53,9 +53,7 @@ public class frm_consults extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consultas");
-        setMaximumSize(new java.awt.Dimension(350, 495));
         setMinimumSize(new java.awt.Dimension(350, 495));
-        setPreferredSize(new java.awt.Dimension(350, 495));
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -79,7 +77,7 @@ public class frm_consults extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(132, 196, 90, 84);
+        jButton2.setBounds(132, 196, 93, 84);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/property.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +86,7 @@ public class frm_consults extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(132, 308, 90, 86);
+        jButton3.setBounds(132, 308, 90, 79);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("PAGOS");
@@ -114,7 +112,7 @@ public class frm_consults extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton4);
-        jButton4.setBounds(68, 410, 128, 54);
+        jButton4.setBounds(68, 410, 131, 54);
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -125,9 +123,9 @@ public class frm_consults extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton5);
-        jButton5.setBounds(202, 411, 124, 53);
+        jButton5.setBounds(202, 411, 127, 53);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consults.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(jLabel5);
         jLabel5.setBounds(0, 0, 350, 480);
 

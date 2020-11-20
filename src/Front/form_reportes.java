@@ -45,8 +45,8 @@ public class form_reportes extends javax.swing.JFrame {
         //Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/fondoo.jpg"));
         //setIconImage(icon);
         setVisible(true);
-        File repo = new File("/Users/kevin/documents/Diseño Reporte");
-        File dise = new File("/Users/kevin/documents/Reportes");
+        File repo = new File("/Users/Adrian/Desktop/Diseno_reporte");
+        File dise = new File("/Users/Adrian/Desktop/Reportes");
         if (repo.exists() && dise.exists()) {
         } else {
 
@@ -84,6 +84,7 @@ public class form_reportes extends javax.swing.JFrame {
         btn_cancelar4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporteria");
@@ -119,7 +120,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cmb_mes);
-        cmb_mes.setBounds(279, 97, 86, 20);
+        cmb_mes.setBounds(279, 97, 110, 20);
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel4.setText("Ingrese Año:");
@@ -133,7 +134,7 @@ public class form_reportes extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_año);
-        txt_año.setBounds(279, 128, 91, 30);
+        txt_año.setBounds(279, 128, 110, 30);
 
         btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report4.png"))); // NOI18N
         btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -147,12 +148,12 @@ public class form_reportes extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel6.setText("PAGOS MENSUALES");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(20, 168, 118, 24);
+        jLabel6.setBounds(8, 168, 130, 24);
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel7.setText("GENERADO MENSUALMENTE");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(155, 173, 170, 14);
+        jLabel7.setBounds(155, 173, 180, 20);
 
         btn_cancelar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/report1.png"))); // NOI18N
         btn_cancelar2.addActionListener(new java.awt.event.ActionListener() {
@@ -201,10 +202,13 @@ public class form_reportes extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(280, 420, 100, 40);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 520, 520);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(-9, 0, 540, 520);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -262,19 +266,26 @@ public class form_reportes extends javax.swing.JFrame {
             Map<String, Object> parametros = new HashMap<>();
             parametros.put("idfecha", new String(fecha_u));
             try {
+                /*JasperPrint jasperPrint = JasperFillManager.fillReport(
+                        "/Users/Adrian/Desktop/Diseno_reporte"
+                                + "/mes_reporte.jasper", parametros,
+                        con.getConnection());*/
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/mes_reporte.jasper", parametros,
+                        "C:\\Diseño Reporte"
+                                + "\\mes_reporte.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Pagos_del_Mes.pdf"));
+                
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput
+                ("C:\\Reportes\\" + fecha + "Pagos_del_Mes.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/mes_reporte.jasper", parametros,
+                        "C:\\Diseño Reporte\\mes_reporte.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -334,20 +345,22 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "/Users/Adrian/documents/Diseño reporte/reporte_mes.jasper", parametros,
+                        "C:\\Diseño Reporte\\reporte_mes.jasper", parametros,
                         con.getConnection());
 
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
+                /*exp.setExporterOutput(new SimpleOutputStreamExporterOutput
+                ("/Users/Adrian/Desktop/Reportes/" + fecha + "Detalle_Inversion.pdf"));*/
                 exp.setExporterOutput(new SimpleOutputStreamExporterOutput
-                ("/Users/Adriab/documents/Reportes/" + fecha + "Detalle_Inversion.pdf"));
+                ("C:\\Reportes\\" + fecha + "Detalle_Inversion.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "/Users/Adrian/documents/Diseño reporte/reporte_mes.jasper", parametros,
+                        "C:\\Diseño Reporte\\reporte_mes.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -406,18 +419,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/Genero_socio_mes.jasper", parametros,
+                        "C:\\Diseño Reporte\\Genero_socio_mes.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Detalle_socio.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_socio.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/Genero_socio_mes.jasper", parametros,
+                        "C:\\Diseño Reporte\\Genero_socio_mes.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -476,18 +489,18 @@ public class form_reportes extends javax.swing.JFrame {
             parametros.put("idfecha", new String(fecha_u));
             try {
                 JasperPrint jasperPrint = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño Reporte/comision_detalle.jasper", parametros,
+                        "C:\\Diseño Reporte\\comision_detalle.jasper", parametros,
                         con.getConnection());
                 JRPdfExporter exp = new JRPdfExporter();
                 exp.setExporterInput(new SimpleExporterInput(jasperPrint));
-                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("/Users/kevin/documents/Reportes/" + fecha + "Detalle_comision.pdf"));
+                exp.setExporterOutput(new SimpleOutputStreamExporterOutput("C:\\Reportes\\" + fecha + "Detalle_comision.pdf"));
                 SimplePdfExporterConfiguration conf = new SimplePdfExporterConfiguration();
                 exp.setConfiguration(conf);
                 exp.exportReport();
 
                 // se muestra en una ventana aparte para su descarga
                 JasperPrint jasperPrintWindow = JasperFillManager.fillReport(
-                        "/Users/kevin/documents/Diseño reporte/comision_detalle.jasper", parametros,
+                        "C:\\Diseño Reporte\\comision_detalle.jasper", parametros,
                         con.getConnection());
                 JasperViewer jasperViewer = new JasperViewer(jasperPrintWindow, false);
                 jasperViewer.setVisible(true);
@@ -596,6 +609,7 @@ public class form_reportes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

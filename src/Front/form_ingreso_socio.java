@@ -138,7 +138,7 @@ public class form_ingreso_socio extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(90, 70, 290, 130);
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nuevo socio background.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/clientelogo.jpg"))); // NOI18N
         jLabel5.setMaximumSize(new java.awt.Dimension(495, 290));
         jLabel5.setMinimumSize(new java.awt.Dimension(495, 290));
         jLabel5.setName(""); // NOI18N

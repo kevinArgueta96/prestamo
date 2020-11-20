@@ -102,6 +102,7 @@ public class form_detalle_comision extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Detalle Comisión");
@@ -198,12 +199,16 @@ public class form_detalle_comision extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(380, 320, 130, 37);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\argue\\Documents\\GitHub\\prestamo\\src\\Imagenes\\fondoo.jpg")); // NOI18N
         jLabel3.setMaximumSize(new java.awt.Dimension(890, 400));
         jLabel3.setMinimumSize(new java.awt.Dimension(890, 400));
         jLabel3.setPreferredSize(new java.awt.Dimension(890, 400));
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 920, 390);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(-9, -10, 930, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -319,6 +324,7 @@ public class form_detalle_comision extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_prestamo;
     private javax.swing.JTextField txt_dpi;

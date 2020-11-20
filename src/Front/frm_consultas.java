@@ -46,13 +46,11 @@ public class frm_consultas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingresos");
-        setMaximumSize(new java.awt.Dimension(400, 425));
         setMinimumSize(new java.awt.Dimension(400, 425));
-        setPreferredSize(new java.awt.Dimension(400, 425));
         getContentPane().setLayout(null);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/new_user.png"))); // NOI18N
@@ -71,7 +69,7 @@ public class frm_consultas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(150, 220, 102, 88);
+        jButton2.setBounds(150, 220, 105, 81);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Formulario de Ingreso");
@@ -97,7 +95,7 @@ public class frm_consultas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(80, 330, 128, 50);
+        jButton3.setBounds(80, 330, 131, 50);
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/exit.png"))); // NOI18N
@@ -110,9 +108,10 @@ public class frm_consultas extends javax.swing.JFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(220, 330, 130, 50);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/white6.jpg"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 400, 400);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(1, 0, 400, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -212,6 +211,6 @@ public class frm_consultas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }

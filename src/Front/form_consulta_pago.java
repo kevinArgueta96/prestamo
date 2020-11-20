@@ -106,7 +106,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txt_dpi = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Consulta de Pagos");
@@ -166,7 +166,7 @@ public class form_consulta_pago extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(380, 410, 120, 51);
+        jButton1.setBounds(380, 410, 123, 43);
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jLabel2.setText("ID ");
@@ -257,11 +257,12 @@ public class form_consulta_pago extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(510, 410, 125, 50);
+        jButton2.setBounds(510, 410, 127, 50);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/background consulta.jpg"))); // NOI18N
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(0, 0, 1000, 480);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
+        jLabel8.setText("jLabel8");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(-9, -4, 1020, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -447,8 +448,8 @@ public class form_consulta_pago extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbl_detalle;
